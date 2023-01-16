@@ -38,6 +38,9 @@ namespace winui
         /// </summary>
 
         private static Window startupWindow;
+        public static string UserID;
+        public static string UserName;
+
 
         // Get the initial window created for this app
         // On UWP, this is simply Window.Current

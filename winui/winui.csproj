@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
@@ -37,7 +37,8 @@
     <PackageReference Include="Geomatics.Windows.PInvoke.User32" Version="0.0.2" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221209.1" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
-    <PackageReference Include="Vanara.PInvoke.User32" Version="3.4.11" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+    <PackageReference Include="Vanara.PInvoke.User32" Version="3.4.12" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
@@ -93,6 +94,10 @@
     <Page Update="SamplePage1.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+    <Folder Include="Pages\" />
   </ItemGroup>
 
   <!-- 
