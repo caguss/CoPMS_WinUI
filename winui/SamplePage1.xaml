@@ -1,0 +1,176 @@
+<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<Page
+    x:Class="winui.SamplePage1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:winui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    
+   >
+    <!--<Grid>
+    <Button Content="이전 주 " IsEnabled="True"
+            HorizontalAlignment="Left" VerticalAlignment="Top"
+            Margin="80,50,50,10"
+            FontSize="20"
+            BorderBrush="White"/>
+        <CalendarDatePicker HorizontalAlignment="Left" VerticalAlignment="Top"
+                            Margin="250,55,50,10"
+                            FontSize="20"
+                            BorderThickness="1"
+                            BorderBrush="White">
+        </CalendarDatePicker>
+        <Button Content="다음 주 " IsEnabled="True"
+            HorizontalAlignment="Left" VerticalAlignment="Top"
+            Margin="480,50,50,10"
+            FontSize="20"
+            BorderBrush="White"/>-->
+        
+        
+        <ScrollViewer>
+
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderBrush="Gray" BorderThickness="2"> 
+            <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">-->
+            <Grid.Resources>
+                
+                <x:Double x:Key="TileHeightKey">150</x:Double>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*"    />
+                <ColumnDefinition Width="*"    />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"    />
+            </Grid.RowDefinitions>
+            <!--<Grid Grid.Row="1" Grid.Column="1" Margin="5" MinHeight="{StaticResource TileHeightKey}" 
+                  Background="Black"
+                  />-->
+
+            <Grid Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Margin="5"
+                  MinHeight="{StaticResource TileHeightKey}"
+                  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                 
+                  >
+                <ComboBox Header="연차 종류" Margin="32,35,0,0" Width="380" BorderBrush="LightSlateGray"
+                           BorderThickness="2">
+                    <x:String>조퇴/반차</x:String>
+                    <x:String>연차</x:String>
+                    <x:String>재택근무</x:String>
+                    <x:String>예비군(동원훈련)</x:String>
+                    <x:String>예비군(향방작계/기본)</x:String>
+                    <x:String>민방위 훈련</x:String>
+                </ComboBox>
+                <TextBox Header="연차 사유" Height="60" Width="380" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="32,110,0,0"
+                         BorderBrush="LightSlateGray"
+                          BorderThickness="2"
+                        
+                         ></TextBox>
+                <DatePicker Header="날짜 선택" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100" Width="380" 
+                                Margin="32,185,0,0" BorderBrush="LightSlateGray" BorderThickness="2" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                          x:Name="datepic" 
+                            />
+                <!--<CalendarDatePicker PlaceholderText="Pick a date" Header="Calendar" Margin="32,185,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                                    DateFormat = "{}{year.full}년 {month.integer(2)}월 {day.integer(2)}일"/>-->
+
+                <Button Content="연차 등록" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Top"
+                        Margin="0,250,28,0"
+                         BorderBrush="LightSlateGray"
+                        BorderThickness="2"
+                        Foreground="LightSlateGray"
+                        Width="110">
+                </Button>
+
+                <TextBlock Text="2023년 01월 10일" Margin="33,0,0,320" VerticalAlignment="Bottom" 
+                           
+                            Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                           FontSize="15"></TextBlock>
+                <ListBox Height="280" Width="380" VerticalAlignment="Bottom" Margin="5,0,0,30" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                         BorderBrush="LightSlateGray" BorderThickness="2">
+                    <TextBlock Text="방찬석 연차" ></TextBlock> 
+                    <TextBlock Text="김지은 반차"></TextBlock>
+                    <TextBlock Text="최수영 연차"></TextBlock>
+                    <TextBlock></TextBlock> 
+                    <TextBlock></TextBlock> 
+                    <TextBlock></TextBlock>
+                    <TextBlock></TextBlock>
+                    <TextBlock></TextBlock>
+                    <TextBlock></TextBlock>
+                    <TextBlock></TextBlock>
+                    <TextBlock></TextBlock>
+                    <TextBlock></TextBlock>
+                    <TextBlock></TextBlock>
+                    <TextBlock></TextBlock>
+                    <TextBlock></TextBlock>
+                    <TextBlock></TextBlock>
+                    <TextBlock></TextBlock>
+                    <TextBlock></TextBlock>
+                    
+                </ListBox>  
+                
+            </Grid>
+            <!--<Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Margin="5" MinHeight="{StaticResource TileHeightKey}" Background="White" />-->
+            <!--<Grid Grid.Row="2" Grid.Column="2"  Grid.RowSpan="2" Margin="5" MinHeight="{StaticResource TileHeightKey}" Background="White"  />-->
+            <Grid Name="sourceGrid" Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="2"
+                Margin="5"
+                MinWidth="250"
+                MinHeight="{StaticResource TileHeightKey}"
+                Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <Button Content="오늘" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Margin="0,0,30,30"
+                         BorderBrush="LightSlateGray"
+                        BorderThickness="2"
+                        Foreground="LightSlateGray"
+                        Width="80">
+                </Button>
+
+                <CalendarView SelectionMode="Single" IsGroupLabelVisible="False" IsOutOfScopeEnabled="True"
+                                  Language="en" CalendarIdentifier="GregorianCalendar" HorizontalAlignment="Left"
+                              VerticalAlignment="Top" Margin="32,170,0,0" Height="400" Width="380" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                              SelectedBorderBrush="LightSlateGray" BorderBrush="LightSlateGray"
+                                  BorderThickness="2"
+                                  TodayBackground="DodgerBlue" TodaySelectedInnerBorderBrush="AliceBlue" />
+
+                <TextBlock Text="연차 현황" VerticalAlignment="Top" Margin="32,35,0,10" 
+                               Foreground="{ThemeResource ApplicationForegroundThemeBrush}"  FontSize="13" ></TextBlock>
+                
+                <StackPanel Height="80" Width="380" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,64,0,0" BorderBrush="LightSlateGray"
+                            Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
+                            BorderThickness="2">
+                    <TextBlock Text="내 연차 : 15일  /  사용 연차 : 5일  /  남은 연차 : 10일" VerticalAlignment="Center" Margin="20,28,0,0"
+                                  Foreground="{ThemeResource ApplicationForegroundThemeBrush}" FontSize="14"></TextBlock>
+                    
+                </StackPanel>
+                <Canvas Height="300" Width="300"> 
+                    <Line 
+                          X1="373" Y1="-130" X2="373" Y2="430" Stroke="LightSlateGray" StrokeThickness="1"
+                          ></Line>
+                    </Canvas>
+               
+                <!--</StackPanel>-->
+                <Frame Name="frame">
+                    <UIElement.RenderTransform>
+                        <TransformGroup/>
+                    </UIElement.RenderTransform>
+                </Frame>
+            </Grid>
+
+           
+            <!--<Grid Grid.Row="3" Grid.ColumnSpan="3"
+                Margin="5 10">
+                <TextBlock
+                    TextWrapping="WrapWholeWords"
+                    Style="{ThemeResource BodyTextBlockStyle}">
+
+                </TextBlock>
+            </Grid>-->
+        </Grid>
+    </ScrollViewer>
+  
+</Page>

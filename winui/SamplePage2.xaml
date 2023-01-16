@@ -1,0 +1,159 @@
+<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<Page
+    x:Class="winui.SamplePage2"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:winui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <ScrollViewer>
+
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderBrush="Gray" BorderThickness="2">
+            <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">-->
+            <Grid.Resources>
+
+                <x:Double x:Key="TileHeightKey">150</x:Double>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*"    />
+                <ColumnDefinition Width="*"    />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"    />
+            </Grid.RowDefinitions>
+            <!--<Grid Grid.Row="1" Grid.Column="1" Margin="5" MinHeight="{StaticResource TileHeightKey}" 
+                  Background="Black"
+                  />-->
+
+            <Grid Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Margin="5"
+                  MinHeight="{StaticResource TileHeightKey}"
+                  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                 
+                  >
+                <ComboBox Header="차량 종류" Margin="32,35,0,0" Width="157" BorderBrush="LightSlateGray"
+                           BorderThickness="2">
+                    <x:String>스파크</x:String>
+                    <x:String>올란도</x:String>
+                    <x:String>코란도</x:String>
+                    <x:String>쏘렌토</x:String>
+                    <x:String>트레일블레이저</x:String>
+                </ComboBox>
+                <TextBox Header="목적지" Height="60" Width="215" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,35,28,0"
+                         BorderBrush="LightSlateGray"
+                          BorderThickness="2"
+                         ></TextBox>
+
+                <Button Content="예약" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Top"
+                        Margin="0,180,28,0"
+                         BorderBrush="LightSlateGray"
+                        BorderThickness="2"
+                        Foreground="LightSlateGray"
+                        Width="80">
+                </Button>
+               
+                <DatePicker Header="날짜 선택" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100" Width="380" 
+                                Margin="32,115,0,0" BorderBrush="LightSlateGray" BorderThickness="2" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                          x:Name="datepic" 
+                            />
+                <!--<CalendarDatePicker PlaceholderText="Pick a date" Header="Calendar" Margin="32,185,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                                    DateFormat = "{}{year.full}년 {month.integer(2)}월 {day.integer(2)}일"/>-->
+
+                <TextBlock Text="차량 정보" VerticalAlignment="Bottom" Margin="32,0,0,400"></TextBlock>
+                <ListBox Height="280" Width="380" VerticalAlignment="Bottom" Margin="3,0,0,110" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                         BorderBrush="LightSlateGray" BorderThickness="2">
+                    <TextBlock Text="스파크 → 지상- [김동현] 주유량 : 100%" ></TextBlock>
+                    <TextBlock Text="올란도 → C3-10 [김형석] 주유량 : 70%"></TextBlock>
+                    <TextBlock Text="제네시스 → 사용중 [반기동]"></TextBlock>
+                    <TextBlock Text="코란도 → C3-11 [최종성] 주유량 : 95%"></TextBlock>
+                    <TextBlock Text="쏘렌토 → C3-15 [최종성] 주유량 : 100%"></TextBlock>
+                    <TextBlock Text="트레일블레이저 → C3-13 [김기환] 주유량 : 75%"></TextBlock>
+                    <TextBlock Text="싼타페 → 사용중 [강용태]"></TextBlock>
+
+                </ListBox>
+
+                <TextBlock Text="차량 종류" VerticalAlignment="Bottom" Margin="32,0,0,70"    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"></TextBlock>
+                <ComboBox  Margin="32,35,0,30" Width="240" BorderBrush="LightSlateGray"
+                           BorderThickness="2"
+                          VerticalAlignment="Bottom">
+                    <x:String>스파크</x:String>
+                    <x:String>올란도</x:String>
+                    <x:String>코란도</x:String>
+                    <x:String>쏘렌토</x:String>
+                    <x:String>트레일블레이저</x:String>
+                </ComboBox>
+                
+                <Button Content="운전 시작" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Margin="0,180,28,30"
+                         BorderBrush="LightSlateGray"
+                        BorderThickness="2"
+                        Foreground="LightSlateGray"
+                        Width="120">
+                </Button>
+            </Grid>
+            <!--<Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Margin="5" MinHeight="{StaticResource TileHeightKey}" Background="White" />-->
+            <!--<Grid Grid.Row="2" Grid.Column="2"  Grid.RowSpan="2" Margin="5" MinHeight="{StaticResource TileHeightKey}" Background="White"  />-->
+            <Grid Name="sourceGrid" Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="2"
+                Margin="5"
+                MinWidth="250"
+                MinHeight="{StaticResource TileHeightKey}"
+                Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+               
+
+                <Button Content="오늘" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Margin="0,0,30,215"
+                         BorderBrush="LightSlateGray"
+                        BorderThickness="2"
+                        Foreground="LightSlateGray"
+                        Width="80">
+                </Button>
+
+                <CalendarView SelectionMode="Single" IsGroupLabelVisible="False" IsOutOfScopeEnabled="True"
+                                  Language="en" CalendarIdentifier="GregorianCalendar" HorizontalAlignment="Left"
+                              VerticalAlignment="Top" Margin="32,38,0,0" Height="350" Width="380" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                              SelectedBorderBrush="LightSlateGray" BorderBrush="LightSlateGray"
+                                  BorderThickness="2"
+                                  TodayBackground="DodgerBlue" TodaySelectedInnerBorderBrush="AliceBlue" />
+
+                <TextBlock Text="2023년 01월 12일" Margin="33,0,0,190" VerticalAlignment="Bottom" 
+                               Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                           FontSize="15"></TextBlock>
+                <ListBox Height="150" Width="380" VerticalAlignment="Bottom" Margin="5,0,0,30" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                         BorderBrush="LightSlateGray" BorderThickness="2">
+                    <TextBlock Text="쏘렌토 최수영-오토젠(인주)" ></TextBlock>
+                    <TextBlock Text="코란도 최종성-명진"></TextBlock>
+                </ListBox>
+
+
+                <Canvas Height="300" Width="300">
+                    <Line 
+                          X1="373" Y1="-130" X2="373" Y2="430" Stroke="LightSlateGray" StrokeThickness="1"
+                          ></Line>
+                </Canvas>
+               
+                <!--</StackPanel>-->
+                <Frame Name="frame">
+                    <UIElement.RenderTransform>
+                        <TransformGroup/>
+                    </UIElement.RenderTransform>
+                </Frame>
+            </Grid>
+
+
+            <!--<Grid Grid.Row="3" Grid.ColumnSpan="3"
+                Margin="5 10">
+                <TextBlock
+                    TextWrapping="WrapWholeWords"
+                    Style="{ThemeResource BodyTextBlockStyle}">
+
+                </TextBlock>
+            </Grid>-->
+        </Grid>
+    </ScrollViewer>
+</Page>
