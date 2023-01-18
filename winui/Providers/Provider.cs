@@ -10,7 +10,7 @@ namespace winui.Providers
 {
     class Provider
     {
-        SqlConnection con = new SqlConnection("test");
+        SqlConnection con = new SqlConnection("Data Source=db3.coever.co.kr;Initial Catalog=Coever_Web;User ID=sa; Password=Codb89897788@$^;");
         SqlCommand cmd;
 
         public DataTable Login(string username, string password, string platform)
