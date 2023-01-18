@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
+using H.NotifyIcon.EfficiencyMode;
+using H.NotifyIcon;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -17,7 +19,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Notifications;
-using static PInvoke.User32;
+
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -50,13 +52,16 @@ namespace winui
         public static int MinWindowHeight { get; set; } = 800;
         public static int MaxWindowHeight { get; set; } = 800;
 
+
         public MainWindow()
         {
+
             this.InitializeComponent();
             RegisterWindowMinMax(this);
-            
-            
+       
         }
+        
+
         private static void RegisterWindowMinMax(Window window)
         {
             var hwnd = GetWindowHandleForCurrentWindow(window);
@@ -149,12 +154,12 @@ namespace winui
         /// <param name="e">이벤트 인자</param>
         private void navigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs e)
         {
+         
+
             if (e.IsSettingsSelected)
             {
                 this.frame.Navigate(typeof(SettingPage));
                 sender.Header = "설정";
-
-                
             }
             else
             {

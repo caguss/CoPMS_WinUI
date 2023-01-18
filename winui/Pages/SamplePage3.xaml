@@ -40,11 +40,13 @@
 
                 <TextBlock Text="근태 이력 조회" Margin="32,35,0,0"    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"></TextBlock>
                 <TextBlock Text="이름" Margin="32,85,0,0"    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"></TextBlock>
-                <TextBox  Width="240" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="80,80,0,0"></TextBox>
+                <TextBox  Width="240" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="80,80,0,0"
+                          BorderBrush="LightSlateGray"
+                        BorderThickness="1"></TextBox>
                 <Button Content="조회" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Top"
                         Margin="0,80,30,0"
                          BorderBrush="LightSlateGray"
-                        BorderThickness="2"
+                        BorderThickness="1"
                         Foreground="LightSlateGray"
                         Width="80">
                 </Button>
@@ -52,7 +54,7 @@
                 <Button Content="근무 추가" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Margin="0,0,30,30"
                          BorderBrush="LightSlateGray"
-                        BorderThickness="2"
+                        BorderThickness="1"
                         Foreground="LightSlateGray"
                         Width="120">
                 </Button>
@@ -64,7 +66,7 @@
                           Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                           Margin="5,37,0,75"
                             VerticalAlignment="Bottom"
-                          BorderBrush="LightSlateGray" BorderThickness="2"
+                          BorderBrush="LightSlateGray" BorderThickness="1"
                           >
                     
                     <GridViewHeaderItem Width="80" Content="일자" FontSize="13" Height="10" ></GridViewHeaderItem>
@@ -114,11 +116,13 @@
 
                 <TextBlock Text="근무자 별 출퇴근 현황" Margin="32,35,0,0"    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"></TextBlock>
                 <TextBlock Text="이름" Margin="32,85,0,0"    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"></TextBlock>
-                <TextBox  Width="240" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="80,80,0,0"></TextBox>
+                <TextBox  Width="240" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="80,80,0,0"
+                          BorderBrush="LightSlateGray"
+                        BorderThickness="1"></TextBox>
                 <Button Content="조회" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Top"
                         Margin="0,80,30,0"
                          BorderBrush="LightSlateGray"
-                        BorderThickness="2"
+                        BorderThickness="1"
                         Foreground="LightSlateGray"
                         Width="80">
                 </Button>
@@ -126,7 +130,7 @@
                 <Button Content="근무 시간 변경" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Margin="0,0,30,30"
                          BorderBrush="LightSlateGray"
-                        BorderThickness="2"
+                        BorderThickness="1"
                         Foreground="LightSlateGray"
                         Width="120">
                 </Button>
@@ -134,7 +138,7 @@
                 <Button Content="근무자 추가" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Margin="0,0,160,30"
                          BorderBrush="LightSlateGray"
-                        BorderThickness="2"
+                        BorderThickness="1"
                         Foreground="LightSlateGray"
                         Width="120">
                 </Button>
@@ -146,7 +150,7 @@
                           Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                           Margin="5,37,0,75"
                             VerticalAlignment="Bottom"
-                          BorderBrush="LightSlateGray" BorderThickness="2"
+                          BorderBrush="LightSlateGray" BorderThickness="1"
                           >
                     <GridViewHeaderItem Width="110" Content="사용자이름" FontSize="13" Height="10" ></GridViewHeaderItem>
                     <GridViewHeaderItem Width="110" Content="출근시간" FontSize="13"></GridViewHeaderItem>
@@ -185,36 +189,18 @@
                     <GridViewItem Content="이상훈" Width="110" Height="10"></GridViewItem>
                     <GridViewItem Content="09:00:00" Width="110" Height="10"></GridViewItem>
                     <GridViewItem Content="18:00:00" Width="110" Height="10"></GridViewItem>
-
-
-
                 </GridView>
-
-
-
                 <Canvas Height="300" Width="300">
                     <Line 
                           X1="373" Y1="-130" X2="373" Y2="430" Stroke="LightSlateGray" StrokeThickness="1"
                           ></Line>
                 </Canvas>
-
-                <!--</StackPanel>-->
                 <Frame Name="frame">
                     <UIElement.RenderTransform>
                         <TransformGroup/>
                     </UIElement.RenderTransform>
                 </Frame>
             </Grid>
-
-
-            <!--<Grid Grid.Row="3" Grid.ColumnSpan="3"
-                Margin="5 10">
-                <TextBlock
-                    TextWrapping="WrapWholeWords"
-                    Style="{ThemeResource BodyTextBlockStyle}">
-
-                </TextBlock>
-            </Grid>-->
         </Grid>
     </ScrollViewer>
 </Page>

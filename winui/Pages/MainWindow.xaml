@@ -9,11 +9,41 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:tb="using:H.NotifyIcon"
 
     >
 
-
     <Grid>
+        <tb:TaskbarIcon 
+            ContextMenuMode="SecondWindow"
+            PopupActivation="DoubleClick"
+            ToolTipText="Winui"
+            MenuActivation="LeftOrRightClick"
+       
+            >
+            <tb:TaskbarIcon.GeneratedIcon>
+                <tb:GeneratedIcon
+                    Text="A"
+                    FontSize="70"
+                 >
+                   
+                    <tb:GeneratedIcon.Foreground>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="128,128">
+                            <GradientStop Color="Red"/>
+                            <GradientStop Color="Red"/>
+                        </LinearGradientBrush>
+                    </tb:GeneratedIcon.Foreground>
+                    <tb:GeneratedIcon.BorderBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="128,128">
+                            <GradientStop Color="White" />
+                            <GradientStop Color="Red" />
+                        </LinearGradientBrush>
+                    </tb:GeneratedIcon.BorderBrush>
+                </tb:GeneratedIcon>
+             
+            </tb:TaskbarIcon.GeneratedIcon>
+        </tb:TaskbarIcon>
+
         <Grid Margin="10" Language="kr" Name="grid" >
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="*"    />
@@ -21,19 +51,16 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
            
-         
             <NavigationView Name="navigationView"
                 ExpandedModeThresholdWidth="500"
                 IsTabStop="False"
                 PaneDisplayMode="LeftCompact"
                SelectionFollowsFocus="Enabled"
                             Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                            Foreground="White"
-                        
+                            Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                 SelectionChanged="navigationView_SelectionChanged">
-                
-                <NavigationView.MenuItems>
 
+                <NavigationView.MenuItems>
                     <NavigationViewItem
                         Tag="Home"
                         Content="홈" >

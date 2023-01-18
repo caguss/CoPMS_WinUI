@@ -16,7 +16,9 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System.Runtime.InteropServices;
-using static PInvoke.User32;
+
+using winui.Properties;
+using winui.Helper;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -28,6 +30,7 @@ namespace winui
     /// </summary>
     public sealed partial class Login : Window
     {
+        private static Window startupWindow;
         private static WinProc newWndProc = null;
         private static IntPtr oldWndProc = IntPtr.Zero;
         private delegate IntPtr WinProc(IntPtr hWnd, WindowMessage Msg, IntPtr wParam, IntPtr lParam);
@@ -122,6 +125,18 @@ namespace winui
 
         private void btnlogin_Click(object sender, RoutedEventArgs e)
         {
+            if (Resources.IsLoginYN.Equals("N"))
+            {
+                MainWindow main = new MainWindow();
+                startupWindow = WindowHelper.CreateWindow(main);
+                ThemeHelper.Initialize();
+
+                startupWindow = main;
+                startupWindow.Activate();
+
+             
+                this.Close();
+            }
 
         }
     }
