@@ -37,8 +37,6 @@ namespace winui.Helper
 
         static public Window GetWindowForElement(UIElement element)
         {
-
-          
             if (element.XamlRoot != null)
             {
                 foreach (Window window in _activeWindows)

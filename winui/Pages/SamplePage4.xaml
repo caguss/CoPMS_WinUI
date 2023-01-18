@@ -11,7 +11,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <ScrollViewer>
+    <ScrollViewer >
 
         <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderBrush="Gray" BorderThickness="2">
             <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">-->
@@ -37,21 +37,21 @@
             <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Margin="5" Grid.ColumnSpan="2"
                   MinHeight="{StaticResource TileHeightKey}"
                   Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                 
                   >
-                <CalendarDatePicker VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Height="60"
-                                    Margin="20,30,0,0" Header="계약년도"
+                <CalendarDatePicker VerticalAlignment="Top" HorizontalAlignment="Left" Width="190" Height="60"
+                                    Margin="20,20,0,150" Header="계약년도"
                                     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                                    BorderBrush="LightSlateGray"
-                                    >
+                                    BorderBrush="LightSlateGray">
                 </CalendarDatePicker>
 
                 <TextBox Header="프로젝트 명" VerticalAlignment="Top" HorizontalAlignment="Left"
-                         Width="230" Height="60" Margin="230,30,0,0" 
+                         Width="220" Height="60" Margin="230,20,0,0" 
                           BorderBrush="LightSlateGray"
                          ></TextBox>
 
                 <TextBox Header="프로젝트 담당자" VerticalAlignment="Top" HorizontalAlignment="Left"
-                         Width="200" Height="60" Margin="470,30,0,0" 
+                         Width="200" Height="60" Margin="470,20,0,0" 
                           BorderBrush="LightSlateGray"
                          ></TextBox>
 
@@ -59,14 +59,14 @@
                 <ComboBox
                      BorderBrush="LightSlateGray"
                     Width="95" Header="완료여부" Height="61"
-                    VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,29,115,0"
+                    VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,18,115,0"
                     >
                     <x:String>완료</x:String>
                     <x:String>미결제</x:String>
                     <x:String>미완료</x:String>
                  
                 </ComboBox>
-                <Button Content="조회" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,57,22,0"
+                <Button Content="조회" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,45,22,0"
                         Width="80" Height="33"
                         BorderBrush="LightSlateGray"
                         ></Button>
@@ -75,12 +75,12 @@
                 <GridView x:Name="gridview"
                           Grid.Column="8"
                           Grid.Row="3"
-                          Width="850"  Height="250"
+                          Width="860"  Height="250"
                           Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                          Margin="0,0,0,290"
-                            VerticalAlignment="Bottom"
+                          Margin="0,100,0,290"
+                            VerticalAlignment="Top"
                           HorizontalAlignment="Center"
-                          BorderBrush="LightSlateGray" BorderThickness="2"
+                          BorderBrush="LightSlateGray" BorderThickness="1"
                           >
                     <GridViewHeaderItem Width="110" Content="프로젝트번호" FontSize="13" Height="10" Margin="-10,0,0,0"  ></GridViewHeaderItem>
                     <GridViewHeaderItem Width="110" Content="프로젝트이름" FontSize="13" Margin="-10,0,0,0" ></GridViewHeaderItem>
@@ -92,21 +92,99 @@
                     <GridViewHeaderItem Width="120" Content="프로젝트종료일" FontSize="13" Margin="-10,0,0,0" ></GridViewHeaderItem>
                 </GridView>
 
-                <TextBox Header="프로젝트 명" Width="520" Height="60" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="20,0,0,210"
+                <TextBox Header="프로젝트 명" Width="530" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,365,0,210"
                          BorderBrush="LightSlateGray"   
                          ></TextBox>
-                <TextBox Header="집중 AS 기간" Width="310" Height="60" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="560,0,0,210"
+                <TextBox Header="집중 AS 기간" Width="310" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="570,365,0,210"
                           BorderBrush="LightSlateGray"
                          ></TextBox>
-                <TextBox Header="거래처 명" Width="250" Height="60" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="20,0,0,130"
+                <TextBox Header="거래처 명" Width="255" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,445,0,130"
                           BorderBrush="LightSlateGray"
                          ></TextBox>
-                <TextBox Header="프로젝트 일자 (최초)" Width="250" Height="60" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="290,0,0,130"
+                <TextBox Header="프로젝트 일자 (최초)" Width="255" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="295,445,0,130"
                           BorderBrush="LightSlateGray"
                          ></TextBox>
-                <TextBox Header="프로젝트 일자 (변경)" Width="250" Height="60" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="560,0,0,130"
+                <TextBox Header="프로젝트 일자 (변경)" Width="310" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="570,445,0,130"
                           BorderBrush="LightSlateGray"
                          ></TextBox>
+
+                <TextBox Header="기준시점" Width="255" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,525,0,50"
+                          BorderBrush="LightSlateGray"
+                         ></TextBox>
+                <TextBox Header="프로젝트 담당자" Width="255" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="295,525,0,50"
+                          BorderBrush="LightSlateGray"
+                         ></TextBox>
+                <TextBox Header="부서명" Width="310" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="570,525,0,50"
+                          BorderBrush="LightSlateGray"
+                         ></TextBox>
+
+                <Canvas Height="300" Width="300">
+                    <Line 
+                          X1="-280" Y1="-28" X2="580" Y2="-28" Stroke="LightSlateGray" StrokeThickness="1"
+                          ></Line>
+                </Canvas>
+                
+                <TextBlock  Text="프로젝트 투입 이력" VerticalAlignment="Top"
+                          HorizontalAlignment="Right"
+                             Margin="0,670,495,290"
+                           Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                            ></TextBlock>
+                <GridView x:Name="gridview2"
+                          Grid.Column="8"
+                          Grid.Row="3"
+                          Width="590"  Height="625"
+                          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                          Margin="290,700,10,290"
+                            VerticalAlignment="Top"
+                          HorizontalAlignment="Left"
+                          BorderBrush="LightSlateGray" BorderThickness="1"
+                          >
+                    <GridViewHeaderItem Width="80" Content="기간" FontSize="13" Height="10" Margin="3,0,0,0"  ></GridViewHeaderItem>
+                    <GridViewHeaderItem Width="80" Content="최수영" FontSize="13" Margin="3,0,0,0" ></GridViewHeaderItem>
+                    <GridViewHeaderItem Width="80" Content="유민상" FontSize="13" Margin="3,0,0,0" ></GridViewHeaderItem>
+                    <GridViewHeaderItem Width="80" Content="방찬석" FontSize="13" Margin="3,0,0,0" ></GridViewHeaderItem>
+                    <GridViewHeaderItem Width="80" Content="김민섭" FontSize="13" Margin="3,0,0,0" ></GridViewHeaderItem>
+                    <GridViewHeaderItem Width="80" Content="김지은" FontSize="13" Margin="3,0,0,0" ></GridViewHeaderItem>
+                    
+                    <GridViewItem Content="2023/01" ></GridViewItem>
+                    <GridViewItem Content="0.20" ></GridViewItem>
+                    <GridViewItem Content="0.10" ></GridViewItem>
+                    <GridViewItem Content="0.10" ></GridViewItem>
+                    <GridViewItem Content="0.10" ></GridViewItem>
+                    <GridViewItem Content="0.10" ></GridViewItem>
+                </GridView>
+
+                <TextBox Header="기간" Height="60" Width="250" VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="20,680,20,290"   BorderBrush="LightSlateGray" BorderThickness="1"></TextBox>
+                <TextBox Header="투입자" Height="60" Width="250" VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="20,760,20,290"   BorderBrush="LightSlateGray" BorderThickness="1"></TextBox>
+                <TextBox Header="투입MM" Height="60" Width="250" VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="20,840,20,290"   BorderBrush="LightSlateGray" BorderThickness="1"></TextBox>
+                <TextBox Header="당초계획" Height="60" Width="250" VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="20,920,20,290"   BorderBrush="LightSlateGray" BorderThickness="1"></TextBox>
+                <TextBox Header="변경계획" Height="60" Width="250" VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="20,1000,20,290"   BorderBrush="LightSlateGray" BorderThickness="1"></TextBox>
+
+                <Button Content="투입인력 조회" Height="40" Width="250" VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="20,1080,20,290"  BorderBrush="LightSlateGray" BorderThickness="1"></Button>
+                <Button Content="저장" Height="40" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="20,1130,20,290"  BorderBrush="LightSlateGray" BorderThickness="1"></Button>
+                <Button Content="월마감" Height="40" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="20,1180,20,290"  BorderBrush="DarkSeaGreen" BorderThickness="1"></Button>
+                <Button Content="팀장결재" Height="40" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="20,1230,20,290"  BorderBrush="CadetBlue" BorderThickness="1"></Button>
+                <Button Content="임원결재" Height="40" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="20,1280,20,290"  BorderBrush="IndianRed" BorderThickness="1"></Button>
+                
+                <Button Content="초기화" Height="40" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="150,1130,20,290"  BorderBrush="LightSlateGray" BorderThickness="1"></Button>
+                <Button Content="마감취소" Height="40" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="150,1180,20,290"  BorderBrush="DarkSeaGreen" BorderThickness="1"></Button>
+                <Button Content="팀장취소" Height="40" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="150,1230,20,290"  BorderBrush="CadetBlue" BorderThickness="1"></Button>
+                <Button Content="임원취소" Height="40" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="150,1280,20,290"  BorderBrush="IndianRed" BorderThickness="1"></Button>
+
 
                 <!--</StackPanel>-->
                 <Frame Name="frame">

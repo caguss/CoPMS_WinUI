@@ -38,7 +38,7 @@
                  
                   >
                 <ComboBox Header="차량 종류" Margin="32,35,0,0" Width="157" BorderBrush="LightSlateGray"
-                           BorderThickness="2">
+                           BorderThickness="1">
                     <x:String>스파크</x:String>
                     <x:String>올란도</x:String>
                     <x:String>코란도</x:String>
@@ -47,27 +47,28 @@
                 </ComboBox>
                 <TextBox Header="목적지" Height="60" Width="215" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,35,28,0"
                          BorderBrush="LightSlateGray"
-                          BorderThickness="2"
+                          BorderThickness="1"
                          ></TextBox>
 
                 <Button Content="예약" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Top"
                         Margin="0,180,28,0"
                          BorderBrush="LightSlateGray"
-                        BorderThickness="2"
+                        BorderThickness="1"
                         Foreground="LightSlateGray"
                         Width="80">
                 </Button>
                
                 <DatePicker Header="날짜 선택" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100" Width="380" 
-                                Margin="32,115,0,0" BorderBrush="LightSlateGray" BorderThickness="2" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                                Margin="32,115,0,0" BorderBrush="LightSlateGray" BorderThickness="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                           x:Name="datepic" 
                             />
                 <!--<CalendarDatePicker PlaceholderText="Pick a date" Header="Calendar" Margin="32,185,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" 
                                     DateFormat = "{}{year.full}년 {month.integer(2)}월 {day.integer(2)}일"/>-->
 
-                <TextBlock Text="차량 정보" VerticalAlignment="Bottom" Margin="32,0,0,400"></TextBlock>
+                <TextBlock Text="차량 정보" VerticalAlignment="Bottom" Margin="32,0,0,400"
+                           Foreground="{ThemeResource ApplicationForegroundThemeBrush}"></TextBlock>
                 <ListBox Height="280" Width="380" VerticalAlignment="Bottom" Margin="3,0,0,110" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                         BorderBrush="LightSlateGray" BorderThickness="2">
+                         BorderBrush="LightSlateGray" BorderThickness="1">
                     <TextBlock Text="스파크 → 지상- [김동현] 주유량 : 100%" ></TextBlock>
                     <TextBlock Text="올란도 → C3-10 [김형석] 주유량 : 70%"></TextBlock>
                     <TextBlock Text="제네시스 → 사용중 [반기동]"></TextBlock>
@@ -79,8 +80,8 @@
                 </ListBox>
 
                 <TextBlock Text="차량 종류" VerticalAlignment="Bottom" Margin="32,0,0,70"    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"></TextBlock>
-                <ComboBox  Margin="32,35,0,30" Width="240" BorderBrush="LightSlateGray"
-                           BorderThickness="2"
+                <ComboBox  Margin="32,35,0,30" Width="249" BorderBrush="LightSlateGray"
+                           BorderThickness="1"
                           VerticalAlignment="Bottom">
                     <x:String>스파크</x:String>
                     <x:String>올란도</x:String>
@@ -92,7 +93,7 @@
                 <Button Content="운전 시작" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Margin="0,180,28,30"
                          BorderBrush="LightSlateGray"
-                        BorderThickness="2"
+                        BorderThickness="1"
                         Foreground="LightSlateGray"
                         Width="120">
                 </Button>
@@ -109,7 +110,7 @@
                 <Button Content="오늘" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Margin="0,0,30,215"
                          BorderBrush="LightSlateGray"
-                        BorderThickness="2"
+                        BorderThickness="1"
                         Foreground="LightSlateGray"
                         Width="80">
                 </Button>
@@ -118,14 +119,14 @@
                                   Language="en" CalendarIdentifier="GregorianCalendar" HorizontalAlignment="Left"
                               VerticalAlignment="Top" Margin="32,38,0,0" Height="350" Width="380" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                               SelectedBorderBrush="LightSlateGray" BorderBrush="LightSlateGray"
-                                  BorderThickness="2"
+                                  BorderThickness="1"
                                   TodayBackground="DodgerBlue" TodaySelectedInnerBorderBrush="AliceBlue" />
 
                 <TextBlock Text="2023년 01월 12일" Margin="33,0,0,190" VerticalAlignment="Bottom" 
                                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                            FontSize="15"></TextBlock>
                 <ListBox Height="150" Width="380" VerticalAlignment="Bottom" Margin="5,0,0,30" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                         BorderBrush="LightSlateGray" BorderThickness="2">
+                         BorderBrush="LightSlateGray" BorderThickness="1">
                     <TextBlock Text="쏘렌토 최수영-오토젠(인주)" ></TextBlock>
                     <TextBlock Text="코란도 최종성-명진"></TextBlock>
                 </ListBox>
