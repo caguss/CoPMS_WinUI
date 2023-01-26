@@ -100,7 +100,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModels\" />
     <Folder Include="Pages\" />
   </ItemGroup>
   <ItemGroup>

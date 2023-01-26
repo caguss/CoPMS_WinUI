@@ -38,8 +38,8 @@ namespace winui
         /// </summary>
 
         private static Window startupWindow;
-        public static string UserID;
-        public static string UserName;
+
+        public static User loginUser;
 
 
         // Get the initial window created for this app

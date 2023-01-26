@@ -183,7 +183,7 @@ namespace winui.Providers
                 cmd.Parameters.Add(new SqlParameter("@관리번호", SqlDbType.VarChar, 10));
                 cmd.Parameters.Add(new SqlParameter("@등록자", SqlDbType.Int));
                 cmd.Parameters["@관리번호"].Value = CarCode;
-                cmd.Parameters["@등록자"].Value = App.UserID;
+                cmd.Parameters["@등록자"].Value = App.loginUser.UserID;
 
 
                 DataSet ds = new DataSet();
@@ -227,9 +227,9 @@ namespace winui.Providers
                 cmd.Parameters["@주차장소"].Value = park;
                 cmd.Parameters["@주유상태"].Value = gas;
                 cmd.Parameters["@주유여부"].Value = refuel;
-                cmd.Parameters["@수정자"].Value = App.UserID;
+                cmd.Parameters["@수정자"].Value = App.loginUser.UserID;
                 cmd.Parameters["@관리번호"].Value = carCode;
-                cmd.Parameters["@등록자"].Value = App.UserID;
+                cmd.Parameters["@등록자"].Value = App.loginUser.UserID;
                 cmd.Parameters["@출발지"].Value = startloc;
                 cmd.Parameters["@도착지"].Value = endloc;
                 cmd.Parameters["@주유금액"].Value = fuelprice;
@@ -319,7 +319,7 @@ namespace winui.Providers
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
                 cmd.Parameters.Add(new SqlParameter("@사용자코드", SqlDbType.Int));
-                cmd.Parameters["@사용자코드"].Value = App.UserID;
+                cmd.Parameters["@사용자코드"].Value = App.loginUser.UserID;
 
 
                 DataSet ds = new DataSet();
@@ -354,7 +354,7 @@ namespace winui.Providers
                 cmd.Parameters.Add(new SqlParameter("@회사코드", SqlDbType.VarChar, 5));
                 cmd.Parameters["@예약일자"].Value = date;
                 cmd.Parameters["@관리번호"].Value = restkind;
-                cmd.Parameters["@사용자이름"].Value = App.UserID.ToString();
+                cmd.Parameters["@사용자이름"].Value = App.loginUser.UserID;
                 cmd.Parameters["@목적지"].Value = reason;
                 cmd.Parameters["@회사코드"].Value = "1000";
 
@@ -393,7 +393,7 @@ namespace winui.Providers
                 cmd.Parameters["@관리번호"].Value = restkind;
                 cmd.Parameters["@사용자이름"].Value = register;
                 cmd.Parameters["@회사코드"].Value = "1000";
-                cmd.Parameters["@로그인"].Value = App.UserID.ToString();
+                cmd.Parameters["@로그인"].Value = App.loginUser.UserID;
 
 
                 DataSet ds = new DataSet();
@@ -430,7 +430,7 @@ namespace winui.Providers
                 cmd.Parameters["@관리번호"].Value = restkind;
                 cmd.Parameters["@사용자이름"].Value = register;
                 cmd.Parameters["@회사코드"].Value = "1000";
-                cmd.Parameters["@로그인"].Value = App.UserID.ToString();
+                cmd.Parameters["@로그인"].Value = App.loginUser.UserID;
 
 
                 DataSet ds = new DataSet();
@@ -468,7 +468,7 @@ namespace winui.Providers
                 cmd.Parameters["@관리번호"].Value = restkind;
                 cmd.Parameters["@사용자이름"].Value = register;
                 cmd.Parameters["@회사코드"].Value = "1000";
-                cmd.Parameters["@로그인"].Value = App.UserID.ToString();
+                cmd.Parameters["@로그인"].Value = App.loginUser.UserID;
 
 
                 DataSet ds = new DataSet();
@@ -582,7 +582,7 @@ namespace winui.Providers
                 cmd.Parameters.Add(new SqlParameter("@회사코드", SqlDbType.VarChar, 8));
                 cmd.Parameters["@예약일자"].Value = date;
                 cmd.Parameters["@관리번호"].Value = carCode;
-                cmd.Parameters["@사용자이름"].Value = App.UserName;
+                cmd.Parameters["@사용자이름"].Value = App.loginUser.UserName;
                 cmd.Parameters["@목적지"].Value = togo;
                 cmd.Parameters["@회사코드"].Value = "1000";
 
@@ -618,7 +618,7 @@ namespace winui.Providers
                 cmd.Parameters["@예약일자"].Value = date; //날짜
                 cmd.Parameters["@관리번호"].Value = RestKind; //연차종류
                 cmd.Parameters["@사용자이름"].Value = user; //신청자
-                cmd.Parameters["@로그인"].Value = App.UserID.ToString(); //로그인자
+                cmd.Parameters["@로그인"].Value = App.loginUser.UserID; //로그인자
 
 
                 DataSet ds = new DataSet();
@@ -651,7 +651,7 @@ namespace winui.Providers
                 cmd.Parameters.Add(new SqlParameter("@대상", SqlDbType.Int));
                 cmd.Parameters.Add(new SqlParameter("@제목", SqlDbType.VarChar, 100));
                 cmd.Parameters.Add(new SqlParameter("@내용", SqlDbType.VarChar, 1000));
-                cmd.Parameters["@작성자"].Value = App.UserID;
+                cmd.Parameters["@작성자"].Value = App.loginUser.UserID;
                 cmd.Parameters["@대상"].Value = target;
                 cmd.Parameters["@제목"].Value = title;
                 cmd.Parameters["@내용"].Value = comment;
