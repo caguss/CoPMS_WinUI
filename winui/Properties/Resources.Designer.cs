@@ -61,7 +61,7 @@ namespace winui.Properties {
         }
         
         /// <summary>
-        ///   Y과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   N과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string IsLoginYN {
             get {

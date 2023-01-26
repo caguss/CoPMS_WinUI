@@ -11,7 +11,8 @@
     mc:Ignorable="d">
     <ScrollViewer>
 
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderBrush="Gray" BorderThickness="2">
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderBrush="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+              BorderThickness="2">
             <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">-->
             <Grid.Resources>
 
@@ -35,7 +36,6 @@
             <Grid Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Margin="5"
                   MinHeight="{StaticResource TileHeightKey}"
                   Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                 
                   >
 
                 <TextBlock Text="근태 이력 조회" Margin="32,35,0,0"    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"></TextBlock>
@@ -51,12 +51,15 @@
                         Width="80">
                 </Button>
 
-                <Button Content="근무 추가" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                <Button Content="근무 추가" 
+                        x:Name="btnAddWork"
+                        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Margin="0,0,30,30"
                          BorderBrush="LightSlateGray"
                         BorderThickness="1"
                         Foreground="LightSlateGray"
-                        Width="120">
+                        Width="120"
+                        Click="btnAddWork_Click" >
                 </Button>
 
                 <GridView x:Name="gridview2"
@@ -132,16 +135,20 @@
                          BorderBrush="LightSlateGray"
                         BorderThickness="1"
                         Foreground="LightSlateGray"
-                        Width="120">
-                </Button>
+                        Width="120"
+                        x:Name="btnChangetime"
+                        Click="btnChangetime_Click"/>
+
 
                 <Button Content="근무자 추가" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Margin="0,0,160,30"
                          BorderBrush="LightSlateGray"
                         BorderThickness="1"
                         Foreground="LightSlateGray"
-                        Width="120">
-                </Button>
+                        Width="120"
+                        Name="btnAddWorker"
+                        Click="btnAddWorker_Click"/>
+
 
                 <GridView x:Name="gridview"
                           Grid.Column="3"

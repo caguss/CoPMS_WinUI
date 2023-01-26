@@ -15,25 +15,25 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Windows.Media.ClosedCaptioning;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace winui
+namespace winui.popup
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Home : Page
+    public sealed partial class MessagePopup : ContentDialog
     {
-        public Home()
+        public MessagePopup(string msg)
         {
             this.InitializeComponent();
-        }
 
-
-        private void Homegrid_Loaded(object sender, RoutedEventArgs e)
-        {
+            txtDetail.Text = msg;
+            this.CloseButtonText = "OK";
+    
         }
     }
 }

@@ -15,6 +15,10 @@
     <None Remove="Home.xaml" />
     <None Remove="Login.xaml" />
     <None Remove="NavigationRootPage.xaml" />
+    <None Remove="popup\AddWorkerPopup.xaml" />
+    <None Remove="popup\AddWorkPopup.xaml" />
+    <None Remove="popup\ChangeWorkTime.xaml" />
+    <None Remove="popup\MessagePopup.xaml" />
     <None Remove="SamplePage1.xaml" />
     <None Remove="SamplePage2.xaml" />
     <None Remove="SamplePage3.xaml" />
@@ -111,6 +115,26 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="popup\AddWorkerPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="popup\MessagePopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="popup\ChangeWorkTime.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="popup\AddWorkPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <!-- 

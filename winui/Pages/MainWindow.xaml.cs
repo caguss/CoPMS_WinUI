@@ -1,24 +1,12 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
-using H.NotifyIcon.EfficiencyMode;
 using H.NotifyIcon;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Notifications;
+using Vanara.PInvoke;
 
 
 // To learn more about WinUI, the WinUI project structure,
@@ -31,6 +19,105 @@ namespace winui
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        public static int MinWindowWidth { get; set; } = 1000;
+        public static int MaxWindowWidth { get; set; } = 1000;
+        public static int MinWindowHeight { get; set; } = 800;
+        public static int MaxWindowHeight { get; set; } = 800;
+
+        public MainWindow()
+        {
+            this.InitializeComponent();
+            RegisterWindowMinMax(this);
+          
+        }
+
+        private async void Login()
+        {
+            if(Properties.Resources.IsLoginYN.Equals("N"))
+            {
+                Login login = new Login();
+
+                login.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+
+                login.XamlRoot = this.main.XamlRoot;
+
+                await login.ShowAsync();
+            }
+        }
+      
+        #region 네비게이션 뷰 선택 변경시 처리하기 - navigationView_SelectionChanged(sender, e)
+
+        /// <summary>
+        /// 네비게이션 뷰 선택 변경시 처리하기
+        /// </summary>
+        /// <param name="sender">이벤트 발생자</param>
+        /// <param name="e">이벤트 인자</param>
+        private void navigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs e)
+        {
+
+            if (e.IsSettingsSelected)
+            {
+                this.frame.Navigate(typeof(SettingPage));
+                sender.Header = "설정";
+            }
+            else
+            {
+                Microsoft.UI.Xaml.Controls.NavigationViewItem item = e.SelectedItem as Microsoft.UI.Xaml.Controls.NavigationViewItem;
+
+                if (item != null)
+                {
+                    //if (this.frame.Navigate(typeof(Home)))
+                    //{
+                    //    sender.Header = "Home";
+                    //}
+                    string itemTag = item.Tag.ToString();
+
+                    //sender.Header = "샘플 페이지 " + itemTag.Substring(itemTag.Length - 1);
+                    if (itemTag.Contains("1"))
+                    {
+                        sender.Header = "연차관리";
+                    }
+                    else if (itemTag.Equals("Home"))
+                    {
+                        sender.Header = "Home";
+                    }
+                    else if (itemTag.Contains("2"))
+                    {
+                        sender.Header = "차량예약관리";
+                    }
+                    else if (itemTag.Contains("3"))
+                    {
+                        sender.Header = "근태관리";
+                    }
+                    else if (itemTag.Contains("4"))
+                    {
+                        sender.Header = "타임시트관리";
+                    }
+                    else if (itemTag.Contains("5"))
+                    {
+                        sender.Header = "프로젝트관리";
+                    }
+
+                    string pageName = "winui." + itemTag;
+
+                    Type pageType = Type.GetType(pageName);
+
+                    this.frame.Navigate(pageType);
+                }
+            }
+        }
+
+        private void MenuFlyoutItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            if (sender is MenuFlyoutItem select)
+            {
+                this.Hide();
+            }
+        }
+
+        #endregion
+
+        #region 화면 크기 변경
         private static WinProc newWndProc = null;
         private static IntPtr oldWndProc = IntPtr.Zero;
         private delegate IntPtr WinProc(IntPtr hWnd, WindowMessage Msg, IntPtr wParam, IntPtr lParam);
@@ -47,23 +134,10 @@ namespace winui
         [DllImport("user32.dll")]
         private static extern IntPtr CallWindowProc(IntPtr lpPrevWndFunc, IntPtr hWnd, WindowMessage Msg, IntPtr wParam, IntPtr lParam);
 
-        public static int MinWindowWidth { get; set; } = 1000;
-        public static int MaxWindowWidth { get; set; } = 1000;
-        public static int MinWindowHeight { get; set; } = 800;
-        public static int MaxWindowHeight { get; set; } = 800;
 
-
-        public MainWindow()
+        public static void RegisterWindowMinMax(Window window)
         {
 
-            this.InitializeComponent();
-            RegisterWindowMinMax(this);
-       
-        }
-        
-
-        private static void RegisterWindowMinMax(Window window)
-        {
             var hwnd = GetWindowHandleForCurrentWindow(window);
 
             newWndProc = new WinProc(WndProc);
@@ -128,297 +202,11 @@ namespace winui
         {
             WM_GETMINMAXINFO = 0x0024,
         }
-      
-        private void ColorListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void RepeatButton_Click(object sender, RoutedEventArgs e)
-        {
-
-            //_clicks += 1;
-            //Control1Output.Text = "Number of clicks: " + _clicks;
-        }
-        #region 네비게이션 뷰 선택 변경시 처리하기 - navigationView_SelectionChanged(sender, e)
-
-        /// <summary>
-        /// 네비게이션 뷰 선택 변경시 처리하기
-        /// </summary>
-        /// <param name="sender">이벤트 발생자</param>
-        /// <param name="e">이벤트 인자</param>
-        private void navigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs e)
-        {
-         
-
-            if (e.IsSettingsSelected)
-            {
-                this.frame.Navigate(typeof(SettingPage));
-                sender.Header = "설정";
-            }
-            else
-            {
-                Microsoft.UI.Xaml.Controls.NavigationViewItem item = e.SelectedItem as Microsoft.UI.Xaml.Controls.NavigationViewItem;
-
-                if (item != null)
-                {
-                    if (this.frame.Navigate(typeof(Home)))
-                    {
-                        sender.Header = "Home";
-                    }
-                    string itemTag = item.Tag.ToString();
-
-                    //sender.Header = "샘플 페이지 " + itemTag.Substring(itemTag.Length - 1);
-                    if(itemTag.Contains("1"))
-                    {
-                        sender.Header = "연차관리";
-                    }
-                   else if(itemTag.Contains("2"))
-                    {
-                        sender.Header = "차량예약관리";
-                    }
-                    else if(itemTag.Contains("3"))
-                    {
-                        sender.Header = "근태관리";
-                    } 
-                    else if(itemTag.Contains("4"))
-                    {
-                        sender.Header = "타임시트관리";
-                    }
-                    else if (itemTag.Contains("5"))
-                    {
-                        sender.Header = "프로젝트관리";
-                    }
-               
-
-                    string pageName = "winui." + itemTag;
-
-                    Type pageType = Type.GetType(pageName);
-
-                    this.frame.Navigate(pageType);
-                }
-            }
-        }
-
-        private void navigationViewItem2_GettingFocus(UIElement sender, GettingFocusEventArgs args)
-        {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.grid.RequestedTheme = (this.grid.RequestedTheme == ElementTheme.Dark) ? ElementTheme.Light : ElementTheme.Dark;
-        }
-
         #endregion
 
-        //#region 설정 표시 여부 체크 박스 클릭시 처리하기 - isSettingsVisibleCheckBox_Click(sender, e)
-
-        ///// <summary>
-        ///// 설정 표시 여부 체크 박스 클릭시 처리하기
-        ///// </summary>
-        ///// <param name="sender">이벤트 발생자</param>
-        ///// <param name="e">이벤트 인자</param>
-        //private void isSettingsVisibleCheckBox_Click(object sender, RoutedEventArgs e)
-        //{
-        //    this.navigationView.IsSettingsVisible = (sender as CheckBox).IsChecked == true ? true : false;
-        //}
-
-        //#endregion
-        //#region 뒤로가기 버튼 표시 체크 박스 클릭시 처리하기 - backButtonVisibleCheckBox_Click(sender, e)
-
-        ///// <summary>
-        ///// 뒤로가기 버튼 표시 체크 박스 클릭시 처리하기
-        ///// </summary>
-        ///// <param name="sender">이벤트 발생자</param>
-        ///// <param name="e">이벤트 인자</param>
-        //private void backButtonVisibleCheckBox_Click(object sender, RoutedEventArgs e)
-        //{
-        //    CheckBox checkBox = sender as CheckBox;
-
-        //    if (checkBox.IsChecked == true)
-        //    {
-        //        this.navigationView.IsBackButtonVisible = Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Visible;
-        //    }
-        //    else
-        //    {
-        //        this.navigationView.IsBackButtonVisible = Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible.Collapsed;
-        //    }
-        //}
-
-        //#endregion
-        //#region 뒤로가기 버튼 이용 가능 체크 박스 클릭시 처리하기 - backButtonEnabledCheckBox_Click(sender, e)
-
-        ///// <summary>
-        ///// 뒤로가기 버튼 이용 가능 체크 박스 클릭시 처리하기
-        ///// </summary>
-        ///// <param name="sender">이벤트 발생자</param>
-        ///// <param name="e">이벤트 인자</param>
-        //private void backButtonEnabledCheckBox_Click(object sender, RoutedEventArgs e)
-        //{
-        //    this.navigationView.IsBackEnabled = (sender as CheckBox).IsChecked == true ? true : false;
-        //}
-
-        //#endregion
-        //#region 자동 제안 박스 체크 박스 클릭시 처리하기 - autoSuggestBoxCheckBox_Click(sender, e)
-
-        ///// <summary>
-        ///// 자동 제안 박스 체크 박스 클릭시 처리하기
-        ///// </summary>
-        ///// <param name="sender">이벤트 발생자</param>
-        ///// <param name="e">이벤트 인자</param>
-        //private void autoSuggestBoxCheckBox_Click(object sender, RoutedEventArgs e)
-        //{
-        //    CheckBox checkBox = sender as CheckBox;
-
-        //    if (checkBox.IsChecked == true)
-        //    {
-        //        AutoSuggestBox autoSuggestBox = new AutoSuggestBox()
-        //        {
-        //            QueryIcon = new SymbolIcon(Symbol.Find)
-        //        };
-
-        //        this.navigationView.AutoSuggestBox = autoSuggestBox;
-        //    }
-        //    else
-        //    {
-        //        this.navigationView.AutoSuggestBox = null;
-        //    }
-        //}
-
-        //#endregion
-        //#region 헤더 항상 표시 체크 박스 클릭시 처리하기 - alwaysShowHeaderCheckBox_Click(sender, e)
-
-        ///// <summary>
-        ///// 헤더 항상 표시 체크 박스 클릭시 처리하기
-        ///// </summary>
-        ///// <param name="sender">이벤트 발생자</param>
-        ///// <param name="e">이벤트 인자</param>
-        //private void alwaysShowHeaderCheckBox_Click(object sender, RoutedEventArgs e)
-        //{
-        //    CheckBox checkBox = sender as CheckBox;
-
-        //    this.navigationView.AlwaysShowHeader = checkBox.IsChecked == true ? true : false;
-        //}
-
-        //#endregion
-        //#region 창 커스텀 컨텐트 표시 체크 박스 클릭시 처리하기 - showPaneCustomContentCheckBox_Click(sender, e)
-
-        ///// <summary>
-        ///// 창 커스텀 컨텐트 표시 체크 박스 클릭시 처리하기
-        ///// </summary>
-        ///// <param name="sender">이벤트 발생자</param>
-        ///// <param name="e">이벤트 인자</param>
-        //private void showPaneCustomContentCheckBox_Click(object sender, RoutedEventArgs e)
-        //{
-        //    CheckBox checkBox = sender as CheckBox;
-
-        //    if (checkBox.IsChecked == true)
-        //    {
-        //        this.moreInformationHyperlinkButton.Visibility = Visibility.Visible;
-        //    }
-        //    else
-        //    {
-        //        this.moreInformationHyperlinkButton.Visibility = Visibility.Collapsed;
-        //    }
-        //}
-
-        //#endregion
-        //#region 창 꼬리말 표시 체크 박스 클릭시 처리하기 - showPaneFooterCheckBox_Click(sender, e)
-
-        ///// <summary>
-        ///// 창 꼬리말 표시 체크 박스 클릭시 처리하기
-        ///// </summary>
-        ///// <param name="sender">이벤트 발생자</param>
-        ///// <param name="e">이벤트 인자</param>
-        //private void showPaneFooterCheckBox_Click(object sender, RoutedEventArgs e)
-        //{
-        //    CheckBox checkBox = sender as CheckBox;
-
-        //    if (checkBox.IsChecked == true)
-        //    {
-        //        this.paneFooterStackPanel.Visibility = Visibility.Visible;
-        //    }
-        //    else
-        //    {
-        //        this.paneFooterStackPanel.Visibility = Visibility.Collapsed;
-        //    }
-        //}
-
-        //#endregion
-        //#region 왼쪽 창 위치 라디오 버튼 체크시 처리하기 - leftPanePositionCheckBox_Checked(sender, e)
-
-        ///// <summary>
-        ///// 왼쪽 창 위치 라디오 버튼 체크시 처리하기
-        ///// </summary>
-        ///// <param name="sender">이벤트 발생자</param>
-        ///// <param name="e">이벤트 인자</param>
-        //private void leftPanePositionCheckBox_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    this.navigationView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Left;
-        //    this.navigationView.IsPaneOpen = true;
-
-        //    this.paneFooterStackPanel.Orientation = Orientation.Vertical;
-        //}
-
-        //#endregion
-        //#region 위쪽 창 위치 라디오 버튼 체크시 처리하기 - topPanePositionRadioButton_Checked(sender, e)
-
-        ///// <summary>
-        ///// 위쪽 창 위치 라디오 버튼 체크시 처리하기
-        ///// </summary>
-        ///// <param name="sender">이벤트 발생자</param>
-        ///// <param name="e">이벤트 인자</param>
-        //private void topPanePositionRadioButton_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    this.navigationView.PaneDisplayMode = Microsoft.UI.Xaml.Controls.NavigationViewPaneDisplayMode.Top;
-        //    this.navigationView.IsPaneOpen = false;
-
-        //    this.paneFooterStackPanel.Orientation = Orientation.Horizontal;
-        //}
-
-        //#endregion
-        //#region 포커스 변경시 선택 변경 체크 박스 클릭시 처리하기 - selectionFollowsFocusCheckBox_Click(sender, e)
-
-        ///// <summary>
-        ///// 포커스 변경시 선택 변경 체크 박스 클릭시 처리하기
-        ///// </summary>
-        ///// <param name="sender">이벤트 발생자</param>
-        ///// <param name="e">이벤트 인자</param>
-        //private void selectionFollowsFocusCheckBox_Click(object sender, RoutedEventArgs e)
-        //{
-        //    CheckBox checkBox = sender as CheckBox;
-
-        //    if (checkBox.IsChecked == true)
-        //    {
-        //        this.navigationView.SelectionFollowsFocus = Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus.Enabled;
-        //    }
-        //    else
-        //    {
-        //        this.navigationView.SelectionFollowsFocus = Microsoft.UI.Xaml.Controls.NavigationViewSelectionFollowsFocus.Disabled;
-        //    }
-        //}
-
-        //#endregion
-        //#region 메뉴 항목 2 선택 금지 체크 박스 클릭시 처리하기 - suppressMenuItem2SelectionCheckBox_Click(sender, e)
-
-        ///// <summary>
-        ///// 메뉴 항목 2 선택 금지 체크 박스 클릭시 처리하기
-        ///// </summary>
-        ///// <param name="sender">이벤트 발생자</param>
-        ///// <param name="e">이벤트 인자</param>
-        //private void suppressMenuItem2SelectionCheckBox_Click(object sender, RoutedEventArgs e)
-        //{
-        //    CheckBox checkBox = sender as CheckBox;
-
-        //    this.navigationViewItem2.SelectsOnInvoked = (checkBox.IsChecked == true) ? false : true;
-        //}
-
-        //#endregion
+        private void main_Loaded(object sender, RoutedEventArgs e)
+        {
+            Login();
+        }
     }
 }

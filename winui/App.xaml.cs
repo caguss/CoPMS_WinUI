@@ -78,24 +78,18 @@ namespace winui
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            Login login = new Login();
-            login.Activate();
-
+            //Login login = new Login();
+            //login.Activate();
             MainWindow main = new MainWindow();
             startupWindow = WindowHelper.CreateWindow(main);
             ThemeHelper.Initialize();
 
             startupWindow = main;
             StartupWindow.Activate();
-            if(Properties.Resources.IsLoginYN.Equals("N"))
-            {
-                main.Close();
-            }
-            else
-            {
-                login.Close();
-            }
+
+
         }
+     
 
         public static TEnum GetEnum<TEnum>(string text) where TEnum : struct
         {

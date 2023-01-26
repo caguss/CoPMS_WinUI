@@ -13,7 +13,8 @@
 
      <ScrollViewer>
 
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderBrush="Gray" BorderThickness="2">
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderBrush="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+              BorderThickness="2">
             <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">-->
             <Grid.Resources>
 

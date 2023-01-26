@@ -10,23 +10,29 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:tb="using:H.NotifyIcon"
+    
 
     >
 
-    <Grid>
+    <Grid Name="main" Loaded="main_Loaded">
         <tb:TaskbarIcon 
-            ContextMenuMode="SecondWindow"
+            ContextMenuMode="PopupMenu"
+            x:Name="tsb"
             PopupActivation="DoubleClick"
             ToolTipText="Winui"
             MenuActivation="LeftOrRightClick"
-       
             >
+            <tb:TaskbarIcon.ContextFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem Text="열기" Click="MenuFlyoutItem_Click_2"  />
+                    <MenuFlyoutItem Text="종료"/>
+                </MenuFlyout>
+            </tb:TaskbarIcon.ContextFlyout>
             <tb:TaskbarIcon.GeneratedIcon>
                 <tb:GeneratedIcon
                     Text="A"
                     FontSize="70"
                  >
-                   
                     <tb:GeneratedIcon.Foreground>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="128,128">
                             <GradientStop Color="Red"/>
@@ -40,7 +46,6 @@
                         </LinearGradientBrush>
                     </tb:GeneratedIcon.BorderBrush>
                 </tb:GeneratedIcon>
-             
             </tb:TaskbarIcon.GeneratedIcon>
         </tb:TaskbarIcon>
 
@@ -50,17 +55,39 @@
                 <ColumnDefinition Width="10"   />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-           
+
             <NavigationView Name="navigationView"
                 ExpandedModeThresholdWidth="500"
                 IsTabStop="False"
                 PaneDisplayMode="LeftCompact"
-               SelectionFollowsFocus="Enabled"
+              
                             Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                             Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                 SelectionChanged="navigationView_SelectionChanged">
 
                 <NavigationView.MenuItems>
+                    <NavigationViewItem IsEnabled="False">
+                        <NavigationViewItem.Content>
+                            <StackPanel>
+                                <SymbolIcon Symbol="Home" ></SymbolIcon>
+                            </StackPanel>
+                        </NavigationViewItem.Content>
+                        <NavigationViewItem.Icon>
+                            <SymbolIcon Foreground="Transparent"/>
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+
+                    <NavigationViewItem IsEnabled="False">
+                        <NavigationViewItem.Content>
+                            <StackPanel>
+                                <TextBlock Name="txtUser" Text="User" />
+                            </StackPanel>
+                        </NavigationViewItem.Content>
+                        <NavigationViewItem.Icon>
+                            <SymbolIcon Foreground="Transparent"/>
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+
                     <NavigationViewItem
                         Tag="Home"
                         Content="홈" >
@@ -68,7 +95,7 @@
                             <SymbolIcon Symbol="Home" />
                         </NavigationViewItem.Icon>
                     </NavigationViewItem>
-                    
+
                     <NavigationViewItem
                         Tag="SamplePage1"
                         Content="연차관리" >
@@ -106,12 +133,6 @@
                         </NavigationViewItem.Icon>
                     </NavigationViewItem>
                 </NavigationView.MenuItems>
-                <NavigationView.PaneCustomContent>
-                    <HyperlinkButton Name="moreInformationHyperlinkButton"
-                        Content="추가 정보"
-                        Margin="10 0"
-                        Visibility="Collapsed" />
-                </NavigationView.PaneCustomContent>
                
                 <NavigationView.PaneFooter>
                     <StackPanel Name="paneFooterStackPanel"
@@ -127,7 +148,7 @@
                     </UIElement.RenderTransform>
                 </Frame>
             </NavigationView>
-        
+
             <!--<StackPanel Grid.Column="2"
                 Spacing="10">
                 <CheckBox

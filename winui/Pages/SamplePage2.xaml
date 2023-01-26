@@ -11,7 +11,8 @@
     mc:Ignorable="d">
     <ScrollViewer>
 
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderBrush="Gray" BorderThickness="2">
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderBrush="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+              BorderThickness="2">
             <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">-->
             <Grid.Resources>
 
@@ -38,7 +39,7 @@
                  
                   >
                 <ComboBox Header="차량 종류" Margin="32,35,0,0" Width="157" BorderBrush="LightSlateGray"
-                           BorderThickness="1">
+                           BorderThickness="1" Name="cbCar">
                     <x:String>스파크</x:String>
                     <x:String>올란도</x:String>
                     <x:String>코란도</x:String>
@@ -48,16 +49,18 @@
                 <TextBox Header="목적지" Height="60" Width="215" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,35,28,0"
                          BorderBrush="LightSlateGray"
                           BorderThickness="1"
-                         ></TextBox>
+                         Name="txtloc"/>
 
-                <Button Content="예약" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Top"
+                <Button Content="예약" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                        HorizontalAlignment="Right" VerticalAlignment="Top"
                         Margin="0,180,28,0"
                          BorderBrush="LightSlateGray"
                         BorderThickness="1"
                         Foreground="LightSlateGray"
-                        Width="80">
-                </Button>
-               
+                        Width="80"
+                        Name="btnReserve"
+                        Click="btnReserve_Click"/>
+
                 <DatePicker Header="날짜 선택" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100" Width="380" 
                                 Margin="32,115,0,0" BorderBrush="LightSlateGray" BorderThickness="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                           x:Name="datepic" 
@@ -82,21 +85,22 @@
                 <TextBlock Text="차량 종류" VerticalAlignment="Bottom" Margin="32,0,0,70"    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"></TextBlock>
                 <ComboBox  Margin="32,35,0,30" Width="249" BorderBrush="LightSlateGray"
                            BorderThickness="1"
-                          VerticalAlignment="Bottom">
+                          VerticalAlignment="Bottom" Name="cbCarName">
                     <x:String>스파크</x:String>
                     <x:String>올란도</x:String>
                     <x:String>코란도</x:String>
                     <x:String>쏘렌토</x:String>
                     <x:String>트레일블레이저</x:String>
                 </ComboBox>
-                
+
                 <Button Content="운전 시작" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Margin="0,180,28,30"
                          BorderBrush="LightSlateGray"
                         BorderThickness="1"
                         Foreground="LightSlateGray"
-                        Width="120">
-                </Button>
+                        Width="120" Name="btnStDrive"
+                        Click="btnStDrive_Click"/>
+
             </Grid>
             <!--<Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Margin="5" MinHeight="{StaticResource TileHeightKey}" Background="White" />-->
             <!--<Grid Grid.Row="2" Grid.Column="2"  Grid.RowSpan="2" Margin="5" MinHeight="{StaticResource TileHeightKey}" Background="White"  />-->
@@ -105,22 +109,25 @@
                 MinWidth="250"
                 MinHeight="{StaticResource TileHeightKey}"
                 Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-               
+
 
                 <Button Content="오늘" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Margin="0,0,30,215"
                          BorderBrush="LightSlateGray"
                         BorderThickness="1"
                         Foreground="LightSlateGray"
-                        Width="80">
-                </Button>
+                        Width="80"
+                        Name="btnToday"
+                        Click="btnToday_Click"/>
+
 
                 <CalendarView SelectionMode="Single" IsGroupLabelVisible="False" IsOutOfScopeEnabled="True"
                                   Language="en" CalendarIdentifier="GregorianCalendar" HorizontalAlignment="Left"
                               VerticalAlignment="Top" Margin="32,38,0,0" Height="350" Width="380" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                               SelectedBorderBrush="LightSlateGray" BorderBrush="LightSlateGray"
                                   BorderThickness="1"
-                                  TodayBackground="DodgerBlue" TodaySelectedInnerBorderBrush="AliceBlue" />
+                                  TodayBackground="DodgerBlue" TodaySelectedInnerBorderBrush="AliceBlue"
+                              Name="calview2"/>
 
                 <TextBlock Text="2023년 01월 12일" Margin="33,0,0,190" VerticalAlignment="Bottom" 
                                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"

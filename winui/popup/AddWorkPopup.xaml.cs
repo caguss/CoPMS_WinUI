@@ -19,21 +19,17 @@ using Microsoft.UI.Xaml.Navigation;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace winui
+namespace winui.popup
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Home : Page
+    public sealed partial class AddWorkPopup : ContentDialog
     {
-        public Home()
+        public AddWorkPopup()
         {
             this.InitializeComponent();
-        }
-
-
-        private void Homegrid_Loaded(object sender, RoutedEventArgs e)
-        {
+           
         }
     }
 }

@@ -1,0 +1,38 @@
+<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<ContentDialog
+
+    x:Class="winui.popup.ChangeWorkTime"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:winui.popup"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+        <TextBlock Text="근무 시간 변경" FontSize="18" Margin="10,0,0,0"/>
+        <TextBlock Text="근무자" HorizontalAlignment="Left"
+                       Margin="15,30,0,0" Foreground="White" 
+                   />
+        <TextBlock x:Name="txtUser" Text="sdffds" Foreground="White" 
+                       Margin="100,-19,0,0"/>
+        <TimePicker Header="출근시간" Margin="15,20,0,0" Name="tpStart"/>
+        <TimePicker Header="퇴근시간" Margin="15,20,0,0" Name="tpEnd"/>
+        <Button x:Name="btnAdd" Content="추가" 
+                Width="80"
+                HorizontalAlignment="Right"
+                Margin="0,30,0,0"
+                Click="btnAdd_Click"/>
+        
+        <Button x:Name="btnCancle"
+                Click="btnCancle_Click"
+                 Width="80"
+                Content="취소"
+                HorizontalAlignment="Right" Margin="10,-30,100,0"
+                />
+
+    </StackPanel>
+</ContentDialog>

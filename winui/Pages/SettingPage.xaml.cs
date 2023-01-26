@@ -1,22 +1,13 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
+using System;
+using System.Linq;
 using Windows.System;
-using Microsoft.UI;
 using winui.Helper;
 using WinUIGallery.DesktopWap.Helper;
 
@@ -61,15 +52,15 @@ namespace winui
 
         private void btn_login_Click(object sender, RoutedEventArgs e)
         {
-            Login login= new Login();
-            login.Activate();
+            Login login = new Login();
+
         }
 
         private void OnThemeRadioButtonKeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Up)
             {
-              //  NavigationRootPage.GetForElement(this).PageHeader.Focus(FocusState.Programmatic);
+                //  NavigationRootPage.GetForElement(this).PageHeader.Focus(FocusState.Programmatic);
             }
         }
 
@@ -111,52 +102,18 @@ namespace winui
         {
             var currentTheme = ThemeHelper.RootTheme.ToString();
             (ThemePanel.Children.Cast<RadioButton>().FirstOrDefault(c => c?.Tag?.ToString() == currentTheme)).IsChecked = true;
-           
         }
 
-        private void soundPageHyperlink_Click(Microsoft.UI.Xaml.Documents.Hyperlink sender, Microsoft.UI.Xaml.Documents.HyperlinkClickEventArgs args)
+
+        private async void btnLogout_Click(object sender, RoutedEventArgs e)
         {
+            Login login = new Login();
 
-        }
+            login.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
 
-        private void navigationLocation_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+            login.XamlRoot = this.XamlRoot;
 
-        }
-
-        private void FolderButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void screenshotFolderLink_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void OnResetTeachingTipsButtonClick(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void screenshotModeToggle_Toggled(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void soundToggle_Toggled(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void spatialSoundBox_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void spatialSoundBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-
+            await login.ShowAsync();
         }
     }
 }

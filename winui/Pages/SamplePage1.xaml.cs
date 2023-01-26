@@ -15,6 +15,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using winui.popup;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -34,9 +35,33 @@ namespace winui
           
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+      
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            this.RequestedTheme = (this.RequestedTheme == ElementTheme.Dark) ? ElementTheme.Light : ElementTheme.Dark;
+            if(cbSelect.SelectedItem == null || txtReason.Text.Length < 1) 
+            {
+                string msg= "연차 종류를 선택해 주세요.";
+                PopupMessage(msg);
+            }
+          
+            else
+            {  
+            }
+        }
+
+        private void btnToday_Click(object sender, RoutedEventArgs e)
+        {
+            calview.SetDisplayDate(DateTimeOffset.Now);
+        }
+
+        public async void PopupMessage(string message)
+        {
+            MessagePopup msg = new MessagePopup(message);
+
+            msg.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            msg.XamlRoot = this.XamlRoot;
+
+            await msg.ShowAsync();
         }
     }
 }
