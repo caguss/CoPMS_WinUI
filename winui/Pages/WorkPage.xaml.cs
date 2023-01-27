@@ -18,6 +18,8 @@ using Microsoft.UI.Xaml.Navigation;
 using winui.popup;
 using Microsoft.UI.Xaml.Documents;
 using winui.ViewModels;
+using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -27,12 +29,22 @@ namespace winui
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SamplePage3 : Page
+    public sealed partial class WorkPage : Page
     {
-        public SamplePage3()
+        DateTime startDate = DateTime.Now;
+
+        public WorkPage()
         {
             this.InitializeComponent();
+            PopulateProjects();
         }
+        private void PopulateProjects()
+        {
+            WorkViewModel viewModel = new WorkViewModel();
+
+            this.DataContext = viewModel;
+        }
+
 
         private async void btnAddWork_Click(object sender, RoutedEventArgs e)
         {
@@ -63,4 +75,24 @@ namespace winui
             await awp.ShowAsync();
         }
     }
+
+    public class Project1
+    {
+        public Project1()
+        {
+            Activities = new ObservableCollection<Activity>();
+        }
+
+        public string Name { get; set; }
+        public ObservableCollection<Activity> Activities { get; private set; }
+    }
+
+    public class Activity
+    {
+        public string Name { get; set; }
+        public DateTime DueDate { get; set; }
+        public bool Complete { get; set; }
+        public string Project { get; set; }
+    }
+
 }

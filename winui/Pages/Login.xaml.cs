@@ -71,8 +71,7 @@ namespace winui
             string id = txtID.Text;
             string pw = txtPW.TextReadingOrder.ToString();
             string platform = "winui";
-            Provider provider = new Provider();
-            DataTable dt = provider.Login(id, pw, platform);           
+            DataTable dt = Provider.Login(id, pw, platform);           
             if(dt.Rows.Count > 0)
             { 
 

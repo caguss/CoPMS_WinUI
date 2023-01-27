@@ -8,15 +8,14 @@ using System.Threading.Tasks;
 
 namespace winui.Providers
 {
-    class Provider
+    public static class Provider
     {
-        SqlConnection con = new SqlConnection("test");
-        SqlCommand cmd;
+        static string connectionStr = "Test";
 
-        public DataTable Login(string username, string password, string platform)
+        public static DataTable Login(string username, string password, string platform)
         {
-
-            cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "UserLogin";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Connection = con;
@@ -49,11 +48,13 @@ namespace winui.Providers
             return ds.Tables[0];
         }
 
-        public string WorkInOut(int userID, bool isStartWork)
+        public static string WorkInOut(int userID, bool isStartWork)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
+
                 cmd.CommandText = "WorkInOut_IU10";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -79,11 +80,12 @@ namespace winui.Providers
 
         }
 
-        public DataSet WorkTime_R10(int usercode, DateTime date)
+        public static DataSet WorkTime_R10(int usercode, DateTime date)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "WorkTime_R10";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -113,11 +115,12 @@ namespace winui.Providers
 
         }
 
-        public DataTable CarInfo()
+        public static DataTable CarInfo()
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "CarInfo_R10";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -142,11 +145,12 @@ namespace winui.Providers
 
         }
 
-        public DataTable CarStatus()
+        public static DataTable CarStatus()
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "CarRunInfo_S";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -172,11 +176,12 @@ namespace winui.Providers
         }
 
         //운행시작
-        public bool CarRegister(string CarCode)
+        public static bool CarRegister(string CarCode)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "CarRunInfo_I";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -204,11 +209,12 @@ namespace winui.Providers
         }
 
         //운행종료
-        public bool CarRegisterFIN(string carCode, int distance, string park, int gas, bool refuel, string startloc, string endloc, int fuelprice)
+        public static bool CarRegisterFIN(string carCode, int distance, string park, int gas, bool refuel, string startloc, string endloc, int fuelprice)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "CarRunInfo_U1";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -250,11 +256,12 @@ namespace winui.Providers
                 return false;
             }
         }
-        public DataTable CarReservation_Check(DateTime date)
+        public static DataTable CarReservation_Check(DateTime date)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "CarReservation_S";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -278,11 +285,12 @@ namespace winui.Providers
                 return null;
             }
         }
-        public DataTable CarUsed_Check(string carcode, DateTime startdate, DateTime enddate)
+        public static DataTable CarUsed_Check(string carcode, DateTime startdate, DateTime enddate)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "Car_History";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -310,11 +318,12 @@ namespace winui.Providers
                 return null;
             }
         }
-        public DataTable RestRemain()
+        public static DataTable RestRemain()
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "Leave_S4";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -339,11 +348,12 @@ namespace winui.Providers
             }
         }
 
-        public DataTable RestRegister(string restkind, DateTime date, string reason)
+        public static DataTable RestRegister(string restkind, DateTime date, string reason)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "Leave_IU";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -376,11 +386,12 @@ namespace winui.Providers
                 return null;
             }
         }
-        public DataTable RestAccept1(string restkind, DateTime date, string register)
+        public static DataTable RestAccept1(string restkind, DateTime date, string register)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "Leave_IU_2";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -413,11 +424,12 @@ namespace winui.Providers
                 return null;
             }
         }
-        public DataTable RestAccept2(string restkind, DateTime date, string register)
+        public static DataTable RestAccept2(string restkind, DateTime date, string register)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "Leave_IU_3";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -451,11 +463,12 @@ namespace winui.Providers
             }
         }
 
-        public void Restdelete(string restkind, DateTime date, string register)
+        public static void Restdelete(string restkind, DateTime date, string register)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "Leave_IU_4";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -487,9 +500,10 @@ namespace winui.Providers
 
             }
         }
-        public void RestList(List<Rest> reason)
+        public static void RestList(List<Rest> reason)
         {
-            cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "RestList";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Connection = con;
@@ -526,9 +540,10 @@ namespace winui.Providers
             }
             reason.TrimExcess();
         }
-        public void CarList(List<Car> reason)
+        public static void CarList(List<Car> reason)
         {
-            cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "CarList";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Connection = con;
@@ -567,11 +582,12 @@ namespace winui.Providers
             reason.TrimExcess();
         }
 
-        public DataTable CarReservation(DateTime date, string togo, string carCode)
+        public static DataTable CarReservation(DateTime date, string togo, string carCode)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "CarReservation_IU";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -603,11 +619,12 @@ namespace winui.Providers
                 return null;
             }
         }
-        public DataTable RestDetail(DateTime date, string RestKind, string user)
+        public static DataTable RestDetail(DateTime date, string RestKind, string user)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "Leave_S3";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -639,11 +656,12 @@ namespace winui.Providers
         }
 
 
-        public DataTable NotiLog(int target, string title, string comment)
+        public static DataTable NotiLog(int target, string title, string comment)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "NotiSender";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -669,6 +687,36 @@ namespace winui.Providers
                 return ds.Tables[0];
             }
             catch (Exception)
+            {
+                DataTable dt = new DataTable();
+                return dt;
+            }
+        }
+
+        public static DataTable WorkLog()
+        {
+            try
+            {
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "WorkManage_R11";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@사용자코드", SqlDbType.VarChar, 10));
+                cmd.Parameters["@사용자코드"].Value = "";
+
+                DataSet ds = new DataSet();
+
+                // DB처리
+                using (con)
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    da.Dispose();
+                }
+                return ds.Tables[0];
+            }
+            catch (Exception ex)
             {
                 DataTable dt = new DataTable();
                 return dt;
