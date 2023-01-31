@@ -33,7 +33,28 @@ namespace winui.popup
 
             txtDetail.Text = msg;
             this.CloseButtonText = "OK";
-    
+        }
+
+        private void ContentDialog_CloseButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            this.Hide();
+            if (txtDetail.Text.Contains("로그인"))
+            {
+                Login();
+            }
+        }
+        private async void Login()
+        {
+            if (Properties.Resources.IsLoginYN.Equals("N"))
+            {
+                Login login = new Login();
+
+                login.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+
+                login.XamlRoot = this.XamlRoot;
+
+                await login.ShowAsync();
+            }
         }
     }
 }

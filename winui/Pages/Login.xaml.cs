@@ -62,26 +62,46 @@ namespace winui
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-           // LoginCheck();
+            LoginCheck();
         }
 
         private void LoginCheck()
         {
             string id = txtID.Text;
-            string pw = txtPW.TextReadingOrder.ToString();
+            //string pw = txtPW.TextReadingOrder.ToString();
+            string pw = txtPW.Password.ToString();
             string platform = "winui";
             Provider provider = new Provider();
-            DataTable dt = provider.Login(id, pw, platform);           
+            DataTable dt = provider.Login(id, pw, platform);     
             if(dt.Rows.Count > 0)
-            { 
-
+            {
+                App.UserName = dt.Rows[0]["사용자이름"].ToString();
+                App.UserID = Convert.ToInt32(dt.Rows[0]["사용자코드"].ToString());
+                this.Hide();
             }
+
             else 
             {
-                MessagePopup msg = new MessagePopup("로그인 정보가 일치하지않습니다.");
+                this.Hide();
+                string message = "로그인 정보가 일치하지않습니다.";
+                PopupMessage(message);
             }
-
         }
 
+        public async void PopupMessage(string message)
+        {
+            MessagePopup msg = new MessagePopup(message);
+
+            msg.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            msg.XamlRoot = this.XamlRoot;
+
+            await msg.ShowAsync();
+        }
+
+        private void txtPW_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if(e.Key == Windows.System.VirtualKey.Enter)
+                btnLogin_Click(sender,e);
+        }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Runtime.InteropServices;
 using Vanara.PInvoke;
+using winui.popup;
 
 
 // To learn more about WinUI, the WinUI project structure,
@@ -28,7 +29,12 @@ namespace winui
         {
             this.InitializeComponent();
             RegisterWindowMinMax(this);
-          
+        }
+
+        private void main_Loaded(object sender, RoutedEventArgs e)
+        {
+           Login();
+       
         }
 
         private async void Login()
@@ -44,7 +50,13 @@ namespace winui
                 await login.ShowAsync();
             }
         }
-      
+
+        private void RefreshWindow()
+        {
+            navigationView.InvalidateArrange();
+        }
+
+       
         #region 네비게이션 뷰 선택 변경시 처리하기 - navigationView_SelectionChanged(sender, e)
 
         /// <summary>
@@ -54,7 +66,6 @@ namespace winui
         /// <param name="e">이벤트 인자</param>
         private void navigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs e)
         {
-
             if (e.IsSettingsSelected)
             {
                 this.frame.Navigate(typeof(SettingPage));
@@ -64,45 +75,51 @@ namespace winui
             {
                 Microsoft.UI.Xaml.Controls.NavigationViewItem item = e.SelectedItem as Microsoft.UI.Xaml.Controls.NavigationViewItem;
 
+              
+
                 if (item != null)
                 {
                     //if (this.frame.Navigate(typeof(Home)))
                     //{
                     //    sender.Header = "Home";
                     //}
-                    string itemTag = item.Tag.ToString();
+                    if (item.Tag.Equals("UserName") || item.Tag.Equals("Logo"))
+                    {
+                  
+                    }
+                    else
+                    {
+                        string itemTag = item.Tag.ToString();
 
-                    //sender.Header = "샘플 페이지 " + itemTag.Substring(itemTag.Length - 1);
-                    if (itemTag.Contains("1"))
-                    {
-                        sender.Header = "연차관리";
-                    }
-                    else if (itemTag.Equals("Home"))
-                    {
-                        sender.Header = "Home";
-                    }
-                    else if (itemTag.Contains("2"))
-                    {
-                        sender.Header = "차량예약관리";
-                    }
-                    else if (itemTag.Contains("3"))
-                    {
-                        sender.Header = "근태관리";
-                    }
-                    else if (itemTag.Contains("4"))
-                    {
-                        sender.Header = "타임시트관리";
-                    }
-                    else if (itemTag.Contains("5"))
-                    {
-                        sender.Header = "프로젝트관리";
-                    }
+                        //sender.Header = "샘플 페이지 " + itemTag.Substring(itemTag.Length - 1);
+                        if (itemTag.Contains("1"))
+                        {
+                            sender.Header = "연차관리";
+                        }
+                      
+                        else if (itemTag.Contains("2"))
+                        {
+                            sender.Header = "차량예약관리";
+                        }
+                        else if (itemTag.Contains("3"))
+                        {
+                            sender.Header = "근태관리";
+                        }
+                        else if (itemTag.Contains("4"))
+                        {
+                            sender.Header = "타임시트관리";
+                        }
+                        else if (itemTag.Contains("5"))
+                        {
+                            sender.Header = "프로젝트관리";
+                        }
 
-                    string pageName = "winui." + itemTag;
+                        string pageName = "winui." + itemTag;
 
-                    Type pageType = Type.GetType(pageName);
+                        Type pageType = Type.GetType(pageName);
 
-                    this.frame.Navigate(pageType);
+                        this.frame.Navigate(pageType);
+                    }
                 }
             }
         }
@@ -204,9 +221,20 @@ namespace winui
         }
         #endregion
 
-        private void main_Loaded(object sender, RoutedEventArgs e)
+        private void navigationView_PaneOpening(NavigationView sender, object args)
         {
-            Login();
+            txtUser.Text = App.UserName + " 님";
+            logo.Visibility = Visibility.Visible;
+            logo.IsFocusEngagementEnabled = false;
+            
         }
+
+        private void navigationView_PaneClosing(NavigationView sender, NavigationViewPaneClosingEventArgs args)
+        {
+           
+            logo.Visibility = Visibility.Collapsed;
+        }
+
+  
     }
 }

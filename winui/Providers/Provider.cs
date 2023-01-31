@@ -6,11 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace winui.Providers
+namespace winui
 {
     class Provider
     {
-        SqlConnection con = new SqlConnection("test");
+        //SqlConnection con = new SqlConnection("test");
+        SqlConnection con = new SqlConnection("Data Source=db3.coever.co.kr;Initial Catalog=Coever_Web;User ID=sa; Password=Codb89897788@$^;");
         SqlCommand cmd;
 
         public DataTable Login(string username, string password, string platform)
@@ -72,7 +73,7 @@ namespace winui.Providers
                     return data == null ? "" : data.ToString();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -106,7 +107,7 @@ namespace winui.Providers
                 }
                 return ds;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -502,10 +503,6 @@ namespace winui.Providers
             con.Close();
 
             DataTable dt = ds.Tables[0]; //연차리스트
-
-
-
-
 
             if (dt.Rows.Count == 0)
             { }

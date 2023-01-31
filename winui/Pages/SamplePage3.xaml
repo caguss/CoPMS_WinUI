@@ -41,13 +41,13 @@
                 <TextBlock Text="근태 이력 조회" Margin="32,35,0,0"    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"></TextBlock>
                 <TextBlock Text="이름" Margin="32,85,0,0"    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"></TextBlock>
                 <TextBox  Width="240" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="80,80,0,0"
-                          BorderBrush="LightSlateGray"
+                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                         BorderThickness="1"></TextBox>
                 <Button Content="조회" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Top"
                         Margin="0,80,30,0"
-                         BorderBrush="LightSlateGray"
+                         BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                         BorderThickness="1"
-                        Foreground="LightSlateGray"
+                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                         Width="80">
                 </Button>
 
@@ -55,9 +55,9 @@
                         x:Name="btnAddWork"
                         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Margin="0,0,30,30"
-                         BorderBrush="LightSlateGray"
+                         BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                         BorderThickness="1"
-                        Foreground="LightSlateGray"
+                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                         Width="120"
                         Click="btnAddWork_Click" >
                 </Button>
@@ -69,7 +69,7 @@
                           Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                           Margin="5,37,0,75"
                             VerticalAlignment="Bottom"
-                          BorderBrush="LightSlateGray" BorderThickness="1"
+                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" BorderThickness="1"
                           >
                     
                     <GridViewHeaderItem Width="80" Content="일자" FontSize="13" Height="10" ></GridViewHeaderItem>
@@ -120,21 +120,21 @@
                 <TextBlock Text="근무자 별 출퇴근 현황" Margin="32,35,0,0"    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"></TextBlock>
                 <TextBlock Text="이름" Margin="32,85,0,0"    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"></TextBlock>
                 <TextBox  Width="240" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="80,80,0,0"
-                          BorderBrush="LightSlateGray"
+                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                         BorderThickness="1"></TextBox>
                 <Button Content="조회" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Top"
                         Margin="0,80,30,0"
-                         BorderBrush="LightSlateGray"
+                         BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                         BorderThickness="1"
-                        Foreground="LightSlateGray"
+                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                         Width="80">
                 </Button>
 
                 <Button Content="근무 시간 변경" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Margin="0,0,30,30"
-                         BorderBrush="LightSlateGray"
+                         BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                         BorderThickness="1"
-                        Foreground="LightSlateGray"
+                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                         Width="120"
                         x:Name="btnChangetime"
                         Click="btnChangetime_Click"/>
@@ -142,9 +142,9 @@
 
                 <Button Content="근무자 추가" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Margin="0,0,160,30"
-                         BorderBrush="LightSlateGray"
+                         BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                         BorderThickness="1"
-                        Foreground="LightSlateGray"
+                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                         Width="120"
                         Name="btnAddWorker"
                         Click="btnAddWorker_Click"/>
@@ -157,7 +157,7 @@
                           Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                           Margin="5,37,0,75"
                             VerticalAlignment="Bottom"
-                          BorderBrush="LightSlateGray" BorderThickness="1"
+                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" BorderThickness="1"
                           >
                     <GridViewHeaderItem Width="110" Content="사용자이름" FontSize="13" Height="10" ></GridViewHeaderItem>
                     <GridViewHeaderItem Width="110" Content="출근시간" FontSize="13"></GridViewHeaderItem>
@@ -199,7 +199,7 @@
                 </GridView>
                 <Canvas Height="300" Width="300">
                     <Line 
-                          X1="373" Y1="-130" X2="373" Y2="430" Stroke="LightSlateGray" StrokeThickness="1"
+                          X1="373" Y1="-130" X2="373" Y2="430" Stroke="{ThemeResource ApplicationForegroundThemeBrush}" StrokeThickness="1"
                           ></Line>
                 </Canvas>
                 <Frame Name="frame">

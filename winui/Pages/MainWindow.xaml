@@ -63,38 +63,35 @@
               
                             Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                             Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                SelectionChanged="navigationView_SelectionChanged">
+                PaneOpening="navigationView_PaneOpening"
+                            PaneClosing="navigationView_PaneClosing"
+                SelectionChanged="navigationView_SelectionChanged"
+                            >
 
                 <NavigationView.MenuItems>
-                    <NavigationViewItem IsEnabled="False">
+                    <NavigationViewItem IsTabStop="False" Tag="Logo" Name="logo" IsSelected="False">
+                        
                         <NavigationViewItem.Content>
-                            <StackPanel>
-                                <SymbolIcon Symbol="Home" ></SymbolIcon>
+                            <StackPanel HorizontalAlignment="Center" Width="200" Spacing="25">
+                                <Image Source="C:\Users\a0103\source\repos\CoPMS_WinUI\winui\Image\Hansol_logo.png"   Scale="1,1,1" 
+                                       HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center"/>
+                                
+                                <TextBlock Name="txtUser" Margin="0,0,0,10" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold"/>
                             </StackPanel>
                         </NavigationViewItem.Content>
-                        <NavigationViewItem.Icon>
-                            <SymbolIcon Foreground="Transparent"/>
-                        </NavigationViewItem.Icon>
+                    
                     </NavigationViewItem>
 
-                    <NavigationViewItem IsEnabled="False">
-                        <NavigationViewItem.Content>
-                            <StackPanel>
-                                <TextBlock Name="txtUser" Text="User" />
-                            </StackPanel>
-                        </NavigationViewItem.Content>
-                        <NavigationViewItem.Icon>
-                            <SymbolIcon Foreground="Transparent"/>
-                        </NavigationViewItem.Icon>
-                    </NavigationViewItem>
+                    
 
-                    <NavigationViewItem
+                    <!--<NavigationViewItem
                         Tag="Home"
                         Content="홈" >
                         <NavigationViewItem.Icon>
                             <SymbolIcon Symbol="Home" />
                         </NavigationViewItem.Icon>
-                    </NavigationViewItem>
+                    </NavigationViewItem>-->
 
                     <NavigationViewItem
                         Tag="SamplePage1"
@@ -133,7 +130,7 @@
                         </NavigationViewItem.Icon>
                     </NavigationViewItem>
                 </NavigationView.MenuItems>
-               
+
                 <NavigationView.PaneFooter>
                     <StackPanel Name="paneFooterStackPanel"
                         Orientation="Vertical"
@@ -148,60 +145,6 @@
                     </UIElement.RenderTransform>
                 </Frame>
             </NavigationView>
-
-            <!--<StackPanel Grid.Column="2"
-                Spacing="10">
-                <CheckBox
-                    Content="설정 항목 표시"
-                    IsChecked="True"
-                    Click="isSettingsVisibleCheckBox_Click" />
-                <CheckBox
-                    Content="뒤로가기 버튼 표시"
-                    IsChecked="True"
-                    Click="backButtonVisibleCheckBox_Click" />
-                <CheckBox
-                    Content="뒤로가기 버튼 이용 가능"
-                    IsChecked="False"
-                    Click="backButtonEnabledCheckBox_Click" />
-                <CheckBox Name="autoSuggestCheck"
-                    Content="자동 제안 박스 표시"
-                    IsChecked="True"
-                    Click="autoSuggestBoxCheckBox_Click" />
-                <TextBlock Text="헤더 :" />
-                <TextBox Name="headerTextBox"
-                    Text="헤더" />
-                <CheckBox Name="headerCheck"
-                    Content="항상 헤더 표시 여부"
-                    IsChecked="True"
-                    Click="alwaysShowHeaderCheckBox_Click" />
-                <TextBlock Text="창 제목 :" />
-                <TextBox Name="paneTextBox"
-                    Text="창 제목" />
-                <CheckBox
-                    Content="창 커스텀 컨텐트 표시"
-                    IsChecked="False"
-                    Click="showPaneCustomContentCheckBox_Click" />
-                <CheckBox Name="paneFooterCheck"
-                    Content="창 꼬리말 표시"
-                    IsChecked="False"
-                    Click="showPaneFooterCheckBox_Click" />
-                <TextBlock Text="창 위치 :" />
-                <RadioButton Name="nvSampleLeft"
-                    Content="왼쪽"
-                    IsChecked="True"
-                    Checked="leftPanePositionCheckBox_Checked" />
-                <RadioButton Name="nvSampleTop"
-                    Content="위쪽"
-                    Checked="topPanePositionRadioButton_Checked" />
-                <CheckBox Name="sffCheck"
-                    Content="포커스 변경시 선택 변경"
-                    IsChecked="False"
-                    Click="selectionFollowsFocusCheckBox_Click" />
-                <CheckBox
-                    Content="메뉴 항목 2 선택 금지"
-                    IsChecked="False"
-                    Click="suppressMenuItem2SelectionCheckBox_Click" />
-            </StackPanel>-->
         </Grid>
     </Grid>
 

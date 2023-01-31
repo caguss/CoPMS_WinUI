@@ -38,8 +38,8 @@ namespace winui
         /// </summary>
 
         private static Window startupWindow;
-        public static string UserID;
-        public static string UserName;
+        public static int UserID { get; set; }
+        public static string UserName { get; set; }
 
 
         // Get the initial window created for this app
@@ -78,16 +78,12 @@ namespace winui
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            //Login login = new Login();
-            //login.Activate();
             MainWindow main = new MainWindow();
             startupWindow = WindowHelper.CreateWindow(main);
             ThemeHelper.Initialize();
 
             startupWindow = main;
             StartupWindow.Activate();
-
-
         }
      
 
@@ -99,6 +95,5 @@ namespace winui
             }
             return (TEnum)Enum.Parse(typeof(TEnum), text);
         }
-
     }
 }

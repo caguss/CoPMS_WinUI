@@ -100,7 +100,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModels\" />
+    <Folder Include="Image\" />
     <Folder Include="Pages\" />
   </ItemGroup>
   <ItemGroup>
