@@ -8,16 +8,14 @@ using System.Threading.Tasks;
 
 namespace winui
 {
-    class Provider
+    public static class Provider
     {
-        //SqlConnection con = new SqlConnection("test");
-        SqlConnection con = new SqlConnection("Data Source=db3.coever.co.kr;Initial Catalog=Coever_Web;User ID=sa; Password=Codb89897788@$^;");
-        SqlCommand cmd;
+        static string connectionStr = "Test";
 
-        public DataTable Login(string username, string password, string platform)
+        public static DataTable Login(string username, string password, string platform)
         {
-
-            cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "UserLogin";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Connection = con;
@@ -50,11 +48,13 @@ namespace winui
             return ds.Tables[0];
         }
 
-        public string WorkInOut(int userID, bool isStartWork)
+        public static string WorkInOut(int userID, bool isStartWork)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
+
                 cmd.CommandText = "WorkInOut_IU10";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -80,11 +80,12 @@ namespace winui
 
         }
 
-        public DataSet WorkTime_R10(int usercode, DateTime date)
+        public static DataSet WorkTime_R10(int usercode, DateTime date)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "WorkTime_R10";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -114,11 +115,12 @@ namespace winui
 
         }
 
-        public DataTable CarInfo()
+        public static DataTable CarInfo()
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "CarInfo_R10";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -143,11 +145,12 @@ namespace winui
 
         }
 
-        public DataTable CarStatus()
+        public static DataTable CarStatus()
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "CarRunInfo_S";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -173,18 +176,19 @@ namespace winui
         }
 
         //운행시작
-        public bool CarRegister(string CarCode)
+        public static bool CarRegister(string CarCode)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "CarRunInfo_I";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
                 cmd.Parameters.Add(new SqlParameter("@관리번호", SqlDbType.VarChar, 10));
                 cmd.Parameters.Add(new SqlParameter("@등록자", SqlDbType.Int));
                 cmd.Parameters["@관리번호"].Value = CarCode;
-                cmd.Parameters["@등록자"].Value = App.UserID;
+                cmd.Parameters["@등록자"].Value = App.loginUser.UserID;
 
 
                 DataSet ds = new DataSet();
@@ -205,11 +209,12 @@ namespace winui
         }
 
         //운행종료
-        public bool CarRegisterFIN(string carCode, int distance, string park, int gas, bool refuel, string startloc, string endloc, int fuelprice)
+        public static bool CarRegisterFIN(string carCode, int distance, string park, int gas, bool refuel, string startloc, string endloc, int fuelprice)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "CarRunInfo_U1";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -228,9 +233,9 @@ namespace winui
                 cmd.Parameters["@주차장소"].Value = park;
                 cmd.Parameters["@주유상태"].Value = gas;
                 cmd.Parameters["@주유여부"].Value = refuel;
-                cmd.Parameters["@수정자"].Value = App.UserID;
+                cmd.Parameters["@수정자"].Value = App.loginUser.UserID;
                 cmd.Parameters["@관리번호"].Value = carCode;
-                cmd.Parameters["@등록자"].Value = App.UserID;
+                cmd.Parameters["@등록자"].Value = App.loginUser.UserID;
                 cmd.Parameters["@출발지"].Value = startloc;
                 cmd.Parameters["@도착지"].Value = endloc;
                 cmd.Parameters["@주유금액"].Value = fuelprice;
@@ -251,11 +256,12 @@ namespace winui
                 return false;
             }
         }
-        public DataTable CarReservation_Check(DateTime date)
+        public static DataTable CarReservation_Check(DateTime date)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "CarReservation_S";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -279,11 +285,12 @@ namespace winui
                 return null;
             }
         }
-        public DataTable CarUsed_Check(string carcode, DateTime startdate, DateTime enddate)
+        public static DataTable CarUsed_Check(string carcode, DateTime startdate, DateTime enddate)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "Car_History";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -311,16 +318,17 @@ namespace winui
                 return null;
             }
         }
-        public DataTable RestRemain()
+        public static DataTable RestRemain()
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "Leave_S4";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
                 cmd.Parameters.Add(new SqlParameter("@사용자코드", SqlDbType.Int));
-                cmd.Parameters["@사용자코드"].Value = App.UserID;
+                cmd.Parameters["@사용자코드"].Value = App.loginUser.UserID;
 
 
                 DataSet ds = new DataSet();
@@ -340,11 +348,12 @@ namespace winui
             }
         }
 
-        public DataTable RestRegister(string restkind, DateTime date, string reason)
+        public static DataTable RestRegister(string restkind, DateTime date, string reason)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "Leave_IU";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -355,7 +364,7 @@ namespace winui
                 cmd.Parameters.Add(new SqlParameter("@회사코드", SqlDbType.VarChar, 5));
                 cmd.Parameters["@예약일자"].Value = date;
                 cmd.Parameters["@관리번호"].Value = restkind;
-                cmd.Parameters["@사용자이름"].Value = App.UserID.ToString();
+                cmd.Parameters["@사용자이름"].Value = App.loginUser.UserID;
                 cmd.Parameters["@목적지"].Value = reason;
                 cmd.Parameters["@회사코드"].Value = "1000";
 
@@ -377,11 +386,12 @@ namespace winui
                 return null;
             }
         }
-        public DataTable RestAccept1(string restkind, DateTime date, string register)
+        public static DataTable RestAccept1(string restkind, DateTime date, string register)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "Leave_IU_2";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -394,7 +404,7 @@ namespace winui
                 cmd.Parameters["@관리번호"].Value = restkind;
                 cmd.Parameters["@사용자이름"].Value = register;
                 cmd.Parameters["@회사코드"].Value = "1000";
-                cmd.Parameters["@로그인"].Value = App.UserID.ToString();
+                cmd.Parameters["@로그인"].Value = App.loginUser.UserID;
 
 
                 DataSet ds = new DataSet();
@@ -414,11 +424,12 @@ namespace winui
                 return null;
             }
         }
-        public DataTable RestAccept2(string restkind, DateTime date, string register)
+        public static DataTable RestAccept2(string restkind, DateTime date, string register)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "Leave_IU_3";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -431,7 +442,7 @@ namespace winui
                 cmd.Parameters["@관리번호"].Value = restkind;
                 cmd.Parameters["@사용자이름"].Value = register;
                 cmd.Parameters["@회사코드"].Value = "1000";
-                cmd.Parameters["@로그인"].Value = App.UserID.ToString();
+                cmd.Parameters["@로그인"].Value = App.loginUser.UserID;
 
 
                 DataSet ds = new DataSet();
@@ -452,11 +463,12 @@ namespace winui
             }
         }
 
-        public void Restdelete(string restkind, DateTime date, string register)
+        public static void Restdelete(string restkind, DateTime date, string register)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "Leave_IU_4";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -469,7 +481,7 @@ namespace winui
                 cmd.Parameters["@관리번호"].Value = restkind;
                 cmd.Parameters["@사용자이름"].Value = register;
                 cmd.Parameters["@회사코드"].Value = "1000";
-                cmd.Parameters["@로그인"].Value = App.UserID.ToString();
+                cmd.Parameters["@로그인"].Value = App.loginUser.UserID;
 
 
                 DataSet ds = new DataSet();
@@ -488,9 +500,10 @@ namespace winui
 
             }
         }
-        public void RestList(List<Rest> reason)
+        public static void RestList(List<Rest> reason)
         {
-            cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "RestList";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Connection = con;
@@ -523,9 +536,10 @@ namespace winui
             }
             reason.TrimExcess();
         }
-        public void CarList(List<Car> reason)
+        public static void CarList(List<Car> reason)
         {
-            cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "CarList";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Connection = con;
@@ -564,11 +578,12 @@ namespace winui
             reason.TrimExcess();
         }
 
-        public DataTable CarReservation(DateTime date, string togo, string carCode)
+        public static DataTable CarReservation(DateTime date, string togo, string carCode)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "CarReservation_IU";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -579,7 +594,7 @@ namespace winui
                 cmd.Parameters.Add(new SqlParameter("@회사코드", SqlDbType.VarChar, 8));
                 cmd.Parameters["@예약일자"].Value = date;
                 cmd.Parameters["@관리번호"].Value = carCode;
-                cmd.Parameters["@사용자이름"].Value = App.UserName;
+                cmd.Parameters["@사용자이름"].Value = App.loginUser.UserName;
                 cmd.Parameters["@목적지"].Value = togo;
                 cmd.Parameters["@회사코드"].Value = "1000";
 
@@ -600,11 +615,12 @@ namespace winui
                 return null;
             }
         }
-        public DataTable RestDetail(DateTime date, string RestKind, string user)
+        public static DataTable RestDetail(DateTime date, string RestKind, string user)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "Leave_S3";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -615,7 +631,7 @@ namespace winui
                 cmd.Parameters["@예약일자"].Value = date; //날짜
                 cmd.Parameters["@관리번호"].Value = RestKind; //연차종류
                 cmd.Parameters["@사용자이름"].Value = user; //신청자
-                cmd.Parameters["@로그인"].Value = App.UserID.ToString(); //로그인자
+                cmd.Parameters["@로그인"].Value = App.loginUser.UserID; //로그인자
 
 
                 DataSet ds = new DataSet();
@@ -636,11 +652,12 @@ namespace winui
         }
 
 
-        public DataTable NotiLog(int target, string title, string comment)
+        public static DataTable NotiLog(int target, string title, string comment)
         {
             try
             {
-                cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "NotiSender";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = con;
@@ -648,7 +665,7 @@ namespace winui
                 cmd.Parameters.Add(new SqlParameter("@대상", SqlDbType.Int));
                 cmd.Parameters.Add(new SqlParameter("@제목", SqlDbType.VarChar, 100));
                 cmd.Parameters.Add(new SqlParameter("@내용", SqlDbType.VarChar, 1000));
-                cmd.Parameters["@작성자"].Value = App.UserID;
+                cmd.Parameters["@작성자"].Value = App.loginUser.UserID;
                 cmd.Parameters["@대상"].Value = target;
                 cmd.Parameters["@제목"].Value = title;
                 cmd.Parameters["@내용"].Value = comment;
@@ -666,6 +683,36 @@ namespace winui
                 return ds.Tables[0];
             }
             catch (Exception)
+            {
+                DataTable dt = new DataTable();
+                return dt;
+            }
+        }
+
+        public static DataTable WorkLog()
+        {
+            try
+            {
+            SqlConnection con = new SqlConnection(connectionStr);
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "WorkManage_R11";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = con;
+                cmd.Parameters.Add(new SqlParameter("@사용자코드", SqlDbType.VarChar, 10));
+                cmd.Parameters["@사용자코드"].Value = "";
+
+                DataSet ds = new DataSet();
+
+                // DB처리
+                using (con)
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+                    da.Dispose();
+                }
+                return ds.Tables[0];
+            }
+            catch (Exception ex)
             {
                 DataTable dt = new DataTable();
                 return dt;

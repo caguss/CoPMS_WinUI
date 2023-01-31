@@ -5,7 +5,7 @@ using System.Text;
 
 namespace winui
 {
-    class Car : INotifyPropertyChanged
+    public class Car : INotifyPropertyChanged
     {
 
         public string CarName { get; set; }

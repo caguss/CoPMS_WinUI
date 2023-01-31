@@ -116,6 +116,13 @@
                         </NavigationViewItem.Icon>
                     </NavigationViewItem>
                     <NavigationViewItem
+                        Content="근태관리_bcs"
+                        Tag="WorkPage">
+                        <NavigationViewItem.Icon>
+                            <SymbolIcon Symbol="CalendarWeek" />
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                    <NavigationViewItem
                         Content="타임시트관리"
                         Tag="SamplePage4">
                         <NavigationViewItem.Icon>

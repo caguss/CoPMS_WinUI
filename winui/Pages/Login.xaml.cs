@@ -23,6 +23,7 @@ using AppUIBasics;
 
 using System.Data;
 using winui.popup;
+using winui.Providers;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -71,8 +72,7 @@ namespace winui
             //string pw = txtPW.TextReadingOrder.ToString();
             string pw = txtPW.Password.ToString();
             string platform = "winui";
-            Provider provider = new Provider();
-            DataTable dt = provider.Login(id, pw, platform);     
+            DataTable dt = Provider.Login(id, pw, platform);           
             if(dt.Rows.Count > 0)
             {
                 App.UserName = dt.Rows[0]["사용자이름"].ToString();
