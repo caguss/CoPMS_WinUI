@@ -33,8 +33,26 @@ namespace winui.TrayPopup
             this.InitializeComponent();
             Win32.RegisterWindowMinMax(this, 300, 300, 300, 300);
             Window window = this;
+
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+            Microsoft.UI.WindowId windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
+            Microsoft.UI.Windowing.AppWindow appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
+            if (appWindow is not null)
+            {
+                Microsoft.UI.Windowing.DisplayArea displayArea = Microsoft.UI.Windowing.DisplayArea.GetFromWindowId(windowId, Microsoft.UI.Windowing.DisplayAreaFallback.Nearest);
+                if (displayArea is not null)
+                {
+                    var CenteredPosition = appWindow.Position;
+                    CenteredPosition.X = displayArea.WorkArea.Width - 300;
+                    CenteredPosition.Y = displayArea.WorkArea.Height - 300;
+                    appWindow.Move(CenteredPosition);
+                }
+            }
+
+
             window.ExtendsContentIntoTitleBar = true;
             window.SetTitleBar(pnlTitle);
+            window.Activate();
           
         }
 

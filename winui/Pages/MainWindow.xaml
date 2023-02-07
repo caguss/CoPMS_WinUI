@@ -21,21 +21,22 @@
             MenuActivation="LeftOrRightClick">
             <tb:TaskbarIcon.ContextFlyout>
                 <MenuFlyout MenuFlyoutPresenterStyle="{StaticResource DefaultMenuFlyoutPresenterStyle}" >
-                    <MenuFlyoutItem Text="열기"  Name="menuOpen" Click="menuOpen_Click"/>
+                    <MenuFlyoutItem Text="열기"  Name="menuOpen" Click="menuOpen_Click">
+                        
+                    </MenuFlyoutItem>
                     <MenuFlyoutSubItem Text="출퇴근관리"
                                        RightTapped="MenuFlyoutSubItem_RightTapped">
                         <MenuFlyoutItem Text="출근" Name="MenuWorkStart" Click="MenuWorkStart_Click"/>
                     </MenuFlyoutSubItem>
-                    <MenuFlyoutItem Text="연차 등록" Name="MenuRest" Click="MenuRest_Click"/>
-                    <MenuFlyoutItem Text="차량 예약" Name="MenuCar" Click="MenuCar_Click"/>
+                    <MenuFlyoutItem Text="연차 등록" Name="MenuRest" Click="MenuRest_Click">
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem Text="차량 예약" Name="MenuCar" Click="MenuCar_Click">
+                    </MenuFlyoutItem>
                     <MenuFlyoutItem Text="종료" Name="menuClose" Click="menuClose_Click"/>
                 </MenuFlyout>
             </tb:TaskbarIcon.ContextFlyout>
             <tb:TaskbarIcon.GeneratedIcon>
-                <tb:GeneratedIcon 
-                    Text="H"
-                    FontSize="70"
-                    >
+                <tb:GeneratedIcon Text="H" FontSize="70">
                     <tb:GeneratedIcon.Foreground>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="128,128">
                             <GradientStop Color="DarkBlue"/>
@@ -68,8 +69,7 @@
                 PaneOpening="navigationView_PaneOpening"
                             PaneClosing="navigationView_PaneClosing"
                 SelectionChanged="navigationView_SelectionChanged"
-                            AlwaysShowHeader="True"
-                            >
+                            AlwaysShowHeader="True">
 
                 <NavigationView.MenuItems>
                     <NavigationViewItem IsTabStop="False" Tag="Logo" Name="logo" IsSelected="False">
