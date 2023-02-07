@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Runtime.InteropServices;
+using Windows.Storage;
 using winui.Helper;
 using winui.popup;
 using winui.TrayPopup;
@@ -46,8 +47,24 @@ namespace winui
 
         private async void Login()
         {
-            if(Properties.Resources.IsLoginYN.Equals("N"))
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            // load a setting that is local to the device
+            bool islogindata = false;
+            if (localSettings.Values["isLogin"] != null)
             {
+                islogindata = (bool)localSettings.Values["isLogin"];
+
+            }
+
+            if (islogindata)
+            {
+                App.loginUser.UserName = localSettings.Values["username"] as string;
+                App.loginUser.UserID = localSettings.Values["usercode"] as string;
+
+            }
+            else
+            {
+
                 Login login = new Login();
 
                 login.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;

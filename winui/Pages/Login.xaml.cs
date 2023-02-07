@@ -23,6 +23,7 @@ using AppUIBasics;
 
 using System.Data;
 using winui.popup;
+using Windows.Storage;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -40,6 +41,8 @@ namespace winui
         public Login()
         {
             this.InitializeComponent();
+
+
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -49,24 +52,21 @@ namespace winui
 
         private void chkLogin_Click(object sender, RoutedEventArgs e)
         {
-            //로그인 상태 유지 
-            if(chkLogin.IsChecked == true)
-            {
-                
-            }
-            else
-            {
-
-            }
+        
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+        
+
             LoginCheck();
         }
 
         private void LoginCheck()
         {
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+
+
             string id = txtID.Text;
             //string pw = txtPW.TextReadingOrder.ToString();
             string pw = txtPW.Password.ToString();
@@ -74,8 +74,23 @@ namespace winui
             DataTable dt = Provider.Login(id, pw, platform);           
             if(dt.Rows.Count > 0)
             {
+
                 App.loginUser.UserName = dt.Rows[0]["사용자이름"].ToString();
-                App.loginUser.UserID = dt.Rows[0]["사용자코드"].ToString();
+                App.loginUser.UserID   = dt.Rows[0]["사용자코드"].ToString();
+
+
+                //로그인 상태 유지 
+                if (chkLogin.IsChecked == true)
+                {
+                    localSettings.Values["isLogin"] = true;
+                    localSettings.Values["username"] = App.loginUser.UserName;
+                    localSettings.Values["usercode"] = App.loginUser.UserID;
+                }
+                else
+                {
+                    localSettings.Values["isLogin"] = false;
+                }
+
                 
                 this.Hide();
             }

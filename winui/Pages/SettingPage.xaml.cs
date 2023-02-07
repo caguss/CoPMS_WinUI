@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using System;
 using System.Linq;
+using Windows.Storage;
 using Windows.System;
 using winui.Helper;
 using WinUIGallery.DesktopWap.Helper;
@@ -107,12 +108,12 @@ namespace winui
 
         private async void btnLogout_Click(object sender, RoutedEventArgs e)
         {
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            localSettings.Values["isLogin"] = false;
+
             Login login = new Login();
-
             login.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-
             login.XamlRoot = this.XamlRoot;
-
             await login.ShowAsync();
         }
     }
