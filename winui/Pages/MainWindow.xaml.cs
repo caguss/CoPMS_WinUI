@@ -2,13 +2,14 @@
 // Licensed under the MIT License.
 
 using H.NotifyIcon;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Runtime.InteropServices;
-using Vanara.PInvoke;
+using winui.Helper;
 using winui.popup;
-
+using winui.TrayPopup;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -25,16 +26,22 @@ namespace winui
         public static int MinWindowHeight { get; set; } = 800;
         public static int MaxWindowHeight { get; set; } = 800;
 
+        bool off =true;
+        GoToWorkViewModel gvm;
+        DateTime selectdate = DateTime.Now;
         public MainWindow()
         {
             this.InitializeComponent();
             RegisterWindowMinMax(this);
+
+            Window window = this;
+            window.ExtendsContentIntoTitleBar = true;
+            window.SetTitleBar(pnlTitle);
         }
 
         private void main_Loaded(object sender, RoutedEventArgs e)
         {
            Login();
-       
         }
 
         private async void Login()
@@ -55,7 +62,6 @@ namespace winui
         {
             navigationView.InvalidateArrange();
         }
-
        
         #region 네비게이션 뷰 선택 변경시 처리하기 - navigationView_SelectionChanged(sender, e)
 
@@ -75,8 +81,6 @@ namespace winui
             {
                 Microsoft.UI.Xaml.Controls.NavigationViewItem item = e.SelectedItem as Microsoft.UI.Xaml.Controls.NavigationViewItem;
 
-              
-
                 if (item != null)
                 {
                     //if (this.frame.Navigate(typeof(Home)))
@@ -85,18 +89,16 @@ namespace winui
                     //}
                     if (item.Tag.Equals("UserName") || item.Tag.Equals("Logo"))
                     {
-                  
                     }
                     else
                     {
                         string itemTag = item.Tag.ToString();
 
-                        //sender.Header = "샘플 페이지 " + itemTag.Substring(itemTag.Length - 1);
                         if (itemTag.Contains("1"))
                         {
                             sender.Header = "연차관리";
                         }
-                      
+
                         else if (itemTag.Contains("2"))
                         {
                             sender.Header = "차량예약관리";
@@ -124,14 +126,6 @@ namespace winui
             }
         }
 
-        private void MenuFlyoutItem_Click_2(object sender, RoutedEventArgs e)
-        {
-            if (sender is MenuFlyoutItem select)
-            {
-                this.Hide();
-            }
-        }
-
         #endregion
 
         #region 화면 크기 변경
@@ -154,7 +148,6 @@ namespace winui
 
         public static void RegisterWindowMinMax(Window window)
         {
-
             var hwnd = GetWindowHandleForCurrentWindow(window);
 
             newWndProc = new WinProc(WndProc);
@@ -223,18 +216,76 @@ namespace winui
 
         private void navigationView_PaneOpening(NavigationView sender, object args)
         {
-            txtUser.Text = App.UserName + " 님";
+            txtUser.Text = App.loginUser.UserName + " 님";
             logo.Visibility = Visibility.Visible;
             logo.IsFocusEngagementEnabled = false;
-            
         }
 
         private void navigationView_PaneClosing(NavigationView sender, NavigationViewPaneClosingEventArgs args)
         {
-           
             logo.Visibility = Visibility.Collapsed;
         }
 
-  
+        private void menuOpen_Click(object sender, RoutedEventArgs e)
+        {
+            this.Show();
+        }
+
+        private void menuClose_Click(object sender, RoutedEventArgs e)
+        {
+            off = false;
+            Application.Current.Exit();
+        }
+
+        private void MenuWorkStart_Click(object sender, RoutedEventArgs e)
+        {
+            try 
+            {
+                Provider.WorkInOut(Convert.ToInt32(App.loginUser.UserID), gvm.IsStartWork);
+            }
+
+            catch 
+            { 
+            }
+        }
+
+      
+        private void MenuRest_Click(object sender, RoutedEventArgs e)
+        {
+            RestMenu();
+        }
+
+        private void MenuCar_Click(object sender, RoutedEventArgs e)
+        {
+        }
+        
+        private  void RestMenu()
+        {
+            RestPopupPage rp = new RestPopupPage();
+            rp.Show();
+        }
+
+       
+        private void MenuFlyoutSubItem_RightTapped(object sender, Microsoft.UI.Xaml.Input.RightTappedRoutedEventArgs e)
+        {
+            gvm = new GoToWorkViewModel(selectdate);
+            if (gvm.IsStartWork)
+                MenuWorkStart.Text = "출근";
+            else
+                MenuWorkStart.Text = "퇴근";
+        }
+
+        private void Window_Closed(object sender, WindowEventArgs args)
+        {
+            if(off)
+            {
+                args.Handled = true;
+                this.Hide();
+            }
+            else
+            {
+                args.Handled = false;
+            }
+        }
     }
 }

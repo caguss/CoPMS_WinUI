@@ -67,7 +67,7 @@
 
                     <Button x:Name="btnLogout" Margin="0,20,0,0"
                             Width="100" Height="35" Content="로그아웃"
-                            BorderBrush="LightSlateGray"
+                            BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                             Click="btnLogout_Click"/>
 
                 </StackPanel>

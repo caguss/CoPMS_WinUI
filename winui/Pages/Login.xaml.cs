@@ -23,7 +23,6 @@ using AppUIBasics;
 
 using System.Data;
 using winui.popup;
-using winui.Providers;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -37,7 +36,7 @@ namespace winui
     {
         //   private static Window startupWindow;
 
-        
+        MainWindow main;
         public Login()
         {
             this.InitializeComponent();
@@ -75,15 +74,16 @@ namespace winui
             DataTable dt = Provider.Login(id, pw, platform);           
             if(dt.Rows.Count > 0)
             {
-                App.UserName = dt.Rows[0]["사용자이름"].ToString();
-                App.UserID = Convert.ToInt32(dt.Rows[0]["사용자코드"].ToString());
+                App.loginUser.UserName = dt.Rows[0]["사용자이름"].ToString();
+                App.loginUser.UserID = dt.Rows[0]["사용자코드"].ToString();
+                
                 this.Hide();
             }
 
             else 
             {
                 this.Hide();
-                string message = "로그인 정보가 일치하지않습니다.";
+                string message = "로그인 정보가 일치 하지않습니다.";
                 PopupMessage(message);
             }
         }
@@ -102,6 +102,15 @@ namespace winui
         {
             if(e.Key == Windows.System.VirtualKey.Enter)
                 btnLogin_Click(sender,e);
+        }
+
+     
+        private void StackPanel_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Escape)
+            {
+               e.Handled= true; 
+            }
         }
     }
 }

@@ -32,6 +32,7 @@ namespace winui.popup
             this.InitializeComponent();
 
             txtDetail.Text = msg;
+            
             this.CloseButtonText = "OK";
         }
 

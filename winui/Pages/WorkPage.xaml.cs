@@ -36,11 +36,11 @@ namespace winui
         public WorkPage()
         {
             this.InitializeComponent();
-            PopulateProjects();
+            PopulateProjects("");
         }
-        private void PopulateProjects()
+        private void PopulateProjects(string name)
         {
-            WorkViewModel viewModel = new WorkViewModel();
+            WorkViewModel viewModel = new WorkViewModel(name);
 
             this.DataContext = viewModel;
         }
@@ -68,11 +68,11 @@ namespace winui
 
         private async void btnAddWorker_Click(object sender, RoutedEventArgs e)
         {
-            AddWorkerPopup awp = new AddWorkerPopup();
-            awp.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            awp.XamlRoot = this.XamlRoot;
+            //AddWorkerPopup awp = new AddWorkerPopup();
+            //awp.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            //awp.XamlRoot = this.XamlRoot;
 
-            await awp.ShowAsync();
+            //await awp.ShowAsync();
         }
     }
 

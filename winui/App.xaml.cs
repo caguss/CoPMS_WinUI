@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
+using H.NotifyIcon.Core;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -39,7 +40,7 @@ namespace winui
 
         private static Window startupWindow;
 
-        public static User loginUser;
+        public static User loginUser = new User();
 
 
         // Get the initial window created for this app
@@ -57,6 +58,7 @@ namespace winui
         public App()
         {
             this.InitializeComponent();
+           
         }
 
 
@@ -82,8 +84,13 @@ namespace winui
             startupWindow = WindowHelper.CreateWindow(main);
             ThemeHelper.Initialize();
 
+
             startupWindow = main;
             StartupWindow.Activate();
+
+            //Window window = App.StartupWindow;
+            //window.ExtendsContentIntoTitleBar= true;
+            //window.SetTitleBar(null);
         }
      
 

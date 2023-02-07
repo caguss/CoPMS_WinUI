@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using winui.Providers;
+using System.Xml.Linq;
 
 namespace winui.ViewModels
 {
@@ -12,11 +12,11 @@ namespace winui.ViewModels
     {
         public List<Work> WorkLogList { get; set; }
         public List<Work> StandardWorkList { get; set; }
-        public WorkViewModel() 
+        public WorkViewModel(string name)
         {
             WorkLogList = new List<Work>();
             StandardWorkList = new List<Work>();
-            DataTable worklogtable = Provider.WorkLog();
+            DataTable worklogtable = Provider.SearchWorkLog(name);
             for (int i = 0; i < worklogtable.Rows.Count; i++)
             {
                 WorkLogList.Add(new Work()
@@ -26,7 +26,6 @@ namespace winui.ViewModels
                     WorkEndTime = worklogtable.Rows[i]["퇴근시간"].ToString()
                 });
             }
-
         }
     }
 }

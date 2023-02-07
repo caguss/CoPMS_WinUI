@@ -12,18 +12,26 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-        <TextBlock Text="근무자 추가" FontSize="18" Margin="10,0,0,0"/>
+        <TextBlock Text="근무자 추가" FontSize="20" Margin="10,20,0,0" FontWeight="Bold" Name="txtHeader"/>
         <TextBlock Text="근무자 : " HorizontalAlignment="Left"
-                       Margin="15,30,0,0" Foreground="White"       
+                       Margin="10,20,0,0" Foreground="White" FontSize="17"      
                    />
-        <TextBlock x:Name="txtUser" Text="sdffds" Foreground="White" 
-                       Margin="90,-20,0,0"/>
-       
-        <TimePicker Header="출근시간" Margin="15,20,0,0" Name="tpStart"/>
-        <TimePicker Header="퇴근시간" Margin="15,20,0,0" Name="tpEnd"/>
+        <TextBlock x:Name="txtUser" Foreground="White" FontSize="17"      
+                       Margin="90,-23,0,0"/>
+
+        <TimePicker Header="출근시간" Margin="13,20,0,0" Name="tpStart" MinuteIncrement="15" 
+                    BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"/>
+        <TimePicker Header="퇴근시간" Margin="13,20,0,0" Name="tpEnd" MinuteIncrement="15"
+                    BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"/>
         <Button Name="btnAdd" Content="추가"
-                Margin="177,20,0,0"
-                Width="80"/>
+                Margin="173,30,0,10"
+                Width="80" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
+                Click="btnAdd_Click"/>
+
+        <Button x:Name="btnClose" Margin="226,-600,0,0" Background="Transparent" BorderBrush="Transparent" 
+                Click="btnClose_Click">
+            <SymbolIcon Symbol="Clear"/>
+            </Button>
     </StackPanel>
 
 </ContentDialog>

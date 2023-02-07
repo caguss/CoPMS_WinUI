@@ -16,8 +16,7 @@ namespace winui
             // Sample to pre-load list of records from data server of KVP
             //PickerChoices = GetDataFromServerForDemo("select * from LookupTable where Category = 'demo'");
 
-            Provider prov = new Provider();
-            DataTable dt = prov.CarInfo();
+            DataTable dt = Provider.CarInfo();
             PickerChoices = new ObservableCollection<Car>();
 
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -55,8 +54,7 @@ namespace winui
         public CarViewModel(string adddata)
         {
 
-            Provider prov = new Provider();
-            DataTable dt = prov.CarInfo();
+            DataTable dt = Provider.CarInfo();
             PickerChoices = new ObservableCollection<Car>();
             PickerChoices.Add(new Car { CarCode = "", CarName = adddata });
             for (int i = 0; i < dt.Rows.Count; i++)

@@ -10,80 +10,79 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:tb="using:H.NotifyIcon"
-    
-
+    Closed="Window_Closed"
     >
-
     <Grid Name="main" Loaded="main_Loaded">
         <tb:TaskbarIcon 
-            ContextMenuMode="PopupMenu"
+            ContextMenuMode="SecondWindow"
             x:Name="tsb"
             PopupActivation="DoubleClick"
             ToolTipText="Winui"
-            MenuActivation="LeftOrRightClick"
-            >
+            MenuActivation="LeftOrRightClick">
             <tb:TaskbarIcon.ContextFlyout>
-                <MenuFlyout>
-                    <MenuFlyoutItem Text="열기" Click="MenuFlyoutItem_Click_2"  />
-                    <MenuFlyoutItem Text="종료"/>
+                <MenuFlyout MenuFlyoutPresenterStyle="{StaticResource DefaultMenuFlyoutPresenterStyle}" >
+                    <MenuFlyoutItem Text="열기"  Name="menuOpen" Click="menuOpen_Click"/>
+                    <MenuFlyoutSubItem Text="출퇴근관리"
+                                       RightTapped="MenuFlyoutSubItem_RightTapped">
+                        <MenuFlyoutItem Text="출근" Name="MenuWorkStart" Click="MenuWorkStart_Click"/>
+                    </MenuFlyoutSubItem>
+                    <MenuFlyoutItem Text="연차 등록" Name="MenuRest" Click="MenuRest_Click"/>
+                    <MenuFlyoutItem Text="차량 예약" Name="MenuCar" Click="MenuCar_Click"/>
+                    <MenuFlyoutItem Text="종료" Name="menuClose" Click="menuClose_Click"/>
                 </MenuFlyout>
             </tb:TaskbarIcon.ContextFlyout>
             <tb:TaskbarIcon.GeneratedIcon>
-                <tb:GeneratedIcon
-                    Text="A"
+                <tb:GeneratedIcon 
+                    Text="H"
                     FontSize="70"
-                 >
+                    >
                     <tb:GeneratedIcon.Foreground>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="128,128">
-                            <GradientStop Color="Red"/>
-                            <GradientStop Color="Red"/>
+                            <GradientStop Color="DarkBlue"/>
+                            <GradientStop Color="DarkBlue"/>
                         </LinearGradientBrush>
                     </tb:GeneratedIcon.Foreground>
                     <tb:GeneratedIcon.BorderBrush>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="128,128">
                             <GradientStop Color="White" />
-                            <GradientStop Color="Red" />
+                            <GradientStop Color="DarkBlue" />
                         </LinearGradientBrush>
                     </tb:GeneratedIcon.BorderBrush>
                 </tb:GeneratedIcon>
             </tb:TaskbarIcon.GeneratedIcon>
         </tb:TaskbarIcon>
 
-        <Grid Margin="10" Language="kr" Name="grid" >
+        <Grid Margin="0" Language="kr" Name="grid">
             <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="*"    />
-                <ColumnDefinition Width="10"   />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <NavigationView Name="navigationView"
                 ExpandedModeThresholdWidth="500"
                 IsTabStop="False"
                 PaneDisplayMode="LeftCompact"
-              
                             Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                             Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                 PaneOpening="navigationView_PaneOpening"
                             PaneClosing="navigationView_PaneClosing"
                 SelectionChanged="navigationView_SelectionChanged"
+                            AlwaysShowHeader="True"
                             >
 
                 <NavigationView.MenuItems>
                     <NavigationViewItem IsTabStop="False" Tag="Logo" Name="logo" IsSelected="False">
-                        
+
                         <NavigationViewItem.Content>
                             <StackPanel HorizontalAlignment="Center" Width="200" Spacing="25">
                                 <Image Source="C:\Users\a0103\source\repos\CoPMS_WinUI\winui\Image\Hansol_logo.png"   Scale="1,1,1" 
                                        HorizontalAlignment="Center" 
                                        VerticalAlignment="Center"/>
-                                
                                 <TextBlock Name="txtUser" Margin="0,0,0,10" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold"/>
                             </StackPanel>
                         </NavigationViewItem.Content>
-                    
                     </NavigationViewItem>
-
-                    
 
                     <!--<NavigationViewItem
                         Tag="Home"
@@ -115,13 +114,15 @@
                             <SymbolIcon Symbol="CalendarWeek" />
                         </NavigationViewItem.Icon>
                     </NavigationViewItem>
-                    <NavigationViewItem
+
+                    <!--<NavigationViewItem
                         Content="근태관리_bcs"
                         Tag="WorkPage">
                         <NavigationViewItem.Icon>
                             <SymbolIcon Symbol="CalendarWeek" />
                         </NavigationViewItem.Icon>
-                    </NavigationViewItem>
+                    </NavigationViewItem>-->
+
                     <NavigationViewItem
                         Content="타임시트관리"
                         Tag="SamplePage4">
@@ -151,7 +152,15 @@
                         <TransformGroup/>
                     </UIElement.RenderTransform>
                 </Frame>
+
             </NavigationView>
+            <Border>
+                <StackPanel  Width="Auto" Height="30" VerticalAlignment="Top" Name="pnlTitle"
+                             Background="{ThemeResource AppBarBorderThemeBrush}"
+                             >
+                    <TextBlock Text="WinUI3" Margin="15,5,0,0"/>
+                </StackPanel>
+            </Border>
         </Grid>
     </Grid>
 

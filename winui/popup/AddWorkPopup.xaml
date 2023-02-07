@@ -13,11 +13,19 @@
 
 
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
-        <TextBlock Text="근무자 : " HorizontalAlignment="Left"
-                       Margin="50,30,0,0" Foreground="White"       
+
+        <TextBlock Text="근무 추가" FontSize="20" FontWeight="Bold" Margin="10"/>
+        <TextBlock Text="근무자 : " HorizontalAlignment="Left" FontSize="17"
+                       Margin="30,20,0,0" Foreground="White"   FontWeight="Bold"    
                    />
-        <TextBlock x:Name="txtUser" Text="sdffds" Foreground="White" 
-                       Margin="120,-20,0,0"/>
+        <Button x:Name="btnClose" Margin="225,-160,0,10" Background="Transparent" BorderBrush="Transparent" 
+               Click="btnClose_Click">
+            <SymbolIcon Symbol="Clear"/>
+        </Button>
+        <TextBlock x:Name="txtUser" Text="" Foreground="White" FontSize="17" FontWeight="Bold"
+                       Margin="110,-23,0,0"/>
+        <Button Name="btnStartWork" Margin="40,30,0,0" Height="40" Width="200" Click="btnStartWork_Click"/>
+    
     </StackPanel>
 
 

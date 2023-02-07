@@ -16,6 +16,7 @@
     <None Remove="Login.xaml" />
     <None Remove="NavigationRootPage.xaml" />
     <None Remove="Pages\WorkPage.xaml" />
+    <None Remove="popup\AddRestPopup.xaml" />
     <None Remove="popup\AddWorkerPopup.xaml" />
     <None Remove="popup\AddWorkPopup.xaml" />
     <None Remove="popup\ChangeWorkTime.xaml" />
@@ -26,6 +27,7 @@
     <None Remove="SamplePage4.xaml" />
     <None Remove="SamplePage5.xaml" />
     <None Remove="SettingPage.xaml" />
+    <None Remove="TrayPopup\RestPopupPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,6 +44,7 @@
     <PackageReference Include="H.NotifyIcon.WinUI" Version="2.0.77" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221209.1" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
     <PackageReference Include="Vanara.PInvoke.User32" Version="3.4.12" />
     <Manifest Include="$(ApplicationManifest)" />
@@ -119,6 +122,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="TrayPopup\RestPopupPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="popup\AddRestPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="popup\AddWorkerPopup.xaml">

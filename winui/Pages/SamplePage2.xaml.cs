@@ -19,6 +19,7 @@ using winui.popup;
 using System.Data;
 using static Vanara.PInvoke.CM_PARTIAL_RESOURCE_DESCRIPTOR;
 using System.Diagnostics;
+using Vanara;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -32,13 +33,22 @@ namespace winui
     {
 
         CarViewModel carlist = new CarViewModel();
-     
+        string date;
+        string today;
         public SamplePage2()
         {
             InitializeComponent();
-            CarList();
-
-          
+            try
+            {
+                CarList();
+                datepic.SelectedDate = new DateTimeOffset(DateTime.Today);
+                today = DateTime.Now.ToString("yyyy-MM-dd");
+                CarDayData(today);
+            }
+            catch (Exception ex)
+            {
+                PopupMessage(ex.Message);
+            }   
         }
 
         private void btnToday_Click(object sender, RoutedEventArgs e)
@@ -46,6 +56,7 @@ namespace winui
             calview2.SetDisplayDate(DateTimeOffset.Now);
             txtDate.Text = DateTime.Now.ToString("yyyy년 MM월 dd일");
             calview2.SelectedDates.Clear();
+            CarDayData(today);
         }
 
         private void btnReserve_Click(object sender, RoutedEventArgs e)
@@ -55,6 +66,17 @@ namespace winui
                 string message = "차량을 선택해주세요.";
                 PopupMessage(message);
             }
+            else
+            {
+
+                DateTime dateTime = datepic.Date.DateTime;
+
+                Provider.CarReservation(dateTime,txtloc.Text,cbCar.SelectedValue.ToString());
+
+                string msg = "예약이 완료되었습니다";
+                PopupMessage(msg);
+                CarDayData(today);
+            }
         }
 
         private void btnStDrive_Click(object sender, RoutedEventArgs e)
@@ -63,6 +85,13 @@ namespace winui
             {
                 string msg = "차량을 선택해주세요.";
                 PopupMessage(msg);
+            }
+
+            else 
+            {
+                Provider.CarRegister(cbCarName.SelectedItem.ToString());
+                string start = "운행이 시작되었습니다.";
+                PopupMessage(start);
             }
         }
 
@@ -80,8 +109,7 @@ namespace winui
         private void CarList()
         {
             DataTable dt;
-            Provider prov = new Provider();
-            dt = prov.CarStatus();
+            dt = Provider.CarStatus();
             if (dt.Rows[0]["주차장소"].ToString() == "사용")
                 spark.Text = string.Format("{0}→ {1} [{2}]", dt.Rows[0]["차종명"].ToString(), dt.Rows[0]["주차장소"].ToString(), dt.Rows[0]["사용자이름"].ToString());
             else
@@ -130,12 +158,21 @@ namespace winui
             else
             {
                 txtDate.Text = selectedDate.ToString("yyyy년 MM월 dd일");
+                date = selectedDate.ToString("yyyy-MM-dd");
             }
+            CarDayData(date);
         }
 
         private void calview2_Loaded(object sender, RoutedEventArgs e)
         {
             txtDate.Text = DateTime.Now.ToString("yyyy년 MM월 dd일");
+        }
+
+        //선택한 날짜의 예약 차량 조회
+        private void CarDayData(string date)
+        {
+            CarListViewModel CLVM = new CarListViewModel(date);
+            this.DataContext= CLVM;
         }
     }
 }

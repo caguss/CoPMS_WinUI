@@ -38,11 +38,12 @@
                   Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                  
                   >
-                <ComboBox Header="차량 종류" Margin="32,35,0,0" Width="157" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
+                <ComboBox Header="차량 종류" Margin="32,35,0,0" Width="192" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                            BorderThickness="1" Name="cbCar" 
-                           ItemsSource="{x:Bind carlist.PickerChoices}" DisplayMemberPath="CarName" SelectedValuePath="CarCode">
-                </ComboBox>
-                <TextBox Header="목적지" Height="60" Width="215" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,35,28,0"
+                           ItemsSource="{x:Bind carlist.PickerChoices}" DisplayMemberPath="CarName" SelectedValuePath="CarCode"
+                          SelectedIndex="0"/>
+
+                <TextBox Header="목적지" Height="60" Width="180" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,35,28,0"
                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                           BorderThickness="1"
                          Name="txtloc"/>
@@ -59,8 +60,7 @@
 
                 <DatePicker Header="날짜 선택" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100" Width="380" 
                                 Margin="32,115,0,0" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" BorderThickness="1" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                          x:Name="datepic" 
-                            />
+                          x:Name="datepic"/>
                 <!--<CalendarDatePicker PlaceholderText="Pick a date" Header="Calendar" Margin="32,185,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" 
                                     DateFormat = "{}{year.full}년 {month.integer(2)}월 {day.integer(2)}일"/>-->
 
@@ -83,9 +83,10 @@
                 <ComboBox  Margin="32,35,0,30" Width="249" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                            BorderThickness="1"
                            VerticalAlignment="Bottom" Name="cbCarName"
-                           ItemsSource="{x:Bind carlist.PickerChoices}" DisplayMemberPath="CarName" SelectedValuePath="CarCode">
-                   
-                </ComboBox>
+                           ItemsSource="{x:Bind carlist.PickerChoices}" DisplayMemberPath="CarName" SelectedValuePath="CarCode"
+                           SelectedIndex="0"/>
+
+
 
                 <Button Content="운전 시작" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Margin="0,180,28,30"
@@ -128,16 +129,30 @@
                 <TextBlock Text="2023년 01월 12일" Margin="33,0,0,190" VerticalAlignment="Bottom" 
                                Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                            FontSize="15" Name="txtDate"/>
-                <ListBox Height="150" Width="380" VerticalAlignment="Bottom" Margin="5,0,0,30" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                         BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" BorderThickness="1">
-                    <TextBlock Text="쏘렌토 김동기 - 테이팩스" ></TextBlock>
-                    <TextBlock Text="코란도 양정수 - 진영정기"></TextBlock>
-                </ListBox>
+                <ListView Height="150" Width="380" VerticalAlignment="Bottom" Margin="5,0,0,30" 
+                          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                         BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" BorderThickness="1"
+                         ItemsSource="{Binding carList}" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="10" Orientation="Horizontal">
+                                <TextBlock Text="{Binding CarName}" TextWrapping="NoWrap" Width="130"
+                                   Style="{StaticResource BodyTextBlockStyle}" />
+                                <TextBlock Text="{Binding UsedUser}" Width="50" 
+                                   Style="{StaticResource BodyTextBlockStyle}"/>
+                                <TextBlock Text="-" Width="10"/>
+                                <TextBlock Text="{Binding WhereToGo}" TextWrapping="NoWrap"  
+                                   Style="{StaticResource BodyTextBlockStyle}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
 
 
                 <Canvas Height="300" Width="300">
                     <Line 
-                          X1="373" Y1="-130" X2="373" Y2="430" Stroke="{ThemeResource ApplicationForegroundThemeBrush}" StrokeThickness="1"
+                          X1="373" Y1="-150" X2="373" Y2="450" Stroke="{ThemeResource ApplicationForegroundThemeBrush}" StrokeThickness="1"
                           ></Line>
                 </Canvas>
                

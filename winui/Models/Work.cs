@@ -14,8 +14,8 @@ namespace winui
 
         public string UserName { get; set; }
         public string WorkStartTime { get => workStartTime.ToString("HH:mm:ss"); set => workStartTime = Convert.ToDateTime(value); }
-        public string WorkEndTime { get => workStartTime.ToString("HH:mm:ss"); set => workEndTime = Convert.ToDateTime(value); }
-        public string WorkDate { get => workStartTime.ToString("yyyy-MM-dd"); set => workDate = Convert.ToDateTime(value); }
+        public string WorkEndTime { get => workEndTime.ToString("HH:mm:ss"); set => workEndTime = Convert.ToDateTime(value); }
+        public string WorkDate { get => workDate.ToString("yyyy-MM-dd"); set => workDate = Convert.ToDateTime(value); }
 
 
     }

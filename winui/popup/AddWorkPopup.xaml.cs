@@ -26,10 +26,51 @@ namespace winui.popup
     /// </summary>
     public sealed partial class AddWorkPopup : ContentDialog
     {
+        GoToWorkViewModel gvm;
+        DateTime selectdate = DateTime.Now;
         public AddWorkPopup()
         {
             this.InitializeComponent();
-           
+            SetText();
+        }
+
+        private void SetText()
+        {
+            txtUser.Text = App.loginUser.UserName;
+            gvm = new GoToWorkViewModel(selectdate);
+            if (gvm.IsStartWork)
+                btnStartWork.Content = "출근";
+            else
+                btnStartWork.Content = "퇴근";
+        }
+
+        private void btnStartWork_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Provider.WorkInOut(Convert.ToInt32(App.loginUser.UserID), gvm.IsStartWork);
+                this.Hide();
+                PopupMessage("퇴근하셨습니다.");
+            }
+
+            catch
+            {
+            }
+        }
+
+        public async void PopupMessage(string message)
+        {
+            MessagePopup msg = new MessagePopup(message);
+
+            msg.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            msg.XamlRoot = this.XamlRoot;
+
+            await msg.ShowAsync();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
         }
     }
 }
