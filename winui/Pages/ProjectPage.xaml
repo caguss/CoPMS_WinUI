@@ -41,9 +41,10 @@
                   >
                 <CalendarDatePicker VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Height="60"
                                     Margin="20,20,0,0" Header="계약 월"
+                                    DateFormat="{}{year.full}-{month.integer}"
+                                    PlaceholderText="날짜 선택시 해당월만 조회"
                                     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                                    BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
-                                    >
+                                    BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}">
                 </CalendarDatePicker>
 
                 <TextBox Header="프로젝트 명" VerticalAlignment="Top" HorizontalAlignment="Left"
@@ -54,8 +55,7 @@
                 <ComboBox
                      BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                     Width="160" Header="부서 명" Height="61"
-                    VerticalAlignment="Top" HorizontalAlignment="Left" Margin="490,20,0,0"
-                    >
+                    VerticalAlignment="Top" HorizontalAlignment="Left" Margin="490,20,0,0">
                     <x:String>전체</x:String>
                     <x:String>관리부</x:String>
                     <x:String>E3 사업본부</x:String>
