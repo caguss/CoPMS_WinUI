@@ -29,15 +29,14 @@ namespace winui
             }
 
    
-            ShowThisRecord = new Team();
-            ShowThisRecord.TeamCode = "001";
+            ShowThisRecord = PickerChoices[0];
         }
         public TeamViewModel(string adddata)
         {
 
             DataTable dt = Provider.TeamInfo();
             PickerChoices = new ObservableCollection<Team>();
-            PickerChoices.Add(new Team { TeamCode = "", TeamName = adddata });
+            PickerChoices.Add(new Team { TeamCode = "0", TeamName = adddata });
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 PickerChoices.Add(new Team

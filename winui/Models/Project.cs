@@ -10,7 +10,7 @@ namespace winui
     /// ProjectModel은 TimeSheet 안에 있음
     /// 차후 이동 가능함.
     /// </summary>
-    public class ProjectDetail
+    public class ProjectDetailModel
     {
         public string ProjectNum { get; set; }
         public string ProjectName { get; set; }
@@ -23,6 +23,7 @@ namespace winui
 
 
         public string ASDate { get; set; }
+        public string hado { get; set; }
         public string StandardDate { get; set; } //기준시점
     }
 

@@ -31,12 +31,13 @@ namespace winui
 
         TeamViewModel TVM;
         ProjectViewModel PVM;
+        ProjectDetailModel PDM;
         public ProjectPage()
         {
             this.InitializeComponent();
             TVM = new TeamViewModel("전체");
             PVM = new ProjectViewModel();
-
+            PDM = new ProjectDetailModel();
         }
 
 
@@ -49,10 +50,11 @@ namespace winui
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //DataTable result = Provider.ProjectManager_info_S3
-            //    (dp_Date.Date == null? "": dp_Date.Date.Value.ToString("yyyy-MM"),
-            //    cb_Team.
-            //    txt_Projname);
+            PVM.Refresh
+                (dp_Date.Date == null ? "0" : dp_Date.Date.Value.ToString("yyyy-MM"),
+                TVM.SelectedRecord.TeamCode,cb_completeYN.IsChecked.Value?"Y":"N",txt_Projname.Text
+                );
+
         }
     }
 }

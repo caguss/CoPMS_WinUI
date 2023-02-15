@@ -11,11 +11,15 @@ namespace winui.Models
         public string ProjectNo { get; set; }
         public string ProjectName { get; set; }
         public string ProjectManager { get; set; }
+        public string ProjectManagerCode { get; set; } // 담당자코드
         public string DepartmentName { get; set; }
+        public string DepartmentCode { get; set; } //부서코드
         public string BusinessName { get; set; }
+        public string BusinessCode { get; set; } //거래처코드
         public string ContractDate { get; set; }
         public string StProject { get; set; }
         public string EndProject { get; set; }
+        public string CompleteYN { get; set; } //완료여부
     }
 
     public class TimeSheetDetail
