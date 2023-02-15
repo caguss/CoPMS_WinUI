@@ -47,7 +47,8 @@ namespace winui
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Exit();
+            //Application.Current.Exit();
+            Environment.Exit(0);
         }
 
         private void chkLogin_Click(object sender, RoutedEventArgs e)
@@ -57,8 +58,6 @@ namespace winui
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-        
-
             LoginCheck();
         }
 
@@ -66,18 +65,15 @@ namespace winui
         {
             ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
 
-
             string id = txtID.Text;
-            //string pw = txtPW.TextReadingOrder.ToString();
             string pw = txtPW.Password.ToString();
             string platform = "winui";
             DataTable dt = Provider.Login(id, pw, platform);           
+
             if(dt.Rows.Count > 0)
             {
-
                 App.loginUser.UserName = dt.Rows[0]["사용자이름"].ToString();
                 App.loginUser.UserID   = dt.Rows[0]["사용자코드"].ToString();
-
 
                 //로그인 상태 유지 
                 if (chkLogin.IsChecked == true)
@@ -90,7 +86,6 @@ namespace winui
                 {
                     localSettings.Values["isLogin"] = false;
                 }
-
                 
                 this.Hide();
             }
@@ -126,6 +121,11 @@ namespace winui
             {
                e.Handled= true; 
             }
+        }
+
+        private void ContentDialog_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
+        {
+            
         }
     }
 }

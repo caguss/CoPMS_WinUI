@@ -32,7 +32,7 @@ namespace winui.popup
             this.InitializeComponent();
 
             txtDetail.Text = msg;
-            
+
             this.CloseButtonText = "OK";
         }
 
@@ -46,16 +46,15 @@ namespace winui.popup
         }
         private async void Login()
         {
-            if (Properties.Resources.IsLoginYN.Equals("N"))
-            {
-                Login login = new Login();
 
-                login.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            Login login = new Login();
 
-                login.XamlRoot = this.XamlRoot;
+            login.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
 
-                await login.ShowAsync();
-            }
+            login.XamlRoot = this.XamlRoot;
+
+            await login.ShowAsync();
+
         }
     }
 }

@@ -36,7 +36,6 @@
             <Grid Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Margin="5"
                   MinHeight="{StaticResource TileHeightKey}"
                   Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                 
                   >
                 <ComboBox Header="차량 종류" Margin="32,35,0,0" Width="192" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                            BorderThickness="1" Name="cbCar" 

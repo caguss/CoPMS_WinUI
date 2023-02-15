@@ -63,19 +63,17 @@ namespace winui
         {
             if (cbCar.SelectedItem == null || txtloc.Text.Length < 1)
             {
-                string message = "차량을 선택해주세요.";
+                string message = "목적지를 입력해주세요.";
                 PopupMessage(message);
             }
             else
             {
-
                 DateTime dateTime = datepic.Date.DateTime;
-
-                Provider.CarReservation(dateTime,txtloc.Text,cbCar.SelectedValue.ToString());
-
-                string msg = "예약이 완료되었습니다";
-                PopupMessage(msg);
-                CarDayData(today);
+             //   string msg = "예약이 완료되었습니다";
+                string carKindName = carlist.PickerChoices[cbCar.SelectedIndex].CarName.ToString();
+                ReserveCarPopup(cbCar.SelectedValue.ToString(), txtloc.Text,dateTime, carKindName);
+            
+              //  CarDayData(today);
             }
         }
 
@@ -91,6 +89,7 @@ namespace winui
             {
                 Provider.CarRegister(cbCarName.SelectedItem.ToString());
                 string start = "운행이 시작되었습니다.";
+
                 PopupMessage(start);
             }
         }
@@ -173,6 +172,16 @@ namespace winui
         {
             CarListViewModel CLVM = new CarListViewModel(date);
             this.DataContext= CLVM;
+        }
+
+        public async void ReserveCarPopup(string carCode, string togo, DateTime date, string carKindName)
+        {
+            ReserveCarPopup arp = new ReserveCarPopup(carCode, togo, date, carKindName);
+
+            arp.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            arp.XamlRoot = this.Content.XamlRoot;
+
+            await arp.ShowAsync();
         }
     }
 }

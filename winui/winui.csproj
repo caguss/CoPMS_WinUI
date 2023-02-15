@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
@@ -10,9 +10,15 @@
     <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
     <UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
+    <ApplicationIcon>Image\Hansol_icon.ico</ApplicationIcon>
+    <AssemblyName>CoeverPMS</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Home.xaml" />
+    <None Remove="Image\Hansol_icon.ico" />
+    <None Remove="Image\Hansol_Line.png" />
+    <None Remove="Image\Hansol_Line2.png" />
+    <None Remove="Image\Hansol_logo.png" />
     <None Remove="Login.xaml" />
     <None Remove="NavigationRootPage.xaml" />
     <None Remove="Pages\WorkPage.xaml" />
@@ -21,12 +27,14 @@
     <None Remove="popup\AddWorkPopup.xaml" />
     <None Remove="popup\ChangeWorkTime.xaml" />
     <None Remove="popup\MessagePopup.xaml" />
+    <None Remove="popup\ReserveCarPopup.xaml" />
     <None Remove="SamplePage1.xaml" />
     <None Remove="SamplePage2.xaml" />
     <None Remove="SamplePage3.xaml" />
     <None Remove="SamplePage4.xaml" />
     <None Remove="SamplePage5.xaml" />
     <None Remove="SettingPage.xaml" />
+    <None Remove="TrayPopup\CarPopupPage.xaml" />
     <None Remove="TrayPopup\RestPopupPage.xaml" />
   </ItemGroup>
 
@@ -38,11 +46,16 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Image\Hansol_icon.ico" />
+    <Content Include="Image\Hansol_Line.png" />
+    <Content Include="Image\Hansol_Line2.png" />
+    <Content Include="Image\Hansol_logo.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
     <PackageReference Include="H.NotifyIcon.WinUI" Version="2.0.77" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221209.1" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230118.102" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
@@ -107,7 +120,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Image\" />
     <Folder Include="Pages\" />
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +134,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="popup\ReserveCarPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="TrayPopup\CarPopupPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="TrayPopup\RestPopupPage.xaml">

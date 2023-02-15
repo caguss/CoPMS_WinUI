@@ -4,9 +4,11 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Vanara;
+using Vanara.Extensions.Reflection;
 using winui.popup;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -22,6 +24,7 @@ namespace winui
 
         string date;
         string today;
+
         RestViewModel restlist = new RestViewModel();
         public SamplePage1()
         {
@@ -33,10 +36,8 @@ namespace winui
                 today = DateTime.Now.ToString("yyyy-MM-dd");
                 calview.SetDisplayDate(DateTimeOffset.Now);
                 RestDayData(today);
-               
-
-                //this.DataContext = RLVM.restList;
             }
+
             catch (Exception ex)
             {
                 PopupMessage(ex.Message);
@@ -53,24 +54,10 @@ namespace winui
 
             else
             {
-                string msg = string.Format("연차 종류 : {0}", cbSelect.Text);
-                AddRestPopup(msg);
-
-                DataTable dt = new DataTable();
                 DateTime dateTime = datepic.Date.DateTime;
+                string kindname = restlist.PickerChoices[cbSelect.SelectedIndex].KindName.ToString();
+                AddRestPopup(cbSelect.SelectedValue.ToString(), txtReason.Text, dateTime, kindname);
 
-                dt = Provider.RestRegister(cbSelect.SelectedValue.ToString(), dateTime, txtReason.Text);
-
-                if (dt != null)
-                {
-                    if (dt.Rows.Count > 0)
-                    {
-
-                        string okmsg = "연차 등록이 완료되었습니다";
-                        PopupMessage(okmsg);
-                        RestDayData(today);
-                    }
-                }
             }
         }
 
@@ -92,12 +79,12 @@ namespace winui
             await msg.ShowAsync();
         }
 
-        public async void AddRestPopup(string msg)
+        public async void AddRestPopup(string restKind, string reason, DateTime date, string restKindName)
         {
-            AddRestPopup arp = new AddRestPopup(msg);
+            AddRestPopup arp = new AddRestPopup(restKind, reason, date , restKindName);
 
             arp.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            arp.XamlRoot = this.XamlRoot;
+            arp.XamlRoot = this.Content.XamlRoot;
 
             await arp.ShowAsync();
         }
@@ -110,6 +97,7 @@ namespace winui
             {
                 return;
             }
+
             else
             {
                 txtDate.Text = selectedDate.ToString("yyyy년 MM월 dd일");
@@ -142,8 +130,9 @@ namespace winui
 
         private void cbSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string a =  cbSelect.SelectedValue.ToString();
-            string b = cbSelect.ItemsSource.ToString();
+            string d = restlist.PickerChoices[cbSelect.SelectedIndex].KindName.ToString();
+           
+            //string d = cbSelect.SelectedValue.GetPropertyValue<Restkind>("KindName").ToString();
         }
     }
 }

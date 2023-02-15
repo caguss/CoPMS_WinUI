@@ -2,7 +2,7 @@
 <!-- Licensed under the MIT License. -->
 
 <ContentDialog
-    x:Class="winui.popup.AddRestPopup"
+    x:Class="winui.popup.ReserveCarPopup"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:winui.popup"
@@ -12,19 +12,19 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
-        <TextBlock Text="연차를 등록하시겠습니까?"  Margin="10,0,0,0" FontWeight="Bold"/>
-       
+        <TextBlock Text="차량을 예약하시겠습니까?"  Margin="10,0,0,0" FontWeight="Bold"/>
+
         <TextBlock x:Name="txtUser" Text="sdffds" Foreground="White" 
                        Margin="20,9,0,0"/>
-        
+
         <TextBlock x:Name="txtMsg" Text="sdffds" Foreground="White" 
                        Margin="20,10,0,0"/>
-        
-        <Button x:Name="btnAdd" Content="등록" 
+
+        <Button x:Name="btnReserve" Content="예약" 
                 Width="80"
                 HorizontalAlignment="Right"
                 Margin="10,20,90,0"
-                Click="btnAdd_Click"/>
+                Click="btnReserve_Click"/>
 
         <Button x:Name="btnCancle"
                 Click="btnCancle_Click"

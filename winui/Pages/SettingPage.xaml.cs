@@ -28,35 +28,6 @@ namespace winui
             Loaded += OnSettingsPageLoaded;
         }
 
-        private void RbLight_Click(object sender, RoutedEventArgs e)
-        {
-            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            localSettings.Values["#ColorTheme"] = "Light";
-        }
-
-        private void RbDark_Click(object sender, RoutedEventArgs e)
-        {
-            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            localSettings.Values["#ColorTheme"] = "Dark";
-        }
-
-        private void RbSystem_Click(object sender, RoutedEventArgs e)
-        {
-            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            localSettings.Values["#ColorTheme"] = "System";
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.RequestedTheme = (this.RequestedTheme == ElementTheme.Dark) ? ElementTheme.Light : ElementTheme.Dark;
-        }
-
-        private void btn_login_Click(object sender, RoutedEventArgs e)
-        {
-            Login login = new Login();
-
-        }
-
         private void OnThemeRadioButtonKeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Up)

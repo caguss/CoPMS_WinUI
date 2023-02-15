@@ -10,10 +10,11 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
-using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Vanara;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -25,42 +26,26 @@ namespace winui.popup
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AddRestPopup : ContentDialog
+    public sealed partial class ReserveCarPopup : ContentDialog
     {
-
-        string restkind1;
-        string reason1;
-        DateTime date1;
-        string kindName;
-        public AddRestPopup(string restKind, string reason, DateTime date, string restKindName)
+        string carcode;
+        string toGo;
+        DateTime reservedate;
+        string carname;
+        
+        public ReserveCarPopup(string carCode, string togo, DateTime date, string carKindName)
         {
             this.InitializeComponent();
-            string msg = string.Format( "연차 종류 : {0}\r\n연차 사유 : {1}\r\n날짜 : {2}", restKindName, reason, date.ToString("yyyy-MM-dd"));
-         
-            txtMsg.Text = msg;
-            restkind1 = restKind;
-            reason1 = reason;
-            date1 = date;
-            kindName = restKindName;
-            txtUser.Text ="이름 : "+ App.loginUser.UserName;
+
+            string msg = string.Format("차량 종류 : {0}\r\n목적지 : {1}\r\n날짜 : {2}", carKindName, togo, date.ToString("yyyy-MM-dd"));
+            txtMsg.Text= msg;
+            carcode = carCode;
+            toGo = togo;
+            reservedate = date;
+            carname = carKindName;
+            txtUser.Text = "이름 : " + App.loginUser.UserName;
         }
 
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
-            DataTable dt = new DataTable();
-
-            dt = Provider.RestRegister(restkind1, date1, reason1);
-
-            if (dt != null)
-            {
-                if (dt.Rows.Count > 0)
-                {
-                    this.Hide();
-                    string okmsg = "연차 등록이 완료되었습니다";
-                    PopupMessage(okmsg);
-                }
-            }
-        }
 
         private void btnCancle_Click(object sender, RoutedEventArgs e)
         {
@@ -75,6 +60,22 @@ namespace winui.popup
             msg.XamlRoot = this.XamlRoot;
 
             await msg.ShowAsync();
+        }
+
+        private void btnReserve_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Provider.CarReservation(reservedate, toGo, carcode);
+                this.Hide();
+                string okmsg = "차량이 예약되었습니다.";
+                PopupMessage(okmsg);
+            }
+
+            catch (Exception ex)
+            {
+                PopupMessage(ex.Message);
+            }
         }
     }
 }

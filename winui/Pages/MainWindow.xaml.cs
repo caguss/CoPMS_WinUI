@@ -5,6 +5,7 @@ using H.NotifyIcon;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media.Imaging;
 using System;
 using System.Runtime.InteropServices;
 using Windows.Storage;
@@ -30,6 +31,8 @@ namespace winui
         bool off =true;
         GoToWorkViewModel gvm;
         DateTime selectdate = DateTime.Now;
+        
+
         public MainWindow()
         {
             this.InitializeComponent();
@@ -94,10 +97,11 @@ namespace winui
                 this.frame.Navigate(typeof(SettingPage));
                 sender.Header = "설정";
             }
+
             else
             {
                 Microsoft.UI.Xaml.Controls.NavigationViewItem item = e.SelectedItem as Microsoft.UI.Xaml.Controls.NavigationViewItem;
-
+                
                 if (item != null)
                 {
                     //if (this.frame.Navigate(typeof(Home)))
@@ -115,7 +119,6 @@ namespace winui
                         {
                             sender.Header = "연차관리";
                         }
-
                         else if (itemTag.Contains("2"))
                         {
                             sender.Header = "차량예약관리";
@@ -258,6 +261,7 @@ namespace winui
         {
             try 
             {
+                gvm = new GoToWorkViewModel(selectdate);
                 Provider.WorkInOut(Convert.ToInt32(App.loginUser.UserID), gvm.IsStartWork);
             }
 
@@ -274,6 +278,7 @@ namespace winui
 
         private void MenuCar_Click(object sender, RoutedEventArgs e)
         {
+            CarMenu();
         }
         
         private  void RestMenu()
@@ -282,6 +287,11 @@ namespace winui
             rp.Show();
         }
 
+        private void CarMenu()
+        {
+            CarPopupPage car = new CarPopupPage();
+            car.Show();
+        }
        
         private void MenuFlyoutSubItem_RightTapped(object sender, Microsoft.UI.Xaml.Input.RightTappedRoutedEventArgs e)
         {

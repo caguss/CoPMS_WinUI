@@ -18,15 +18,11 @@ namespace winui
         public RestListViewModel(string date)
         {
             List<Rest> rests = new List<Rest>();
-            //Rest rest = new Rest();
             restList= new List<Rest>();
             try
             {
-                 Provider.RestList(rests);
-                //for (int i = 0; i < rests.Count; i++)
-                //{
-                // List<Rest> findrests = rests.FindAll(x => x.Date.Contains(rests[i].Date)); //해당날짜 리스트 검색
-                //rest.Date = Date;
+                Provider.RestList(rests);
+              
                 List<Rest> findrests = rests.FindAll(x => x.Date.Contains(date)); //해당날짜 리스트 검색
                 
                 for (int j = 0; j < findrests.Count; j++)

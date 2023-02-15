@@ -38,133 +38,210 @@
             <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Margin="5" Grid.ColumnSpan="2"
                   MinHeight="{StaticResource TileHeightKey}"
                   Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                 
                   >
-                <CalendarDatePicker VerticalAlignment="Top" HorizontalAlignment="Left" Width="190" Height="60"
-                                    Margin="20,20,0,150" Header="계약년도"
-                                    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                                    BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}">
-                </CalendarDatePicker>
+
+                <DatePicker VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Height="60"
+                            Margin="20,20,0,150" Header="계약년도" 
+                           
+                            MinWidth="100"
+                            Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                            BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
+                            Name="calender"
+                            MonthVisible="False" DayVisible="False" 
+                            YearFormat="{}{year.full}"
+                            SelectedDateChanged="calender_SelectedDateChanged"
+                            />
+
+
 
                 <TextBox Header="프로젝트 명" VerticalAlignment="Top" HorizontalAlignment="Left"
                          Width="220" Height="60" Margin="230,20,0,0" 
-                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
-                         ></TextBox>
+                         BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
+                         Name="txtProName" KeyDown="txtProName_KeyDown"/>
 
                 <TextBox Header="프로젝트 담당자" VerticalAlignment="Top" HorizontalAlignment="Left"
                          Width="200" Height="60" Margin="470,20,0,0" 
                           BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
-                         ></TextBox>
+                         Name="txtProManager" KeyDown="txtProManager_KeyDown"/>
 
-                
                 <ComboBox
                      BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                     Width="95" Header="완료여부" Height="61"
                     VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,18,115,0"
-                    >
+                    Name="cbComplete">
                     <x:String>완료</x:String>
                     <x:String>미결제</x:String>
                     <x:String>미완료</x:String>
-                 
                 </ComboBox>
                 <Button Content="조회" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,45,22,0"
                         Width="80" Height="33"
                         BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
-                        ></Button>
+                        Click="btnSearch_Click"
+                        Name="btnSearch"/>
 
-               
-                <GridView x:Name="gridview"
+                    <GridView x:Name="gridview"
                           Grid.Column="8"
                           Grid.Row="3"
                           Width="860"  Height="250"
                           Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                           Margin="0,100,0,290"
-                            VerticalAlignment="Top"
+                          VerticalAlignment="Top"
                           HorizontalAlignment="Center"
-                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" BorderThickness="1"
-                          >
-                    <GridViewHeaderItem Width="110" Content="프로젝트번호" FontSize="13" Height="10" Margin="-10,0,0,0"  ></GridViewHeaderItem>
-                    <GridViewHeaderItem Width="110" Content="프로젝트이름" FontSize="13" Margin="-10,0,0,0" ></GridViewHeaderItem>
-                    <GridViewHeaderItem Width="80" Content="담당자" FontSize="13" Margin="-20,0,0,0" ></GridViewHeaderItem>
-                    <GridViewHeaderItem Width="80" Content="부서이름" FontSize="13" Margin="-10,0,0,0" ></GridViewHeaderItem>
-                    <GridViewHeaderItem Width="80" Content="상호명" FontSize="13" Margin="-20,0,0,0" ></GridViewHeaderItem>
-                    <GridViewHeaderItem Width="80" Content="계약일" FontSize="13" Margin="-20,0,0,0" ></GridViewHeaderItem>
-                    <GridViewHeaderItem Width="120" Content="프로젝트시작일" FontSize="13" Margin="-10,0,0,0" ></GridViewHeaderItem>
-                    <GridViewHeaderItem Width="120" Content="프로젝트종료일" FontSize="13" Margin="-10,0,0,0" ></GridViewHeaderItem>
-                </GridView>
+                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" 
+                          BorderThickness="1"
+                          ItemsSource="{Binding TimeSheets}"
+                          SelectionChanged="gridview_SelectionChanged">
+                        <GridView.HeaderTemplate >
+                            <DataTemplate>
+                                <Grid Margin="15" Height="20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text='프로젝트번호' Grid.Column="0"
+                                          Width="100" Margin="0,0,0,0"
+                                           Style="{StaticResource BaseTextBlockStyle }"/>
+                                    <TextBlock Text='프로젝트이름' Grid.Column="1"
+                                          Width="150" Margin="0,0,0,0"
+                                           Style="{StaticResource BaseTextBlockStyle }"/>
+                                    <TextBlock Text='담당자'  Grid.Column="2"
+                                            Width="80" Margin="-500,0,0,0"
+                                           Style="{StaticResource BaseTextBlockStyle}"/>
+                                    <TextBlock Text='부서이름'  Grid.Column="3"
+                                            Width="140" Margin="-300,0,0,0"
+                                           Style="{StaticResource BaseTextBlockStyle}"/>
+                                    <TextBlock Text='상호명'  Grid.Column="4"
+                                            Width="140" Margin="-150,0,0,0"
+                                           Style="{StaticResource BaseTextBlockStyle}"/>
+                                    <TextBlock Text='계약일'  Grid.Column="5"
+                                            Width="140" Margin="-50,0,0,0"
+                                           Style="{StaticResource BaseTextBlockStyle}"/>
+                                    <TextBlock Text='프로젝트시작일'  Grid.Column="6"
+                                            Width="140" Margin=" 60,0,0,0"
+                                           Style="{StaticResource BaseTextBlockStyle}"/>
+                                    <TextBlock Text='프로젝트종료일'  Grid.Column="7"
+                                            Width="140" Margin="250,0,0,0"
+                                           Style="{StaticResource BaseTextBlockStyle}"/>
+                                    <Canvas Height="300" Width="300">
+                                        <Line X1="-10" Y1="30" X2="838" Y2="30" 
+                                          Stroke="{ThemeResource ApplicationForegroundThemeBrush}"
+                                          StrokeThickness="1"/>
+                                    </Canvas>
+                                </Grid>
+                            </DataTemplate>
+                        </GridView.HeaderTemplate>
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="10" Orientation="Horizontal" >
+                                    <TextBlock Text="{Binding ProjectNo}"  Width="100"
+                                   Style="{StaticResource BodyTextBlockStyle}"/>
+                                    <TextBlock Text="{Binding ProjectName}"  Width="400"
+                                   Style="{StaticResource BodyTextBlockStyle}"/>
+                                    <TextBlock Text="{Binding ProjectManager}" TextWrapping="NoWrap" Width="90"
+                                   Style="{StaticResource BodyTextBlockStyle}" />
+                                    <TextBlock Text="{Binding DepartmentName}"  Width="100"
+                                   Style="{StaticResource BodyTextBlockStyle}" />
+                                    <TextBlock Text="{Binding BusinessName}"  Width="100"
+                                   Style="{StaticResource BodyTextBlockStyle}" />
+                                    <TextBlock Text="{Binding ContractDate}"  Width="100"
+                                   Style="{StaticResource BodyTextBlockStyle}" />
+                                    <TextBlock Text="{Binding StProject}"  Width="100"
+                                   Style="{StaticResource BodyTextBlockStyle}" />
+                                    <TextBlock Text="{Binding EndProject}"  Width="100"
+                                   Style="{StaticResource BodyTextBlockStyle}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
 
                 <TextBox Header="프로젝트 명" Width="530" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,365,0,210"
                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"   
-                         ></TextBox>
+                         Name="txtProjectName" IsReadOnly="True"/>
                 <TextBox Header="집중 AS 기간" Width="310" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="570,365,0,210"
                           BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
-                         ></TextBox>
+                         Name="txtStartASDate" IsReadOnly="True"/>
                 <TextBox Header="거래처 명" Width="255" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,445,0,130"
                           BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
-                         ></TextBox>
+                         Name="txtCompanyName" IsReadOnly="True"/>
                 <TextBox Header="프로젝트 일자 (최초)" Width="255" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="295,445,0,130"
                           BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
-                         ></TextBox>
+                         Name="txtFProjectStDate" IsReadOnly="True"/>
                 <TextBox Header="프로젝트 일자 (변경)" Width="310" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="570,445,0,130"
                           BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
-                         ></TextBox>
+                         Name="txtProjectDate" IsReadOnly="True"/>
 
                 <TextBox Header="기준시점" Width="255" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,525,0,50"
                           BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
-                         ></TextBox>
+                         Name="txtStandardDate" IsReadOnly="True"/>
                 <TextBox Header="프로젝트 담당자" Width="255" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="295,525,0,50"
                           BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
-                         ></TextBox>
+                         Name="txtProjectManager" IsReadOnly="True"/>
                 <TextBox Header="부서명" Width="310" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="570,525,0,50"
                           BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
-                         ></TextBox>
+                         Name="txtTeamName" IsReadOnly="True"/>
 
                 <Canvas Height="300" Width="300">
-                    <Line 
-                          X1="-280" Y1="-28" X2="580" Y2="-28" Stroke="{ThemeResource ApplicationForegroundThemeBrush}" StrokeThickness="1"
-                          ></Line>
+                    <Line  X1="-280" Y1="-28" X2="580" Y2="-28" 
+                           Stroke="{ThemeResource ApplicationForegroundThemeBrush}"
+                           StrokeThickness="1"/>
                 </Canvas>
-                
-                <TextBlock  Text="프로젝트 투입 이력" VerticalAlignment="Top"
-                          HorizontalAlignment="Right"
-                             Margin="0,670,495,290"
-                           Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
-                            ></TextBlock>
+
+                <TextBlock Text="프로젝트 투입 이력" VerticalAlignment="Top"
+                           HorizontalAlignment="Right"
+                           Margin="0,670,495,290"
+                           Foreground="{ThemeResource ApplicationForegroundThemeBrush}"/>
+
                 <GridView x:Name="gridview2"
-                          Grid.Column="8"
-                          Grid.Row="3"
                           Width="590"  Height="625"
                           Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                           Margin="290,700,10,290"
-                            VerticalAlignment="Top"
+                          VerticalAlignment="Top"
                           HorizontalAlignment="Left"
-                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" BorderThickness="1"
+                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
+                          BorderThickness="1"
+                          
                           >
-                    <GridViewHeaderItem Width="80" Content="기간" FontSize="13" Height="10" Margin="3,0,0,0"  ></GridViewHeaderItem>
-                    <GridViewHeaderItem Width="80" Content="최수영" FontSize="13" Margin="3,0,0,0" ></GridViewHeaderItem>
-                    <GridViewHeaderItem Width="80" Content="유민상" FontSize="13" Margin="3,0,0,0" ></GridViewHeaderItem>
-                    <GridViewHeaderItem Width="80" Content="방찬석" FontSize="13" Margin="3,0,0,0" ></GridViewHeaderItem>
-                    <GridViewHeaderItem Width="80" Content="김민섭" FontSize="13" Margin="3,0,0,0" ></GridViewHeaderItem>
-                    <GridViewHeaderItem Width="80" Content="김지은" FontSize="13" Margin="3,0,0,0" ></GridViewHeaderItem>
-                    
-                    <GridViewItem Content="2023/01" ></GridViewItem>
-                    <GridViewItem Content="0.20" ></GridViewItem>
-                    <GridViewItem Content="0.10" ></GridViewItem>
-                    <GridViewItem Content="0.10" ></GridViewItem>
-                    <GridViewItem Content="0.10" ></GridViewItem>
-                    <GridViewItem Content="0.10" ></GridViewItem>
+                    <GridView.ItemContainerStyle>
+                        <Style TargetType="GridViewItem">
+                            <Setter Property="FontSize" Value="15"/>
+                            <Setter Property="Margin" Value="0"/>
+                            <Setter Property="Width" Value="70"/>
+                        </Style>
+                    </GridView.ItemContainerStyle>
                 </GridView>
+                <StackPanel Margin="20" HorizontalAlignment="Left">
+                </StackPanel>
 
-                <TextBox Header="기간" Height="60" Width="250" VerticalAlignment="Top" HorizontalAlignment="Left"
-                         Margin="20,680,20,290"   BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" BorderThickness="1"></TextBox>
-                <TextBox Header="투입자" Height="60" Width="250" VerticalAlignment="Top" HorizontalAlignment="Left"
-                         Margin="20,760,20,290"   BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" BorderThickness="1"></TextBox>
-                <TextBox Header="투입MM" Height="60" Width="250" VerticalAlignment="Top" HorizontalAlignment="Left"
-                         Margin="20,840,20,290"   BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" BorderThickness="1"></TextBox>
-                <TextBox Header="당초계획" Height="60" Width="250" VerticalAlignment="Top" HorizontalAlignment="Left"
-                         Margin="20,920,20,290"   BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" BorderThickness="1"></TextBox>
-                <TextBox Header="변경계획" Height="60" Width="250" VerticalAlignment="Top" HorizontalAlignment="Left"
-                         Margin="20,1000,20,290"   BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" BorderThickness="1"></TextBox>
+                <TextBox Header="기간" Height="60" Width="250" 
+                         VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="20,680,20,290" 
+                         BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
+                         BorderThickness="1"/>
+                
+                <TextBox Header="투입자" Height="60" Width="250" 
+                         VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="20,760,20,290"  
+                         BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" 
+                         BorderThickness="1"/>
+                
+                <TextBox Header="투입MM" Height="60" Width="250" 
+                         VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="20,840,20,290"  
+                         BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
+                         BorderThickness="1"/>
+                
+                <TextBox Header="당초계획" Height="60" Width="250" 
+                         VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="20,920,20,290"   
+                         BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" 
+                         BorderThickness="1"/>
+                
+                <TextBox Header="변경계획" Height="60" Width="250" 
+                         VerticalAlignment="Top" HorizontalAlignment="Left"
+                         Margin="20,1000,20,290"   
+                         BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" 
+                         BorderThickness="1"/>
 
                 <Button Content="투입인력 조회" Height="40" Width="250" VerticalAlignment="Top" HorizontalAlignment="Left"
                          Margin="20,1080,20,290"  BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" BorderThickness="1"></Button>

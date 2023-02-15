@@ -1,13 +1,7 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using AppUIBasics;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -15,12 +9,14 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
-using AppUIBasics;
-using Microsoft.UI.Xaml.Media.Animation;
-using static Vanara.PInvoke.User32;
-using System.Data;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
 using winui.popup;
-using Vanara.Extensions.Reflection;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -28,20 +24,20 @@ using Vanara.Extensions.Reflection;
 namespace winui.TrayPopup
 {
     /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
+    /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public partial class RestPopupPage : Window
+    public sealed partial class CarPopupPage : Window
     {
-        RestViewModel restlistpop = new RestViewModel();
+        CarViewModel carlist = new CarViewModel();
 
-        public RestPopupPage()
+        public CarPopupPage()
         {
             this.InitializeComponent();
 
             Win32.RegisterWindowMinMax(this, 500, 500, 300, 300);
             Window window = this;
 
-            
+
             var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
             Microsoft.UI.WindowId windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
             Microsoft.UI.Windowing.AppWindow appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
@@ -62,33 +58,27 @@ namespace winui.TrayPopup
             window.Activate();
 
             datepic.SelectedDate = new DateTimeOffset(DateTime.Today);
-
-        }
-
-        private void cbSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
-            if (txtReason.Text.Length < 1)
-            {
-                string msg = "연차 사유를 작성해주세요";
-                PopupMessage(msg);
-            }
-
-            else
-            {
-                DateTime dateTime = datepic.Date.DateTime;
-                string kindname = restlistpop.PickerChoices[cbSelect.SelectedIndex].KindName.ToString();
-                AddRestPopup(cbSelect.SelectedValue.ToString(), txtReason.Text, dateTime, kindname);
-            }
         }
 
         private void Grid_LostFocus(object sender, RoutedEventArgs e)
         {
         }
+
+        private void btnReserve_Click(object sender, RoutedEventArgs e)
+        {
+            if (txttogo.Text.Length < 1)
+            {
+                string msg = "목적지를 입력해주세요.";
+                PopupMessage(msg);
+            }
+            else
+            {
+                DateTime dateTime = datepic.Date.DateTime;
+                string carKindName = carlist.PickerChoices[cbCar.SelectedIndex].CarName.ToString();
+                ReserveCarPopup(cbCar.SelectedValue.ToString(), txttogo.Text, dateTime, carKindName);
+            }
+        }
+
 
         public async void PopupMessage(string message)
         {
@@ -100,23 +90,14 @@ namespace winui.TrayPopup
             await msg.ShowAsync();
         }
 
-        public async void AddRestPopup(string restKind, string reason, DateTime date, string restKindName)
+        public async void ReserveCarPopup(string carCode, string togo, DateTime date, string carKindName)
         {
-            AddRestPopup arp = new AddRestPopup(restKind, reason, date, restKindName);
+            ReserveCarPopup arp = new ReserveCarPopup(carCode, togo, date, carKindName);
 
             arp.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
             arp.XamlRoot = this.Content.XamlRoot;
 
             await arp.ShowAsync();
         }
-
     }
 }
-
-
-
-
-
-
-
-

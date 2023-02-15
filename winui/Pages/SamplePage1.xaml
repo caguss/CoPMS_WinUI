@@ -10,9 +10,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
 >
+    
     <ScrollViewer>
-
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderBrush="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderThickness="2">
+        
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+              BorderBrush="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+              BorderThickness="2"
+              >
             <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">-->
             <Grid.Resources>
                 <x:Double x:Key="TileHeightKey">150</x:Double>
@@ -31,7 +35,7 @@
             <!--<Grid Grid.Row="1" Grid.Column="1" Margin="5" MinHeight="{StaticResource TileHeightKey}" 
                   Background="Black"
                   />-->
-
+            
             <Grid Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Margin="5"
                   MinHeight="{StaticResource TileHeightKey}"
                   Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"

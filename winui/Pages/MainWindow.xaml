@@ -17,40 +17,28 @@
             ContextMenuMode="SecondWindow"
             x:Name="tsb"
             PopupActivation="DoubleClick"
-            ToolTipText="Winui"
-            MenuActivation="LeftOrRightClick">
+            ToolTipText="CoeverPMS"
+            MenuActivation="LeftOrRightClick"
+            IconSource ="/Image/Hansol_icon.ico"
+            >
             <tb:TaskbarIcon.ContextFlyout>
                 <MenuFlyout MenuFlyoutPresenterStyle="{StaticResource DefaultMenuFlyoutPresenterStyle}" >
                     <MenuFlyoutItem Text="열기"  Name="menuOpen" Click="menuOpen_Click">
-                        
+
                     </MenuFlyoutItem>
                     <MenuFlyoutSubItem Text="출퇴근관리"
                                        RightTapped="MenuFlyoutSubItem_RightTapped">
                         <MenuFlyoutItem Text="출근" Name="MenuWorkStart" Click="MenuWorkStart_Click"/>
                     </MenuFlyoutSubItem>
                     <MenuFlyoutItem Text="연차 등록" Name="MenuRest" Click="MenuRest_Click">
+
                     </MenuFlyoutItem>
                     <MenuFlyoutItem Text="차량 예약" Name="MenuCar" Click="MenuCar_Click">
                     </MenuFlyoutItem>
                     <MenuFlyoutItem Text="종료" Name="menuClose" Click="menuClose_Click"/>
                 </MenuFlyout>
             </tb:TaskbarIcon.ContextFlyout>
-            <tb:TaskbarIcon.GeneratedIcon>
-                <tb:GeneratedIcon Text="H" FontSize="70">
-                    <tb:GeneratedIcon.Foreground>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="128,128">
-                            <GradientStop Color="DarkBlue"/>
-                            <GradientStop Color="DarkBlue"/>
-                        </LinearGradientBrush>
-                    </tb:GeneratedIcon.Foreground>
-                    <tb:GeneratedIcon.BorderBrush>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="128,128">
-                            <GradientStop Color="White" />
-                            <GradientStop Color="DarkBlue" />
-                        </LinearGradientBrush>
-                    </tb:GeneratedIcon.BorderBrush>
-                </tb:GeneratedIcon>
-            </tb:TaskbarIcon.GeneratedIcon>
+
         </tb:TaskbarIcon>
 
         <Grid Margin="0" Language="kr" Name="grid">
@@ -69,17 +57,20 @@
                 PaneOpening="navigationView_PaneOpening"
                             PaneClosing="navigationView_PaneClosing"
                 SelectionChanged="navigationView_SelectionChanged"
-                            AlwaysShowHeader="True">
-
+                            AlwaysShowHeader="true"
+                            >
+             
                 <NavigationView.MenuItems>
                     <NavigationViewItem IsTabStop="False" Tag="Logo" Name="logo" IsSelected="False">
 
                         <NavigationViewItem.Content>
-                            <StackPanel HorizontalAlignment="Center" Width="200" Spacing="25">
-                                <Image Source="C:\Users\a0103\source\repos\CoPMS_WinUI\winui\Image\Hansol_logo.png"   Scale="1,1,1" 
-                                       HorizontalAlignment="Center" 
+                            <StackPanel HorizontalAlignment="Center" Width="220" Spacing="25">
+                                <Image Source="/Image/Hansol_Line2.png"   Scale="1,1,1" 
+                                       HorizontalAlignment="Left" Margin="0,10,0,0"
                                        VerticalAlignment="Center"/>
-                                <TextBlock Name="txtUser" Margin="0,0,0,10" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold"/>
+                                <TextBlock Name="txtUser" Margin="2,0,0,10"
+                                           HorizontalAlignment="Left"
+                                           FontSize="17" FontWeight="Bold"/>
                             </StackPanel>
                         </NavigationViewItem.Content>
                     </NavigationViewItem>
@@ -158,7 +149,7 @@
                 <StackPanel  Width="Auto" Height="30" VerticalAlignment="Top" Name="pnlTitle"
                              Background="{ThemeResource AppBarBorderThemeBrush}"
                              >
-                    <TextBlock Text="WinUI3" Margin="15,5,0,0"/>
+                    <TextBlock Text="CoeverPMS" Margin="15,5,0,0"/>
                 </StackPanel>
             </Border>
         </Grid>
