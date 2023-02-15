@@ -10,13 +10,13 @@ namespace winui.ViewModels
 {
     public class ProjectViewModel
     {
-        public List<ProjectDetail> Projects { get; set; }
+        public List<Project> Projects { get; set; }
 
-        public ProjectViewModel(string year, string proName, string proManager, string complete)
+        public ProjectViewModel()
         {
-            Projects = new List<ProjectDetail>();
+            Projects = new List<Project>();
 
-            DataTable timeSheettable = Provider.SearchTimeSheet(year, proName, proManager, complete);
+            DataTable timeSheettable = Provider.ProjectManager_info_S3(year, proName, proManager, complete);
             for (int i = 0; i < timeSheettable.Rows.Count; i++)
             {
                 //Projects.Add(new TimeSheet()

@@ -16,6 +16,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System.Data;
+using winui.ViewModels;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -29,11 +30,12 @@ namespace winui
     {
 
         TeamViewModel TVM;
+        ProjectViewModel PVM;
         public ProjectPage()
         {
             this.InitializeComponent();
             TVM = new TeamViewModel("전체");
-
+            PVM = new ProjectViewModel();
 
         }
 
