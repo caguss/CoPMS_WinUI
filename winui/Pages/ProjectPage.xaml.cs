@@ -24,9 +24,9 @@ namespace winui
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SamplePage5 : Page
+    public sealed partial class ProjectPage : Page
     {
-        public SamplePage5()
+        public ProjectPage()
         {
             this.InitializeComponent();
         }

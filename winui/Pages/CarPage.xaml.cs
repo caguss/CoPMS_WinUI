@@ -29,13 +29,13 @@ namespace winui
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SamplePage2 : Page
+    public sealed partial class CarPage : Page
     {
 
         CarViewModel carlist = new CarViewModel();
         string date;
         string today;
-        public SamplePage2()
+        public CarPage()
         {
             InitializeComponent();
             try

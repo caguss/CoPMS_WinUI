@@ -8,8 +8,7 @@
     xmlns:local="using:winui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
     <ScrollViewer>
 
         <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderBrush="{ThemeResource ApplicationPageBackgroundThemeBrush}"
@@ -33,33 +32,127 @@
             <!--<Grid Grid.Row="1" Grid.Column="1" Margin="5" MinHeight="{StaticResource TileHeightKey}" 
                   Background="Black"
                   />-->
+
+            <Grid Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Margin="5"
+                  MinHeight="{StaticResource TileHeightKey}"
+                  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+                <TextBlock Text="근태 이력 조회" Margin="32,35,0,0" FontWeight="Bold" FontSize="18"
+                           Foreground="{ThemeResource ApplicationForegroundThemeBrush}"/>
+               
+                <TextBox  Width="150" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,80,120,0"
+                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
+                        BorderThickness="1" Header="이름" Name="txtTotalName"/>
+                
+                <Button Content="조회" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
+                        HorizontalAlignment="Right" VerticalAlignment="Top"
+                        Margin="0,107,30,0"
+                        BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
+                        BorderThickness="1"
+                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                        Width="80" Name="txtSearchTotal" Click="txtSearchTotal_Click"/>
+
+                <CalendarDatePicker VerticalAlignment="Top" Margin="34,80,0,0" Width="127"
+                                    BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
+                                    Header="날짜" Name="caldate"/>
+
+                <Button Content="근무 추가" 
+                        x:Name="btnAddWork"
+                        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Margin="0,0,30,30"
+                         BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
+                        BorderThickness="1"
+                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                        Width="120"
+                        Click="btnAddWork_Click" />
+
+
+                <GridView x:Name="gridview2"
+                          Grid.Column="4"
+                        
+                          Width="375"  Height="415"
+                          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                          Margin="5,37,0,75"
+                            VerticalAlignment="Bottom"
+                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" BorderThickness="1"
+                          ItemsSource="{Binding WorkTotalList}">
+                    <GridView.HeaderTemplate >
+                        <DataTemplate>
+                            <Grid Margin="15" Height="20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text='일자' Grid.Column="0"
+                                          Width="100" Margin="-10,0,0,0"
+                                           Style="{StaticResource BaseTextBlockStyle }"/>
+                                <TextBlock Text='사용자이름' Grid.Column="1"
+                                          Width="100" Margin="-60,0,0,0"
+                                           Style="{StaticResource BaseTextBlockStyle }"/>
+                                <TextBlock Text='출근시간'  Grid.Column="2"
+                                            Width="140" Margin="-80,0,0,0"
+                                           Style="{StaticResource BaseTextBlockStyle}"/>
+                                <TextBlock Text='퇴근시간'  Grid.Column="3"
+                                            Width="140" Margin="40,0,0,0"
+                                           Style="{StaticResource BaseTextBlockStyle}"/>
+                                <Canvas Height="300" Width="300">
+                                    <Line X1="-10" Y1="30" X2="348" Y2="30" 
+                                          Stroke="{ThemeResource ApplicationForegroundThemeBrush}" StrokeThickness="1"/>
+                                </Canvas>
+                            </Grid>
+                        </DataTemplate>
+                    </GridView.HeaderTemplate>
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="10" Orientation="Horizontal" >
+                                <TextBlock Text="{Binding WorkDate}"  Width="100"
+                                   Style="{StaticResource BodyTextBlockStyle}"/>
+                                <TextBlock Text="{Binding UserName}"  Width="80"
+                                   Style="{StaticResource BodyTextBlockStyle}"/>
+                                <TextBlock Text="{Binding WorkStartTime}" TextWrapping="NoWrap" Width="90"
+                                   Style="{StaticResource BodyTextBlockStyle}" />
+                                <TextBlock Text="{Binding WorkEndTime}"  Width="100"
+                                   Style="{StaticResource BodyTextBlockStyle}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </Grid>
+            <!--<Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Margin="5" MinHeight="{StaticResource TileHeightKey}" Background="White" />-->
+            <!--<Grid Grid.Row="2" Grid.Column="2"  Grid.RowSpan="2" Margin="5" MinHeight="{StaticResource TileHeightKey}" Background="White"  />-->
             <Grid Name="sourceGrid" Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="2"
                 Margin="5"
                 MinWidth="250"
                 MinHeight="{StaticResource TileHeightKey}"
                 Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-                <TextBlock Text="근무자 별 출퇴근 현황" Margin="32,35,0,0"   
-                           Style="{StaticResource TitleTextBlockStyle}"
-                           Foreground="{ThemeResource ApplicationForegroundThemeBrush}"></TextBlock>
-                <TextBlock Text="이름" Margin="32,85,0,0"   
-                           Foreground="{ThemeResource ApplicationForegroundThemeBrush}"></TextBlock>
+
+                <TextBlock Text="근무자 별 출퇴근 현황" Margin="32,35,0,0" FontWeight="Bold" FontSize="18"
+                           Foreground="{ThemeResource ApplicationForegroundThemeBrush}"/>
+                
+                <TextBlock Text="이름" Margin="32,85,0,0"    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"/>
+                
                 <TextBox  Width="240" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="80,80,0,0"
-                          BorderBrush="LightSlateGray"
-                        BorderThickness="1"></TextBox>
-                <Button Content="조회" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Top"
+                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" Name="txtSearchName"
+                        BorderThickness="1"/>
+                
+                <Button Content="조회" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                        HorizontalAlignment="Right" VerticalAlignment="Top"
                         Margin="0,80,30,0"
-                         BorderBrush="LightSlateGray"
+                         BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                         BorderThickness="1"
-                        Foreground="LightSlateGray"
-                        Width="80">
-                </Button>
+                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
+                        Width="80"
+                        Name="btnSearch"
+                        Click="btnSearch_Click"/>
+
 
                 <Button Content="근무 시간 변경" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Margin="0,0,30,30"
-                         BorderBrush="LightSlateGray"
+                         BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                         BorderThickness="1"
-                        Foreground="LightSlateGray"
+                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                         Width="120"
                         x:Name="btnChangetime"
                         Click="btnChangetime_Click"/>
@@ -67,53 +160,55 @@
 
                 <Button Content="근무자 추가" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                         Margin="0,0,160,30"
-                         BorderBrush="LightSlateGray"
+                         BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                         BorderThickness="1"
-                        Foreground="LightSlateGray"
+                        Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                         Width="120"
                         Name="btnAddWorker"
                         Click="btnAddWorker_Click"/>
 
 
-                <GridView x:Name="workLogGridView"
+                <GridView x:Name="gridview"
                           Grid.Column="3"
                           Grid.Row="3"
                           Width="375"  Height="440"
                           Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                           Margin="5,37,0,75"
-                            VerticalAlignment="Bottom"
-                          BorderBrush="LightSlateGray" BorderThickness="1"
+                          VerticalAlignment="Bottom"
+                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" BorderThickness="1"
                           ItemsSource="{Binding WorkLogList}">
-                    <GridView.GroupStyle>
-                        <GroupStyle>
-                            <!--이거왜안나오는지 확인해볼것-->
-                            <GroupStyle.HeaderTemplate>
-                                <DataTemplate>
-                                    <Grid Margin="0" Height="20">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Text='사용자이름' Grid.Column="0"
-                                           Foreground="white" FontSize="13" Width="100"
-                                           Style="{StaticResource HeaderTextBlockStyle}"/>
-                                        <TextBlock Text='출근시간'  Grid.Column="1"
-                                           Foreground="white" FontSize="13" Width="140"
-                                           Style="{StaticResource HeaderTextBlockStyle}"/>
-                                        <TextBlock Text='퇴근시간'  Grid.Column="2"
-                                           Foreground="white" FontSize="13" Width="140"
-                                           Style="{StaticResource HeaderTextBlockStyle}"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </GroupStyle.HeaderTemplate>
-                        </GroupStyle>
-                    </GridView.GroupStyle>
+                    
+                    <GridView.HeaderTemplate >
+                        <DataTemplate>
+                            <Grid Margin="15" Height="20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text='사용자이름' Grid.Column="0"
+                                          Width="100" Margin="-10,0,0,0"
+                                           Style="{StaticResource BaseTextBlockStyle }"/>
+                                <TextBlock Text='출근시간'  Grid.Column="1"
+                                            Width="140" Margin="-5,0,0,0"
+                                           Style="{StaticResource BaseTextBlockStyle}"/>
+                                <TextBlock Text='퇴근시간'  Grid.Column="2"
+                                            Width="140" Margin="13,0,0,0"
+                                           Style="{StaticResource BaseTextBlockStyle}"/>
+                                <Canvas Height="300" Width="300">
+                                    <Line X1="-10" Y1="30" X2="348" Y2="30" 
+                                          Stroke="{ThemeResource ApplicationForegroundThemeBrush}" StrokeThickness="1"/>
+                                </Canvas>
+                            </Grid>
+                        </DataTemplate>
+                    </GridView.HeaderTemplate>
+
                     <GridView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="20" Orientation="Horizontal">
-                                <TextBlock Text="{Binding UserName}" FontWeight="Bold" Width="100"
-                                   Style="{StaticResource BaseTextBlockStyle}"/>
+                            <StackPanel Margin="10" Orientation="Horizontal" >
+                                <TextBlock Text="{Binding UserName}"  Width="100"
+                                   Style="{StaticResource BodyTextBlockStyle}"/>
                                 <TextBlock Text="{Binding WorkStartTime}" TextWrapping="NoWrap" Width="140"
                                    Style="{StaticResource BodyTextBlockStyle}" />
                                 <TextBlock Text="{Binding WorkEndTime}" TextWrapping="NoWrap"  Width="140"
@@ -121,11 +216,11 @@
                             </StackPanel>
                         </DataTemplate>
                     </GridView.ItemTemplate>
-
                 </GridView>
                 <Canvas Height="300" Width="300">
                     <Line 
-                          X1="373" Y1="-130" X2="373" Y2="430" Stroke="LightSlateGray" StrokeThickness="1"></Line>
+                          X1="373" Y1="-150" X2="373" Y2="450" Stroke="{ThemeResource ApplicationForegroundThemeBrush}" StrokeThickness="1"
+                          />
                 </Canvas>
                 <Frame Name="frame">
                     <UIElement.RenderTransform>
@@ -133,107 +228,6 @@
                     </UIElement.RenderTransform>
                 </Frame>
             </Grid>
-            
-            
-            
-            
-            
-            
-            
-            <Grid Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Margin="5"
-                  MinHeight="{StaticResource TileHeightKey}"
-                  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                  >
-
-                <TextBlock Text="근태 이력 조회" Margin="32,35,0,0"    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"></TextBlock>
-                <TextBlock Text="이름" Margin="32,85,0,0"    Foreground="{ThemeResource ApplicationForegroundThemeBrush}"></TextBlock>
-                <TextBox  Width="240" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="80,80,0,0"
-                          BorderBrush="LightSlateGray"
-                        BorderThickness="1"></TextBox>
-                <Button Content="조회" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Top"
-                        Margin="0,80,30,0"
-                         BorderBrush="LightSlateGray"
-                        BorderThickness="1"
-                        Foreground="LightSlateGray"
-                        Width="80">
-                </Button>
-
-                <Button Content="근무 추가" 
-                        x:Name="btnAddWork"
-                        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                        Margin="0,0,30,30"
-                         BorderBrush="LightSlateGray"
-                        BorderThickness="1"
-                        Foreground="LightSlateGray"
-                        Width="120"
-                        Click="btnAddWork_Click" >
-                </Button>
-
-                <GridView x:Name="gridview2"
-                          Grid.Column="4"
-                        
-                          Width="375"  Height="440"
-                          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                          Margin="5,37,0,75"
-                            VerticalAlignment="Bottom"
-                          BorderBrush="LightSlateGray" BorderThickness="1"
-                          >
-
-                    <GridViewHeaderItem Width="80" Content="일자" FontSize="13" Height="10" ></GridViewHeaderItem>
-                    <GridViewHeaderItem Width="90" Content="사용자이름" FontSize="13" Height="10" ></GridViewHeaderItem>
-                    <GridViewHeaderItem Width="90" Content="출근시간" FontSize="13"></GridViewHeaderItem>
-                    <GridViewHeaderItem Width="80" Content="퇴근시간" FontSize="13"></GridViewHeaderItem>
-
-
-
-                    <GridViewItem Content="2023-01-12"  Height="10"></GridViewItem>
-                    <GridViewItem Content="최수영"  Height="10"></GridViewItem>
-                    <GridViewItem Content="10:00:00"  Height="10"></GridViewItem>
-                    <GridViewItem Content="19:00:00" Height="10"></GridViewItem>
-
-                    <GridViewItem Content="2023-01-12"  Height="10"></GridViewItem>
-                    <GridViewItem Content="방찬석"  Height="10"></GridViewItem>
-                    <GridViewItem Content="09:00:00"  Height="10"></GridViewItem>
-                    <GridViewItem Content="18:00:00"  Height="10"></GridViewItem>
-
-                    <GridViewItem Content="2023-01-12" Height="10"></GridViewItem>
-                    <GridViewItem Content="김지은"  Height="10"></GridViewItem>
-                    <GridViewItem Content="09:30:00"  Height="10"></GridViewItem>
-                    <GridViewItem Content="18:30:00" Height="10"></GridViewItem>
-
-                    <GridViewItem Content="2023-01-12"  Height="10"></GridViewItem>
-                    <GridViewItem Content="김민섭"  Height="10"></GridViewItem>
-                    <GridViewItem Content="09:30:00" Height="10"></GridViewItem>
-                    <GridViewItem Content="18:30:00"  Height="10"></GridViewItem>
-
-                    <GridViewItem Content="2023-01-12"  Height="10"></GridViewItem>
-                    <GridViewItem Content="유민상"  Height="10"></GridViewItem>
-                    <GridViewItem Content="09:30:00"  Height="10"></GridViewItem>
-                    <GridViewItem Content="18:30:00"  Height="10"></GridViewItem>
-
-                    <GridViewItem Content="2023-01-12"  Height="10"></GridViewItem>
-                    <GridViewItem Content="유민상"  Height="10"></GridViewItem>
-                    <GridViewItem Content="09:30:00"  Height="10"></GridViewItem>
-                    <GridViewItem Content="18:30:00"  Height="10"></GridViewItem>
-                    <GridViewItem Content="2023-01-12"  Height="10"></GridViewItem>
-                    <GridViewItem Content="유민상"  Height="10"></GridViewItem>
-                    <GridViewItem Content="09:30:00"  Height="10"></GridViewItem>
-                    <GridViewItem Content="18:30:00"  Height="10"></GridViewItem>
-                    <GridViewItem Content="2023-01-12"  Height="10"></GridViewItem>
-                    <GridViewItem Content="유민상"  Height="10"></GridViewItem>
-                    <GridViewItem Content="09:30:00"  Height="10"></GridViewItem>
-                    <GridViewItem Content="18:30:00"  Height="10"></GridViewItem>
-                    <GridViewItem Content="2023-01-12"  Height="10"></GridViewItem>
-                    <GridViewItem Content="유민상"  Height="10"></GridViewItem>
-                    <GridViewItem Content="09:30:00"  Height="10"></GridViewItem>
-                    <GridViewItem Content="18:30:00"  Height="10"></GridViewItem>
-
-
-                </GridView>
-            </Grid>
-            <!--<Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Margin="5" MinHeight="{StaticResource TileHeightKey}" Background="White" />-->
-            <!--<Grid Grid.Row="2" Grid.Column="2"  Grid.RowSpan="2" Margin="5" MinHeight="{StaticResource TileHeightKey}" Background="White"  />-->
-
         </Grid>
     </ScrollViewer>
 </Page>

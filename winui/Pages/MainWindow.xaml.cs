@@ -115,23 +115,23 @@ namespace winui
                     {
                         string itemTag = item.Tag.ToString();
 
-                        if (itemTag.Contains("1"))
+                        if (itemTag.Contains("Rest"))
                         {
                             sender.Header = "연차관리";
                         }
-                        else if (itemTag.Contains("2"))
+                        else if (itemTag.Contains("Car"))
                         {
                             sender.Header = "차량예약관리";
                         }
-                        else if (itemTag.Contains("3"))
+                        else if (itemTag.Contains("Work"))
                         {
                             sender.Header = "근태관리";
                         }
-                        else if (itemTag.Contains("4"))
+                        else if (itemTag.Contains("TimeSheet"))
                         {
                             sender.Header = "타임시트관리";
                         }
-                        else if (itemTag.Contains("5"))
+                        else if (itemTag.Contains("Project"))
                         {
                             sender.Header = "프로젝트관리";
                         }

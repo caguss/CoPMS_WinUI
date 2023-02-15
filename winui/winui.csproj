@@ -21,7 +21,6 @@
     <None Remove="Image\Hansol_logo.png" />
     <None Remove="Login.xaml" />
     <None Remove="NavigationRootPage.xaml" />
-    <None Remove="Pages\WorkPage.xaml" />
     <None Remove="popup\AddRestPopup.xaml" />
     <None Remove="popup\AddWorkerPopup.xaml" />
     <None Remove="popup\AddWorkPopup.xaml" />
@@ -80,9 +79,6 @@
     <Page Update="Home.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Pages\WorkPage.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="SamplePage5.xaml">
@@ -118,9 +114,6 @@
     <Page Update="SamplePage1.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">

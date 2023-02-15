@@ -30,12 +30,12 @@ namespace winui
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SamplePage4 : Page
+    public sealed partial class TimeSheetPage : Page
     {
         List<string> list = new List<string>();
         TimeSheetViewModel timeSheetView;
 
-        public SamplePage4()
+        public TimeSheetPage()
         {
             this.InitializeComponent();
             calender.SelectedDate = DateTime.Now;
@@ -128,6 +128,7 @@ namespace winui
 
               //  gridview2.DataContext = dt.DefaultView;
                 gridview2.ItemsSource = dt.AsDataView();
+                
             }
         }
 

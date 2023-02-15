@@ -18,8 +18,7 @@ using Microsoft.UI.Xaml.Navigation;
 using winui.popup;
 using Microsoft.UI.Xaml.Documents;
 using winui.ViewModels;
-using System.Diagnostics;
-using System.Collections.ObjectModel;
+using Vanara;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -31,12 +30,14 @@ namespace winui
     /// </summary>
     public sealed partial class WorkPage : Page
     {
-        DateTime startDate = DateTime.Now;
-
+        string page;
         public WorkPage()
         {
             this.InitializeComponent();
             PopulateProjects("");
+            caldate.SetDisplayDate(DateTime.Now);
+
+            SearchTotalWork("", DateTime.Now.ToString("yyyy-MM-dd"));
         }
         private void PopulateProjects(string name)
         {
@@ -45,54 +46,55 @@ namespace winui
             this.DataContext = viewModel;
         }
 
+        private void SearchTotalWork(string name, string date)
+        {
+            WorkTotalViewModel totalViewModel = new WorkTotalViewModel(name, date);
+            this.gridview2.DataContext = totalViewModel;
+        }
+
 
         private async void btnAddWork_Click(object sender, RoutedEventArgs e)
         {
             AddWorkPopup ap = new AddWorkPopup();
             ap.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
             ap.XamlRoot = this.XamlRoot;
-            ap.Title = "근무 추가";
-            ap.PrimaryButtonText = "출근";
-            ap.SecondaryButtonText = "퇴근";
+            
             await ap.ShowAsync();
         }
 
         private async void btnChangetime_Click(object sender, RoutedEventArgs e)
         {
-            ChangeWorkTime tm = new ChangeWorkTime();
-            tm.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            tm.XamlRoot = this.XamlRoot;
+            page = "change";
+            AddWorkerPopup awp = new AddWorkerPopup(page);
+            awp.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            awp.XamlRoot = this.XamlRoot;
 
-            await tm.ShowAsync();
+            await awp.ShowAsync();
         }
 
         private async void btnAddWorker_Click(object sender, RoutedEventArgs e)
         {
-            //AddWorkerPopup awp = new AddWorkerPopup();
-            //awp.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            //awp.XamlRoot = this.XamlRoot;
+            page = "add";
+            AddWorkerPopup awp = new AddWorkerPopup(page);
+            awp.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            awp.XamlRoot = this.XamlRoot;
 
-            //await awp.ShowAsync();
+            await awp.ShowAsync();
         }
-    }
 
-    public class Project1
-    {
-        public Project1()
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            Activities = new ObservableCollection<Activity>();
+            PopulateProjects(txtSearchName.Text);
         }
 
-        public string Name { get; set; }
-        public ObservableCollection<Activity> Activities { get; private set; }
+        private void txtSearchTotal_Click(object sender, RoutedEventArgs e)
+        {
+            string date = "";
+            if (caldate.Date.ToString().Length > 10)
+            {
+                date = caldate.Date.ToString().Substring(0, 10);
+            }
+            SearchTotalWork(txtTotalName.Text, date);
+        }
     }
-
-    public class Activity
-    {
-        public string Name { get; set; }
-        public DateTime DueDate { get; set; }
-        public bool Complete { get; set; }
-        public string Project { get; set; }
-    }
-
 }

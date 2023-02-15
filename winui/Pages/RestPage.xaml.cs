@@ -19,14 +19,14 @@ namespace winui
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SamplePage1 : Page
+    public sealed partial class RestPage : Page
     {
 
         string date;
         string today;
 
         RestViewModel restlist = new RestViewModel();
-        public SamplePage1()
+        public RestPage()
         {
             this.InitializeComponent();
             try

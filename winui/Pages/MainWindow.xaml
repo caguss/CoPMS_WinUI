@@ -84,7 +84,7 @@
                     </NavigationViewItem>-->
 
                     <NavigationViewItem
-                        Tag="SamplePage1"
+                        Tag="RestPage"
                         Content="연차관리" >
                         <NavigationViewItem.Icon>
                             <SymbolIcon Symbol="Calendar" />
@@ -92,7 +92,7 @@
                     </NavigationViewItem>
                     <NavigationViewItem Name="navigationViewItem2"
                         Content="차량예약관리"
-                        Tag="SamplePage2"
+                        Tag="CarPage"
                         SelectsOnInvoked="True">
                         <NavigationViewItem.Icon>
                             <SymbolIcon Symbol="Paste" />
@@ -100,7 +100,7 @@
                     </NavigationViewItem>
                     <NavigationViewItem
                         Content="근태관리"
-                        Tag="SamplePage3">
+                        Tag="WorkPage">
                         <NavigationViewItem.Icon>
                             <SymbolIcon Symbol="CalendarWeek" />
                         </NavigationViewItem.Icon>
@@ -116,14 +116,14 @@
 
                     <NavigationViewItem
                         Content="타임시트관리"
-                        Tag="SamplePage4">
+                        Tag="TimeSheetPage">
                         <NavigationViewItem.Icon>
                             <SymbolIcon Symbol="Edit" />
                         </NavigationViewItem.Icon>
                     </NavigationViewItem>
                     <NavigationViewItem
                         Content="프로젝트관리"
-                        Tag="SamplePage5">
+                        Tag="ProjectPage">
                         <NavigationViewItem.Icon>
                             <SymbolIcon Symbol="Memo" />
                         </NavigationViewItem.Icon>
