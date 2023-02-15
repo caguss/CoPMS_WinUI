@@ -43,40 +43,32 @@
                                     Margin="20,20,0,0" Header="계약 월"
                                     DateFormat="{}{year.full}-{month.integer}"
                                     PlaceholderText="날짜 선택시 해당월만 조회"
+                                     Name="dp_Date"
                                     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                                     BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}">
                 </CalendarDatePicker>
 
                 <TextBox Header="프로젝트 명" VerticalAlignment="Top" HorizontalAlignment="Left"
-                         Width="230" Height="60" Margin="240,20,0,0" 
+                         Width="230" Height="60" Margin="240,20,0,0" Name="txt_Projname"
                           BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                          ></TextBox>
 
                 <ComboBox
                      BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
-                    Width="160" Header="부서 명" Height="61"
-                    VerticalAlignment="Top" HorizontalAlignment="Left" Margin="490,20,0,0">
-                    <x:String>전체</x:String>
-                    <x:String>관리부</x:String>
-                    <x:String>E3 사업본부</x:String>
-                    <x:String>개발1팀</x:String>
-                    <x:String>개발2팀</x:String>
-                    <x:String>사업1팀</x:String>
-                    <x:String>사업2팀</x:String>
-                    <x:String>사업3팀</x:String>
-                    <x:String>경영지원실</x:String>
-                    <x:String>제조IT본부</x:String>
-                    <x:String>전략사업실</x:String>
-                    <x:String>사업총괄</x:String>
-                    <x:String>영남지사</x:String>
-                    <x:String>연구소</x:String>
+                    Width="160" Header="부서 명" Height="61" Name="cb_Team"
+                    VerticalAlignment="Top" HorizontalAlignment="Left" Margin="490,20,0,0"
+                     ItemsSource="{x:Bind TVM.PickerChoices}" DisplayMemberPath="TeamName" 
+                          SelectedValuePath="TeamCode"
+                          SelectedIndex="0">
+             
                 </ComboBox>
                 <Button Content="조회" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,48,150,0"
-                        Width="80" Height="33"
+                        Width="80" Height="33" Click="Button_Click"
                         BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                         ></Button>
 
-                <CheckBox Content="완료 여부" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,48,8,0"></CheckBox>
+                <CheckBox Content="완료 여부" HorizontalAlignment="Right" Name="cb_completeYN"
+                          VerticalAlignment="Top" Margin="0,48,8,0"></CheckBox>
                 <GridView x:Name="gridview"
                           Grid.Column="8"
                           Grid.Row="3"

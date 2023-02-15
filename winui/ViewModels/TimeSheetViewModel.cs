@@ -10,16 +10,16 @@ namespace winui.ViewModels
 {
     public class TimeSheetViewModel
     {
-        public List<TimeSheet> TimeSheets { get; set; }
+        public List<Project> TimeSheets { get; set; }
 
         public TimeSheetViewModel(string year, string proName, string proManager, string complete)
         {
-            TimeSheets = new List<TimeSheet>();
+            TimeSheets = new List<Project>();
 
             DataTable timeSheettable = Provider.SearchTimeSheet(year, proName, proManager, complete);
             for (int i = 0; i < timeSheettable.Rows.Count; i++)
             {
-                TimeSheets.Add(new TimeSheet()
+                TimeSheets.Add(new Project()
                 {
                     ProjectNo = timeSheettable.Rows[i]["프로젝트번호"].ToString(),
                     ProjectName = timeSheettable.Rows[i]["프로젝트이름"].ToString(),

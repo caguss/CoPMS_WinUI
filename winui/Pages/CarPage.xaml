@@ -39,7 +39,8 @@
                   >
                 <ComboBox Header="차량 종류" Margin="32,35,0,0" Width="192" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
                            BorderThickness="1" Name="cbCar" 
-                           ItemsSource="{x:Bind carlist.PickerChoices}" DisplayMemberPath="CarName" SelectedValuePath="CarCode"
+                           ItemsSource="{x:Bind carlist.PickerChoices}" DisplayMemberPath="CarName" 
+                          SelectedValuePath="CarCode"
                           SelectedIndex="0"/>
 
                 <TextBox Header="목적지" Height="60" Width="180" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,35,28,0"

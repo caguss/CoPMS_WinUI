@@ -5,7 +5,12 @@ using System.Text;
 
 namespace winui
 {
-    public class Project
+
+    /// <summary>
+    /// ProjectModel은 TimeSheet 안에 있음
+    /// 차후 이동 가능함.
+    /// </summary>
+    public class ProjectDetail
     {
         public string ProjectNum { get; set; }
         public string ProjectName { get; set; }

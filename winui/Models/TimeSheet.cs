@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace winui.Models
 {
-    public class TimeSheet
+    public class Project
     {
         public string ProjectNo { get; set; }
         public string ProjectName { get; set; }
