@@ -20,6 +20,11 @@ namespace winui.Models
         public string StProject { get; set; }
         public string EndProject { get; set; }
         public string CompleteYN { get; set; } //완료여부
+        public string SubCount { get; set; } //하도급
+        public string ODMCount { get; set; } //외주인력
+        public string SubPrice { get; set; } //하도급금액
+
+
     }
 
     public class TimeSheetDetail

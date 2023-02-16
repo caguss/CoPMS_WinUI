@@ -5,12 +5,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Vanara.PInvoke;
 
 namespace winui
 {
     class TeamViewModel : ViewModelBase
     {
-       
+
         public TeamViewModel()
         {
             // Sample to pre-load list of records from data server of KVP
@@ -28,7 +29,7 @@ namespace winui
                 });
             }
 
-   
+
             ShowThisRecord = PickerChoices[0];
         }
         public TeamViewModel(string adddata)
@@ -67,5 +68,17 @@ namespace winui
         //*****************************************
         // The picker is bound to this list of possible choices
         public ObservableCollection<Team> PickerChoices { get; set; }
+
+        public void FindSelect(string code)
+        {
+            for (int i = 0; i < PickerChoices.Count; i++)
+            {
+                if (PickerChoices[i].TeamCode == code)
+                {
+                    SelectedRecord = PickerChoices[i];
+                    return;
+                }
+            }
+        }
     }
 }
