@@ -25,7 +25,7 @@
                 <CalendarDatePicker Header="계약 월"
                                     DateFormat="{}{year.full}-{month.integer}"
                                     PlaceholderText="날짜 선택시 해당월만 조회"
-                                     Name="dp_Date"
+                                    Name="dp_Date"
                                     HorizontalAlignment="Stretch"
                                     Grid.Column="0"
                                     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
@@ -33,14 +33,14 @@
                 </CalendarDatePicker>
 
                 <TextBox Header="프로젝트 명" Name="txt_Projname" Grid.Column="1" HorizontalAlignment="Stretch"
-                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"></TextBox>
+                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"/>
                 <ComboBox
                      BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"  HorizontalAlignment="Stretch"
                     Header="부서 명" Name="cb_Team" ItemsSource="{x:Bind TVM.PickerChoices}" DisplayMemberPath="TeamName" 
-                          SelectedValuePath="TeamCode" Grid.Column="2" SelectedIndex="0"></ComboBox>
-                <CheckBox Content="완료 여부" Name="cb_completeYN" Grid.Column="3"  VerticalAlignment="Bottom" HorizontalAlignment="Left"></CheckBox>
+                          SelectedValuePath="TeamCode" Grid.Column="2" SelectedIndex="0"/>
+                <CheckBox Content="완료 여부" Name="cb_completeYN" Grid.Column="3"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
                 <Button Content="조회" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                       Click="Button_Click" Grid.Column="4" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"></Button>
+                       Click="Button_Click" Grid.Column="4" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"/>
             </Grid>
             <!-- To create this sample, add/change the following properties onto the code for the base example above: -->
 

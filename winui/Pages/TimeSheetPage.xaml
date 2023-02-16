@@ -6,13 +6,14 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:winui"
+    xmlns:DG="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <ScrollViewer >
-
+    <ScrollViewer>
+    
         <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderBrush="{ThemeResource ApplicationPageBackgroundThemeBrush}"
               BorderThickness="2">
             <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">-->
@@ -34,7 +35,17 @@
             <!--<Grid Grid.Row="1" Grid.Column="1" Margin="5" MinHeight="{StaticResource TileHeightKey}" 
                   Background="Black"
                   />-->
+            <DG:DataGrid Height="200" Background="White" Width="800" Foreground="Black" Name="datagrid"
+                         AutoGenerateColumns="False" 
+                         SelectionChanged="datagrid_SelectionChanged"
+                         AutoGeneratingColumn="datagrid_AutoGeneratingColumn"
+                         CurrentCellChanged="datagrid_CurrentCellChanged"
+                         RowForeground="Red">
 
+                <DG:DataGrid.Columns>
+                </DG:DataGrid.Columns>
+               
+            </DG:DataGrid>
             <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Margin="5" Grid.ColumnSpan="2"
                   MinHeight="{StaticResource TileHeightKey}"
                   Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
@@ -42,7 +53,6 @@
 
                 <DatePicker VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Height="60"
                             Margin="20,20,0,150" Header="계약년도" 
-                           
                             MinWidth="100"
                             Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                             BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
@@ -51,8 +61,6 @@
                             YearFormat="{}{year.full}"
                             SelectedDateChanged="calender_SelectedDateChanged"
                             />
-
-
 
                 <TextBox Header="프로젝트 명" VerticalAlignment="Top" HorizontalAlignment="Left"
                          Width="220" Height="60" Margin="230,20,0,0" 
@@ -199,15 +207,18 @@
                           VerticalAlignment="Top"
                           HorizontalAlignment="Left"
                           BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
-                          BorderThickness="1">
+                          BorderThickness="1"
+                          SelectionChanged="gridview2_SelectionChanged"
+                          >
                     <GridView.ItemContainerStyle>
-                        <Style TargetType="GridViewItem">
+                        <Style TargetType="GridViewItem" x:Name="ads">
                             <Setter Property="FontSize" Value="15"/>
                             <Setter Property="Margin" Value="0"/>
-                            <Setter Property="Width" Value="70"/>
+                            <Setter Property="Width" Value="80" />
                         </Style>
                     </GridView.ItemContainerStyle>
                 </GridView>
+                
                 <StackPanel Margin="20" HorizontalAlignment="Left">
                 </StackPanel>
 
@@ -215,31 +226,36 @@
                          VerticalAlignment="Top" HorizontalAlignment="Left"
                          Margin="20,680,20,290" 
                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
-                         BorderThickness="1"/>
+                         BorderThickness="1"
+                         Name="txtDate"/>
                 
                 <TextBox Header="투입자" Height="60" Width="250" 
                          VerticalAlignment="Top" HorizontalAlignment="Left"
                          Margin="20,760,20,290"  
                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" 
-                         BorderThickness="1"/>
+                         BorderThickness="1"
+                         Name="txtWorker"/>
                 
                 <TextBox Header="투입MM" Height="60" Width="250" 
                          VerticalAlignment="Top" HorizontalAlignment="Left"
                          Margin="20,840,20,290"  
                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"
-                         BorderThickness="1"/>
+                         BorderThickness="1"
+                         Name="txtWorkMM"/>
                 
                 <TextBox Header="당초계획" Height="60" Width="250" 
                          VerticalAlignment="Top" HorizontalAlignment="Left"
                          Margin="20,920,20,290"   
                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" 
-                         BorderThickness="1"/>
+                         BorderThickness="1"
+                         Name="txtFPlan"/>
                 
                 <TextBox Header="변경계획" Height="60" Width="250" 
                          VerticalAlignment="Top" HorizontalAlignment="Left"
                          Margin="20,1000,20,290"   
                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" 
-                         BorderThickness="1"/>
+                         BorderThickness="1"
+                         Name="txtCPlan"/>
 
                 <Button Content="투입인력 조회" Height="40" Width="250" VerticalAlignment="Top" HorizontalAlignment="Left"
                          Margin="20,1080,20,290"  BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" BorderThickness="1"></Button>
