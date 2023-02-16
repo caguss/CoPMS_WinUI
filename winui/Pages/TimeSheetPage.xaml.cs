@@ -21,6 +21,7 @@ using Vanara.Extensions.Reflection;
 using System.Data;
 using Microsoft.UI.Xaml.Automation.Peers;
 using System.Collections.ObjectModel;
+using CommunityToolkit.WinUI.UI.Controls;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -34,6 +35,10 @@ namespace winui
     {
         List<string> list = new List<string>();
         TimeSheetViewModel timeSheetView;
+        DataTable dt;
+       
+        //DataGridColumn aa = new DataGridColumn();
+
 
         public TimeSheetPage()
         {
@@ -94,9 +99,8 @@ namespace winui
                 txtStandardDate.Text = MonthLastDay.ToString("yyyy-MM-dd");
 
                 //TimeSheetDataViewModel dataview = new TimeSheetDataViewModel(Convert.ToInt32(projectNo));
-                DataTable dt = Provider.TimeSheetData(Convert.ToInt32(projectNo));
+                dt = Provider.TimeSheetData(Convert.ToInt32(projectNo));
 
-          
                 //GridViewHeaderItem d = new GridViewHeaderItem();
 
                 //for (int i = 0; i < dt.Columns.Count; i++)
@@ -108,27 +112,61 @@ namespace winui
                 //gridview2.ItemsSource= dt.DefaultView;
 
                 var collection = new ObservableCollection<object>();
+                var collectionHeader = new ObservableCollection<object>();
 
                 //collection.Add(dt);
+                List<string> list = new List<string>();
+               
+                datagrid.Columns.Clear();
+                for (int i = 0; i < dt.Columns.Count; i++)
+                {
+                    if (dt.Columns[i].ColumnName.Contains("여부"))
+                    { }
+                    else
+                    {
+                      
+                        DataGridTextColumn dq = new DataGridTextColumn();
+                        collection.Add(dt.Columns[i]);
+                        dq.Header = dt.Columns[i].ColumnName;
+                        //datagrid.Columns.Add(dq);
+                        //dq.Binding = dt;
 
-                //for (int i = 0; i < dt.Columns.Count; i++)
-                //{
-                //    collection.Add(dt.Columns[i]);
-                //}
 
-                //foreach (DataRow dr in dt.Rows)
-                //{
-                //    for (int i = 0; i < dt.Rows.Count - 1; i++)
-                //    {
-                //        collection.Add(dr.ItemArray[i]);
+                        datagrid.Columns.Add(new DataGridTextColumn
+                        {
+                            Header = dq.Header,
+                            Binding = new Binding { Path = new PropertyPath("[" + i.ToString() + "]") }
+                        });
+                        
+                        }
+                }
 
-                //    }
-                //}
-                //gridview2.ItemsSource = collection;
+                foreach (DataRow dr in dt.Rows)
+                {
+                    for (int i = 0; i < dt.Columns.Count; i++)
+                    {
+                        if (dt.Columns[i].ColumnName.Contains("여부")) { }
+                        else
+                        {
+                            collection.Add(dr.ItemArray[i]);  
+                        }
+                    }
+                }
+                //gridview2.Header = collectionHeader.ToArray();
 
-              //  gridview2.DataContext = dt.DefaultView;
-                gridview2.ItemsSource = dt.AsDataView();
-                
+                //DataGridRow d = new DataGridRow();
+                //d.DataContext = dt.DefaultView;
+                //datagrid.DataContext = d;
+
+                //datagrid.DataContext = dt;
+                datagrid.ItemsSource = collection;
+                gridview2.ItemsSource = collection;
+               
+               
+              //  datagrid.ItemsSource = dt.DefaultView;
+
+                //gridview2.DataContext = dt.DefaultView;
+                //gridview2.ItemsSource = dt.AsDataView();
             }
         }
 
@@ -147,6 +185,26 @@ namespace winui
         {
             if (e.Key == Windows.System.VirtualKey.Enter)
                 btnSearch_Click(sender, e);
+        }
+
+        private void gridview2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+         
+        }
+
+        private void datagrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+           
+        }
+
+        private void datagrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void datagrid_CurrentCellChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -23,7 +23,6 @@ namespace winui
                 new Restkind{ RestCode= "A8",KindName="민방위훈련" }
         };
 
-
             // set the default selected item 
             // foreach (TestModel model in PickerChoices) {
             //     if (model.MyID == 18) {// default value

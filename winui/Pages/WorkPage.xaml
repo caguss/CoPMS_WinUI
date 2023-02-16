@@ -76,7 +76,7 @@
                             VerticalAlignment="Bottom"
                           BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" BorderThickness="1"
                           ItemsSource="{Binding WorkTotalList}">
-                    <GridView.HeaderTemplate >
+                    <GridView.HeaderTemplate>
                         <DataTemplate>
                             <Grid Margin="15" Height="20">
                                 <Grid.ColumnDefinitions>
@@ -86,10 +86,10 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text='일자' Grid.Column="0"
                                           Width="100" Margin="-10,0,0,0"
-                                           Style="{StaticResource BaseTextBlockStyle }"/>
+                                           Style="{StaticResource BaseTextBlockStyle}"/>
                                 <TextBlock Text='사용자이름' Grid.Column="1"
                                           Width="100" Margin="-60,0,0,0"
-                                           Style="{StaticResource BaseTextBlockStyle }"/>
+                                           Style="{StaticResource BaseTextBlockStyle}"/>
                                 <TextBlock Text='출근시간'  Grid.Column="2"
                                             Width="140" Margin="-80,0,0,0"
                                            Style="{StaticResource BaseTextBlockStyle}"/>

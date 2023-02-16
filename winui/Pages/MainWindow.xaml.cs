@@ -24,9 +24,9 @@ namespace winui
     public sealed partial class MainWindow : Window
     {
         public static int MinWindowWidth { get; set; } = 1000;
-        public static int MaxWindowWidth { get; set; } = 1000;
+      //  public static int MaxWindowWidth { get; set; } = 2500;
         public static int MinWindowHeight { get; set; } = 800;
-        public static int MaxWindowHeight { get; set; } = 800;
+      //  public static int MaxWindowHeight { get; set; } = 2500;
 
         bool off =true;
         GoToWorkViewModel gvm;
@@ -41,6 +41,8 @@ namespace winui
             Window window = this;
             window.ExtendsContentIntoTitleBar = true;
             window.SetTitleBar(pnlTitle);
+
+            
         }
 
         private void main_Loaded(object sender, RoutedEventArgs e)
@@ -187,9 +189,9 @@ namespace winui
 
                     var minMaxInfo = Marshal.PtrToStructure<MINMAXINFO>(lParam);
                     minMaxInfo.ptMinTrackSize.x = (int)(MinWindowWidth * scalingFactor);
-                    minMaxInfo.ptMaxTrackSize.x = (int)(MaxWindowWidth * scalingFactor);
+                  //  minMaxInfo.ptMaxTrackSize.x = (int)(MaxWindowWidth * scalingFactor);
                     minMaxInfo.ptMinTrackSize.y = (int)(MinWindowHeight * scalingFactor);
-                    minMaxInfo.ptMaxTrackSize.y = (int)(MaxWindowHeight * scalingFactor);
+                   // minMaxInfo.ptMaxTrackSize.y = (int)(MaxWindowHeight * scalingFactor);
 
                     Marshal.StructureToPtr(minMaxInfo, lParam, true);
                     break;
