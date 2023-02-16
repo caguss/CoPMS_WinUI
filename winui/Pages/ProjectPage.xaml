@@ -13,10 +13,14 @@
     <Page.Resources>
         <local:TimeConverter x:Key="TimeConverter"/>
     </Page.Resources>
-    
-    <ScrollViewer>
-        <StackPanel HorizontalAlignment="Stretch" Margin="10" Spacing="5">
-            <Grid HorizontalAlignment="Stretch" ColumnSpacing="10">
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10" RowSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="260"></RowDefinition>
+        </Grid.RowDefinitions>
+
+            <Grid HorizontalAlignment="Stretch" ColumnSpacing="10" VerticalAlignment="Top" Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="1.4*"/>
@@ -38,71 +42,18 @@
                 <TextBox Header="프로젝트 명" Name="txt_Projname" Grid.Column="1" HorizontalAlignment="Stretch"
                           BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"/>
                 <ComboBox
-                     BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"  HorizontalAlignment="Stretch"
+                     BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                     Header="부서 명" Name="cb_Team" ItemsSource="{x:Bind TVM.PickerChoices}" DisplayMemberPath="TeamName" 
                           SelectedValuePath="TeamCode" Grid.Column="2" SelectedIndex="0"/>
                 <CheckBox Content="완료 여부" Name="cb_completeYN" Grid.Column="3"  VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
                 <Button Content="조회" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                        Click="Button_Click" Grid.Column="4" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"/>
             </Grid>
-            <!-- To create this sample, add/change the following properties onto the code for the base example above: -->
-
-            <ListView SelectionMode="Single" ItemsSource="{x:Bind PVM.Projects, Mode=OneWay}" MinHeight="300"
-                      MaxHeight="600" SelectionChanged="ListView_SelectionChanged" x:Name="listviewMain"
-                          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                      BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" BorderThickness="1">
-         
-                <ListView.HeaderTemplate>
-                    <DataTemplate >
-                        <Grid Margin="10" Height="20" HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*"/>
-                                <ColumnDefinition Width="0.5*"/>
-                                <ColumnDefinition Width="0.7*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text='프로젝트이름' Grid.Column="0" HorizontalAlignment="Center"
-                                           Style="{StaticResource BaseTextBlockStyle }"/>
-                            <TextBlock Text='담당자'  Grid.Column="1"  HorizontalAlignment="Center"
-                                           Style="{StaticResource BaseTextBlockStyle}"/>
-                            <TextBlock Text='부서이름'  Grid.Column="2"  HorizontalAlignment="Center"
-                                           Style="{StaticResource BaseTextBlockStyle}"/>
-                            <TextBlock Text='상호명'  Grid.Column="3"  HorizontalAlignment="Center"
-                                           Style="{StaticResource BaseTextBlockStyle}"/>
-                            <TextBlock Text='계약일'  Grid.Column="4" HorizontalAlignment="Center"
-                                           Style="{StaticResource BaseTextBlockStyle}"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.HeaderTemplate>
-                <ListView.ItemTemplate>
-                        <DataTemplate>
-                        <Grid Margin="10" Height="20" HorizontalAlignment="Stretch" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*"/>
-                                <ColumnDefinition Width="0.5*"/>
-                                <ColumnDefinition Width="0.7*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding ProjectName}" Grid.Column="0" HorizontalAlignment="Left"
-                                   Style="{StaticResource BodyTextBlockStyle}"/>
-                            <TextBlock Text="{Binding ProjectManager}" Grid.Column="1" HorizontalAlignment="Center"
-                                   Style="{StaticResource BodyTextBlockStyle}" />
-                            <TextBlock Text="{Binding DepartmentName}"  Grid.Column="2" HorizontalAlignment="Center"
-                                   Style="{StaticResource BodyTextBlockStyle}" />
-                            <TextBlock Text="{Binding BusinessName}"  Grid.Column="3" HorizontalAlignment="Center"
-                                   Style="{StaticResource BodyTextBlockStyle}" />
-                            <TextBlock Text="{Binding ContractDate}"  Grid.Column="4" HorizontalAlignment="Center"
-                                   Style="{StaticResource BodyTextBlockStyle}" />
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-
-            <Grid HorizontalAlignment="Stretch" ColumnSpacing="10">
+            <Grid HorizontalAlignment="Stretch" ColumnSpacing="10" RowSpacing="10" VerticalAlignment="Stretch"
+                  Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -113,37 +64,91 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Run Text="하도급: " FontWeight="Normal"/>
-                    <Run Text="{Binding SubCount}" FontWeight="Normal"/>
-                    <Run Text="건" FontWeight="Normal"/>
+                <ListView Grid.ColumnSpan="7" Grid.Row="0" SelectionMode="Single"
+                          ItemsSource="{x:Bind PVM.Projects, Mode=OneWay}"
+                          SelectionChanged="ListView_SelectionChanged" x:Name="listviewMain"
+                              Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" BorderThickness="1">
+
+                    <ListView.HeaderTemplate>
+                        <DataTemplate >
+                            <Grid Margin="10" Height="20" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                    <ColumnDefinition Width="0.7*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text='프로젝트이름' Grid.Column="0" HorizontalAlignment="Center"
+                                               Style="{StaticResource BaseTextBlockStyle }"/>
+                                <TextBlock Text='담당자'  Grid.Column="1"  HorizontalAlignment="Center"
+                                               Style="{StaticResource BaseTextBlockStyle}"/>
+                                <TextBlock Text='부서이름'  Grid.Column="2"  HorizontalAlignment="Center"
+                                               Style="{StaticResource BaseTextBlockStyle}"/>
+                                <TextBlock Text='상호명'  Grid.Column="3"  HorizontalAlignment="Center"
+                                               Style="{StaticResource BaseTextBlockStyle}"/>
+                                <TextBlock Text='계약일'  Grid.Column="4" HorizontalAlignment="Center"
+                                               Style="{StaticResource BaseTextBlockStyle}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.HeaderTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="10" Height="20" HorizontalAlignment="Stretch" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                    <ColumnDefinition Width="0.7*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding ProjectName}" Grid.Column="0" HorizontalAlignment="Left"
+                                       Style="{StaticResource BodyTextBlockStyle}"/>
+                                <TextBlock Text="{Binding ProjectManager}" Grid.Column="1" HorizontalAlignment="Center"
+                                       Style="{StaticResource BodyTextBlockStyle}" />
+                                <TextBlock Text="{Binding DepartmentName}"  Grid.Column="2" HorizontalAlignment="Center"
+                                       Style="{StaticResource BodyTextBlockStyle}" />
+                                <TextBlock Text="{Binding BusinessName}"  Grid.Column="3" HorizontalAlignment="Center"
+                                       Style="{StaticResource BodyTextBlockStyle}" />
+                                <TextBlock Text="{Binding ContractDate}"  Grid.Column="4" HorizontalAlignment="Center"
+                                       Style="{StaticResource BodyTextBlockStyle}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+
+                <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Run Text="하도급: " FontWeight="Normal"/>
+                        <Run Text="{Binding SubCount}" FontWeight="Normal"/>
+                        <Run Text="건" FontWeight="Normal"/>
                 </TextBlock>
-                <TextBlock  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Run Text="외주인력:" FontWeight="Normal"/>
-                    <Run Text="{Binding ODMCount}" FontWeight="Normal"/>
-                    <Run Text="명" FontWeight="Normal"/>
+                <TextBlock  Grid.Row="1"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Run Text="외주인력:" FontWeight="Normal"/>
+                        <Run Text="{Binding ODMCount}" FontWeight="Normal"/>
+                        <Run Text="명" FontWeight="Normal"/>
                 </TextBlock>
-                <Button Content="투입계획 관리" HorizontalAlignment="Stretch"
-                        Grid.Column="2" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"/>
-                <Button Content="하도급 등록" HorizontalAlignment="Stretch"
-                        Grid.Column="3" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"/>
-                <Button Content="Push 등록" HorizontalAlignment="Stretch"
-                        Grid.Column="4" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"/>
-                <Button Content="Excel" HorizontalAlignment="Stretch"
-                        Grid.Column="5" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"/>
-                <Button Content="저장" HorizontalAlignment="Stretch"
-                        Grid.Column="6" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"/>
+                <Button Grid.Row="1"  Content="투입계획 관리" HorizontalAlignment="Stretch"
+                            Grid.Column="2" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"/>
+                <Button Grid.Row="1"  Content="하도급 등록" HorizontalAlignment="Stretch"
+                            Grid.Column="3" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"/>
+                <Button Grid.Row="1"  Content="Push 등록" HorizontalAlignment="Stretch"
+                            Grid.Column="4" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"/>
+                <Button Grid.Row="1"  Content="Excel" HorizontalAlignment="Stretch"
+                            Grid.Column="5" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"/>
+                <Button Grid.Row="1"  Content="저장" HorizontalAlignment="Stretch"
+                            Grid.Column="6" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"/>
             </Grid>
 
-
-                <TextBlock Text="프로젝트 관리 등록" VerticalAlignment="Bottom" HorizontalAlignment="Left"
-                           Style="{StaticResource  BodyStrongTextBlockStyle}"/>
-            <Grid HorizontalAlignment="Stretch" ColumnSpacing="10" RowSpacing="5" x:Name="grid_Detail">
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ColumnSpacing="10"
+                  Grid.Row="2" RowSpacing="5" x:Name="grid_Detail">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -152,11 +157,12 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
+                
                 <TextBox Header="프로젝트 이름"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
-                         Text="{Binding ProjectName}"
+                             Text="{Binding ProjectName}"
                          HorizontalAlignment="Stretch" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}"/>
                 <ComboBox Header="부서명" BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" 
-                          HorizontalAlignment="Stretch" Grid.Column="2" Grid.Row="0"  
+                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="0"  
                           DisplayMemberPath="TeamName" x:Name="cb_Team2" SelectedItem="{Binding SelectedRecord}"
                           SelectedValuePath="TeamCode" ItemsSource="{Binding PickerChoices, Mode=TwoWay}" />
                 <TextBox Header="프로젝트 담당자"  Grid.Column="3" Grid.Row="0" Text="{Binding UserName}"
@@ -196,6 +202,6 @@
                 <TextBox Header="프로젝트 담당자 메모" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5"
                          BorderBrush="{ThemeResource ApplicationForegroundThemeBrush}" Text="{Binding ProjectMemo}"/>
             </Grid>
-        </StackPanel>
-    </ScrollViewer>
+        </Grid>
+        
 </Page>
